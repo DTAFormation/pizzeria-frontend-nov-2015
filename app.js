@@ -3,7 +3,8 @@ angular.module('pzWebApp', [
     'ngRoute',
     'ngAnimate',
     'pzWebApp.shared',
-    'pzWebApp.home'
+    'pzWebApp.home',
+    'pzWebApp.info'
 ]);
 
 angular.module('pzWebApp').config(function($routeProvider) {
@@ -12,6 +13,7 @@ angular.module('pzWebApp').config(function($routeProvider) {
     // Pas de route spécifique ici !
     // Elles doivent être déclarées dans des sous-modules (comme 'home')
     $routeProvider.otherwise({redirectTo:'/home'});
+
 });
 
 angular.module('pzWebApp').run(function($rootScope) {
