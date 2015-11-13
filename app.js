@@ -3,8 +3,7 @@ angular.module('pzWebApp', [
     'ngRoute',
     'ngAnimate',
     'pzWebApp.shared',
-    'pzWebApp.home',
-    'pzWebApp.info'
+    'pzWebApp.home',    
 ]);
 
 angular.module('pzWebApp').config(function($routeProvider) {
