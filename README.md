@@ -5,7 +5,7 @@ Application d'administration de la pizzeria
 * Installer NodeJS et NPM
 * Installer grunt-cli
 ```
-npm install grunt-cli
+npm install -g grunt-cli
 ```
 * Installer bower
 ```
