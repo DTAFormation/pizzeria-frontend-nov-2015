@@ -1,0 +1,5 @@
+describe('infoServiceTest', function() {
+
+    // Tests
+
+});
