@@ -1,24 +1,15 @@
-# Pizzeria Web
+# Pizzeria Web Admin
 Application d'administration de la pizzeria
 
 ## Prérequis
 * Installer NodeJS et NPM
-* Installer grunt-cli
+* Installer live-serverhttps://github.com/DTAFormation/pizzeria-web-admin-nov-2015/blob/master/README.md
 ```
-npm install -g grunt-cli
-```
-* Installer bower
-```
-npm install -g bower
+npm install -g live-server
 ```
 
-## Installation de l'environnement de développement
-* Récupérer les dépendances nécessaires
+## Lancer l'application
+* Se positionner à la racine des sources et lancer la commande
 ```
-npm install
-bower install
-```
-* Lancer l'application
-```
-grunt serve
+live-server --port=8081
 ```
