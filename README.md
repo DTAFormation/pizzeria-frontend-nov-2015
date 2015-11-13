@@ -1,4 +1,4 @@
-# Pizzeria Web Admin
+# Pizzeria Web 
 Application d'administration de la pizzeria
 
 ## Prérequis
