@@ -3,7 +3,7 @@ Application d'administration de la pizzeria
 
 ## Prérequis
 * Installer NodeJS et NPM
-* Installer live-serverhttps://github.com/DTAFormation/pizzeria-web-admin-nov-2015/blob/master/README.md
+* Installer live-server
 ```
 npm install -g live-server
 ```
