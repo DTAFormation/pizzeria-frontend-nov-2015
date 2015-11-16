@@ -1,0 +1,48 @@
+<!--
+	Usage de la syntaxe 'controller as' dans la déclaration de la route dans home.js
+ -->
+<h1>{{ctrl.title}}</h1> {{ctrl.client}}
+<form name="ctrl.editionForm" ng-submit="editionForm.saveForm()" novalidate>
+	<div class="form-inline">
+		<div class="form-group">
+			<label for="nom">Nom : </label>
+			<input id="nom" type="nom" class="form-control" ng-model="ctrl.client.nom" required/>
+		</div>
+
+		<div class="form-group">
+			<label for="prenom">Prénom :</label>
+			<input id="prenom" name="prenom" ng-model="ctrl.client.prenom" class="form-control" required/>
+		</div>
+
+		<div class="form-group">
+			<label for="mail">Mail :</label>
+			<input type="email" id="mail" name="mail" ng-model="ctrl.client.mail" class="form-control" required/>
+		</div>
+
+		<div class="form-group">
+			<label for="tel">Téléphone :</label>
+			<input id="tel" name="tel" ng-model="ctrl.client.tel" class="form-control" required/>
+		</div>
+
+		<div class="form-group">
+			<label for="addr">Adresse :</label>
+			<textarea id="addr" name="addr" ng-model="ctrl.client.addr" class="form-control" required></textarea>
+		</div>
+		<div class="form-group">
+			<label for="login">Login :</label>	
+			<input id="login" name="login" ng-model="ctrl.client.login" class="form-control" required/>
+		</div>
+
+		<div class="form-group">
+			<label for="mdp">Mot de passe :</label>
+			<input type="password" id="mdp" name="mdp" ng-model="ctrl.client.mdp" class="form-control" required/>
+		</div>
+	</div>
+
+	<div class="form-group ">
+		<button type="submit " ng-click="ctrl.saveForm() ">Modifier les informations</button>
+	</div>
+
+	<br>
+
+</form>
