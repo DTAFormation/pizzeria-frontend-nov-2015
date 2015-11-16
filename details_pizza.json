@@ -1,0 +1,20 @@
+[
+	{
+		"nom": "reine",
+		"ingredients": [
+			"sauce tomate",
+			"mozza",
+			"jambon",
+			"champignons"
+		],
+		"img": "https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg"
+	},
+	{
+		"nom": "margarita",
+		"ingredients": [
+			"sauce tomate",
+			"mozza"
+		],
+		"img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
+	}
+]
