@@ -1,24 +1,18 @@
-# Pizzeria Web Admin
+# Pizzeria Web 
 Application d'administration de la pizzeria
 
 ## Prérequis
 * Installer NodeJS et NPM
-* Installer grunt-cli
+* Installer live-server
 ```
-npm install grunt-cli
-```
-* Installer bower
-```
-npm install -g bower
+npm install -g live-server
 ```
 
-## Installation de l'environnement de développement
-* Récupérer les dépendances nécessaires
+## Lancer l'application
+* Se positionner à la racine des sources et lancer la commande
 ```
-npm install
-bower install
+live-server --port=8081
 ```
-* Lancer l'application
-```
-grunt serve
-```
+
+## Gestion des modules
+* L'application utilisera 4 modules différents : Home (US100), Products(US200), Users(US300), Orders(US400).
