@@ -1,7 +1,8 @@
 // Déclaration du module 'home'
 angular.module('pzWebApp.home', [
     'ngRoute',
-    'pzWebApp.shared'
+    'pzWebApp.shared',
+    'ngMap'
 ]);
 
 // Configuration du module 'home'
@@ -13,7 +14,13 @@ angular.module('pzWebApp.home').config(function($routeProvider) {
             templateUrl:"home/template/home.tpl.html",
             controller:"homeCtrl",
             controllerAs: "ctrl"
+        })
+        .when("/info",{
+            templateUrl:"home/template/info.tpl.html",
+            controller:"infoCtrl",
+            controllerAs: "ctrl"
         });
+
 });
 
 // Contrôleur principal du module 'home'
@@ -25,5 +32,25 @@ angular.module('pzWebApp.home').controller('homeCtrl', function(userService) {
     self.title = "Page Home";
 
     // ...
+
+})
+.controller('infoCtrl', function(userService) {
+
+    var self = this;
+
+    self.title = "Page information";
+
+    var vm = this;
+
+    vm.cities = {
+      chicago: {population:2714856, position: [41.878113, -87.629798]},
+      newyork: {population:8405837, position: [40.714352, -74.005973]},
+      losangeles: {population:3857799, position: [34.052234, -118.243684]},
+      vancouver: {population:603502, position: [49.25, -123.1]},
+    }
+    vm.getRadius = function(num) {
+      return Math.sqrt(num) * 100;
+    }
+
 
 });
