@@ -1,0 +1,33 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28 oct. 2015, 14:34:18
+    Author     : ETY
+*/
+
+body{
+    background: lightgrey;
+}
+.jumbotron{
+    color: red;
+    text-shadow: 2px 2px 4px white;
+    box-shadow: 5px 5px 5px black;
+    background-image:url(pizza.jpg);
+    background-size: 100%;
+    
+}
+
+.footer{
+    background-color: gray;
+    border-radius: 3px;
+    margin: auto;
+    padding: auto;
+}
+
+.panel{
+    padding: 5px;
+    margin-bottom: 5px;
+}
