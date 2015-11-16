@@ -1,0 +1,5 @@
+describe('inscriptionServiceTest', function() {
+
+    // Tests
+
+});
