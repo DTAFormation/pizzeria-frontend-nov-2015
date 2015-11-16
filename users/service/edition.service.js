@@ -7,7 +7,7 @@ angular.module('pzWebApp.users').service('editionService', function ($http) {
 	console.log('editionService')
 
 	// TODO A remplacer par la connection à la BDD
-	var url = 'http://localhost:3000/client'
+	var url = 'http://localhost:2000/client'
 
 	this.promesseGet = $http.get(url)
 		.then(handleResponse)

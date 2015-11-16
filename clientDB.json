@@ -19,6 +19,16 @@
       "login": "admin",
       "mdp": "admin",
       "id": 2
+    },
+    {
+      "nom": "Jacquot",
+      "prenom": "Polo2",
+      "mail": "test@test.t",
+      "tel": "061515151515",
+      "addr": "ee",
+      "login": "adminz",
+      "mdp": "adminz",
+      "id": 3
     }
   ]
 }
