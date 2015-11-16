@@ -1,6 +1,8 @@
 # Pizzeria Web 
 Application d'administration de la pizzeria
 
+[Tester ici !](http://dtaformation.github.io/pizzeria-web-nov-2015/)
+
 ## Prérequis
 * Installer NodeJS et NPM
 * Installer live-server
