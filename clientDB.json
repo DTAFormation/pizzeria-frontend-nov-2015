@@ -1,0 +1,24 @@
+{
+  "client": [
+    {
+      "id": 1,
+      "nom": "Jacquotee",
+      "prenom": "Poloee",
+      "mail": "j.p@jp.com",
+      "addr": "12 rue de chez moi",
+      "tel": "061515151515",
+      "login": "japo",
+      "mdp": "japo"
+    },
+    {
+      "nom": "Jacquot",
+      "prenom": "Poloe52",
+      "mail": "test@test.t",
+      "tel": "02",
+      "addr": "eee",
+      "login": "admin",
+      "mdp": "admin",
+      "id": 2
+    }
+  ]
+}

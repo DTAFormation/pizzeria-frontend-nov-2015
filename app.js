@@ -8,12 +8,15 @@ angular.module('pzWebApp', [
     'pzWebApp.products'
 ]);
 
+
 angular.module('pzWebApp').config(function($routeProvider) {
 
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
-    // Elles doivent être déclarées dans des sous-modules (comme 'home')
-    $routeProvider.otherwise({redirectTo:'/home'});    
+    // Elles doivent être déclarées dans des sous-modules (comme 'home')   
+    $routeProvider
+    .otherwise({redirectTo:'/home'});
+
 });
 
 angular.module('pzWebApp').run(function($rootScope) {
