@@ -21,7 +21,7 @@ body{
 }
 
 .footer{
-    background-color: gray;
+    background-color: white;
     border-radius: 3px;
     margin: auto;
     padding: auto;
@@ -30,4 +30,8 @@ body{
 .panel{
     padding: 5px;
     margin-bottom: 5px;
+}
+
+.container{
+    background-color: white;
 }

@@ -1,0 +1,51 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "nom": "margarita",
+      "prix": 10,
+      "type":"pizzas",
+      "taille":"XLarge",
+      "format": ""      
+      
+    },
+    {
+      "id": 1,
+      "nom": "margarita",
+      "prix": 10,
+      "type":"pizzas",
+      "taille":"XLarge",
+      "format": ""
+      
+    },
+    {
+      "id": 1,
+      "nom": "margarita",
+      "prix": 10,
+      "type":"pizzas",
+      "taille":"XLarge",
+      "format": "" 
+      
+    },
+    {
+      "id": 1,
+      "nom": "margarita",
+      "prix": 10,
+      "type":"pizzas",
+      "taille":"XLarge",
+      "format": ""
+    }
+   ],
+   "menu": [
+   {
+    "id":1,
+    "nom":"Premium",
+    "prix":17
+   },
+   {
+    "id":1,
+    "nom":"etudiant",
+    "prix":9
+   }
+   ]
+}
