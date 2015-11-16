@@ -1,4 +1,4 @@
-# Pizzeria Web Admin
+# Pizzeria Web 
 Application d'administration de la pizzeria
 
 ## Prérequis
@@ -13,3 +13,6 @@ npm install -g live-server
 ```
 live-server --port=8081
 ```
+
+## Gestion des modules
+* L'application utilisera 4 modules différents : Home (US100), Products(US200), Users(US300), Orders(US400).
