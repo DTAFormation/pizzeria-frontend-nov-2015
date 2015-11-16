@@ -1,0 +1,10 @@
+{
+  "name": "pizzeria-web",
+  "version": "1.0.0",
+  "description": "projet angularjs",
+  "main": "index.js",
+  "scripts": {
+    "api": "json-server TMP_desserts.json",
+    "start": "live-server --port=1234"
+  }
+}
