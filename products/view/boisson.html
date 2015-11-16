@@ -1,0 +1,8 @@
+<h2>{{ctrl.title}}</h2>
+
+<form name="ctrl.boissonForm">
+	<div ng-repeat="boisson in ctrl.boissons track by $index">
+		<input type="radio" ng-model="ctrl.boisson" value="{{boisson}}">{{boisson.name}} {{ boisson.price }}<br>{{ boisson.description }}
+	</div>
+	<button type="submit" ng-click="ctrl.saveForm()">Choisir</button>
+</form>
