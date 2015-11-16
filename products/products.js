@@ -24,6 +24,11 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
             controller: "details_pizzaCtrl",
             controllerAs: "ctrl"
         })
+     .when("/boissons",{
+        templateUrl:"products/view/boisson.html",
+        controller:"boissonCtrl",
+        controllerAs: "ctrl"
+    })
     ;
 
 });
@@ -76,6 +81,35 @@ angular.module('pzWebApp.products').controller('details_pizzaCtrl', function (us
         }
 
         console.log("Target dessert is "+self.dessert);
+        $location.path('/')
+    }
+
+})
+.controller('boissonCtrl', function(boissonService, $location) {
+
+    var self = this;
+
+    self.title = "Choisissez une boisson:";
+
+    self.boissonForm = null; //formulaire correspondant au choix de la boisson
+
+    self.boisson = null; //boisson sélectionnée par l'utilisateur
+
+    //liste des boissons
+    boissonService.getBoissons().then(function(data){
+       self.boissons = data;
+   })
+
+    //sauvegarde du choix de la boisson de l'utilisateur
+    this.saveForm = function(){
+
+        if(this.boissonForm.$invalid || self.boisson == null)
+        {
+            alert("Merci de sélectionner une boisson");
+            return;
+        }
+
+        console.log("Target boisson is "+self.boisson);
         $location.path('/')
     }
 
