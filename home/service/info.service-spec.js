@@ -1,5 +1,0 @@
-describe('infoServiceTest', function() {
-
-    // Tests
-
-});

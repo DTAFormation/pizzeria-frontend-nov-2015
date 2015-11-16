@@ -31,10 +31,9 @@ angular.module('pzWebApp.home').controller('homeCtrl', function(userService) {
 
     self.title = "Page Home";
 
-    // ...
 
-})
-.controller('infoCtrl', function(userService) {
+});
+angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
 
     var self = this;
 

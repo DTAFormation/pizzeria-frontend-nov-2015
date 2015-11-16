@@ -5,7 +5,8 @@ angular.module('pzWebApp', [
     'pzWebApp.shared',
     'pzWebApp.home',
     'pzWebApp.products'
-    ]);
+]);
+
 
 angular.module('pzWebApp').config(function($routeProvider) {
 
@@ -23,5 +24,5 @@ angular.module('pzWebApp').run(function($rootScope) {
 
 // Contrôleur qui pilote globalement l'application
 angular.module('pzWebApp').controller("pzWebAppCtrl", function() {
-    this.title = "Pizzaria Web";
+    this.title = "Pizzeria Web";
 });
