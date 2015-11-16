@@ -4,7 +4,8 @@ angular.module('pzWebApp', [
     'ngAnimate',
     'pzWebApp.shared',
     'pzWebApp.home',
-    'pzWebApp.users'
+    'pzWebApp.users',
+    'pzWebApp.products'
 ]);
 
 angular.module('pzWebApp').config(function($routeProvider) {
