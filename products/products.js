@@ -24,18 +24,22 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
             controller: "details_pizzaCtrl",
             controllerAs: "ctrl"
         })
-     .when("/boissons",{
+    .when("/pizza_list",{
+            templateUrl:"products/view/pizza_list.html",
+            controller:"pizza_listCtrl",
+            controllerAs: "ctrl"
+        })
+    .when("/boissons",{
         templateUrl:"products/view/boisson.html",
         controller:"boissonCtrl",
         controllerAs: "ctrl"
-    })
-    ;
-
+    });
 });
 
 // Contrôleur principal du module 'products'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
-angular.module('pzWebApp.products').controller('details_pizzaCtrl', function (userService, detPizService) {
+angular.module('pzWebApp.products')
+.controller('details_pizzaCtrl', function (userService, detPizService) {
 
     var self = this;
     var id = 0;
@@ -46,9 +50,45 @@ angular.module('pzWebApp.products').controller('details_pizzaCtrl', function (us
         
     }.bind(this))
     
-    // ...
+})
+.controller('pizza_listCtrl', function (userService, pizza_listService) {
+
+    var self = this;
+    self.title = "Liste de pizzas";
+
+    self.pizzas = null; //dessert sélectionné par l'utilisateur
+
+    //liste des desserts
+    pizza_listService.getPizzas().then(function(data){
+       self.desserts = data;
+   })
 
 })
+.filter('inSlicesOf', 
+        ['$rootScope',  
+        function($rootScope) {
+            makeSlices = function(items, count) { 
+                if (!count)            
+                    count = 3;               
+                if (!angular.isArray(items) && !angular.isString(items)) return items;               
+                var array = [];
+                for (var i = 0; i < items.length; i++) {
+                    var chunkIndex = parseInt(i / count, 10);
+                    var isFirst = (i % count === 0);
+                    if (isFirst)
+                        array[chunkIndex] = [];
+                    array[chunkIndex].push(items[i]);
+                }
+                if (angular.equals($rootScope.arrayinSliceOf, array))
+                    return $rootScope.arrayinSliceOf;
+                else
+                    $rootScope.arrayinSliceOf = array;
+                    
+                return array;
+            };       
+            return makeSlices; 
+        }]
+    )
 .controller('productsCtrl', function(userService) {
 
     var self = this;
@@ -113,5 +153,4 @@ angular.module('pzWebApp.products').controller('details_pizzaCtrl', function (us
         $location.path('/')
     }
 
-})
-;
+});
