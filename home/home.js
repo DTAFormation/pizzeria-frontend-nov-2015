@@ -2,7 +2,8 @@
 angular.module('pzWebApp.home', [
     'ngRoute',
     'pzWebApp.shared',
-    'ngMap'  
+    'ngMap',
+    'ngStorage'  
 ]);
 
 
@@ -60,12 +61,14 @@ angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
 
 
 });
-angular.module('pzWebApp.home').controller('panierCtrl', function(panierService){
+
+angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$scope, $localStorage){
 
     var self = this;  
 
 
     self.title = "Mon panier";
+    self.datas
 
 
    panierService.product.then(function (product){        
@@ -73,7 +76,23 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService)
         self.menu = product.data.menu                         
     }.bind(this))
     
+     $scope.save = function() {
 
+                    $localStorage.data = [{"id": 1,"nom": "margarita","prix": 10,"type":"pizzas","taille":"XLarge","format": "","nombre" : 1 },
+                    {"id": 1,"nom": "margarita","prix": 10,"type":"pizzas","taille":"XLarge","format": "","nombre" : 1 },
+                    {"id": 1,"nom": "margarita","prix": 10,"type":"pizzas","taille":"XLarge","format": "","nombre" : 1 },
+                    {"id": 1,"nom": "margarita","prix": 10}]
+                    self.datas = $localStorage.data                                         
+                }.bind(this)
+ 
+     $scope.load = function() {
+                
+                            $scope.data = $localStorage.data 
+                        
+                                        
+                } 
+    
+        
 
 });
 
