@@ -5,15 +5,16 @@ angular.module('pzWebApp.users').service('editionService', function ($http) {
     }
 
 	console.log('editionService')
-
-	// TODO A remplacer par la connection à la BDD
-	var url = 'http://localhost:2000/client'
-
-	this.promesseGet = $http.get(url)
+	//TODO à remplacer par la variable de cession
+	var id = 1
+	
+	var url = 'http://localhost:8080/client'
+	this.promesseGet = $http.get(url+"/"+id)
 		.then(handleResponse)
 
 	this.promessePut = function promessePut(client) {
-		return $http.put(url + '/' + client.id, client)
+		console.log("je passe dans la promesse put : "+client.nom)
+		return $http.put(url, client)
 			.then(handleResponse)
 	}
 });

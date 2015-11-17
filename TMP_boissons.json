@@ -1,0 +1,52 @@
+{
+  "boissons": [
+    {
+      "id": 1,
+      "name": "Boisson1",
+      "description": "description du boisson1",
+      "price": 1.5
+    },
+    {
+      "id": 2,
+      "name": "Boisson2",
+      "description": "description du boisson2",
+      "price": 2.5
+    },
+    {
+      "id": 3,
+      "name": "Boisson3",
+      "description": "description du boisson3",
+      "price": 3.5
+    },
+    {
+      "id": 4,
+      "name": "Boisson4",
+      "description": "description du boisson4",
+      "price": 4.5
+    },
+    {
+      "id": 5,
+      "name": "Boisson5",
+      "description": "description du boisson5",
+      "price": 5.5
+    },
+    {
+      "id": 6,
+      "name": "Boisson6",
+      "description": "description du boisson6",
+      "price": 6.5
+    },
+    {
+      "id": 7,
+      "name": "Boisson7",
+      "description": "description du boisson7",
+      "price": 7.5
+    },
+    {
+      "id": 8,
+      "name": "Boisson8",
+      "description": "description du boisson8",
+      "price": 8.5
+    }
+  ]
+}
