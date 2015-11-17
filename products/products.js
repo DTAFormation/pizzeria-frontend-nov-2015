@@ -33,12 +33,12 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
         templateUrl:"products/view/boisson.html",
         controller:"boissonCtrl",
         controllerAs: "ctrl"
+    })
+    .when("/card",{
+        templateUrl:"products/view/card.html",
+        controller:"cardCtrl",
+        controllerAs: "ctrl"
     });
-    // .when("/card",{
-    //     templateUrl:"products/view/card.html",
-    //     controller:"cardCtrl",
-    //     controllerAs: "ctrl"
-    // });
 });
 
 // Contrôleur principal du module 'products'
@@ -175,6 +175,46 @@ angular.module('pzWebApp.products')
         $sessionStorage.products.push(self.boisson);
 
         console.log("Target boisson is "+self.boisson);
+        $location.path('/')
+    }
+
+})
+.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $sessionStorage) {
+
+    var self = this;
+
+    self.title = "Choisissez un produit parmis la carte:";
+
+    self.cardForm = null; //formulaire correspondant au choix d'un produit de la carte
+
+    self.product = null; //produit sélectionné par l'utilisateur
+
+    //liste des boissons
+    boissonService.getBoissons().then(function(data){
+       self.boissons = data;
+   })
+
+    //liste des desserts
+    dessertService.getDesserts().then(function(data){
+       self.desserts = data;
+   })
+
+    //sauvegarde du choix du produit de l'utilisateur
+    this.saveForm = function(){
+
+        if(this.cardForm.$invalid || self.product == null)
+        {
+            alert("Merci de sélectionner un produit");
+            return;
+        }
+
+        if($sessionStorage.products == null)
+        {
+            $sessionStorage.products = [];
+        }
+        $sessionStorage.products.push(self.product);
+
+        console.log("Target product is "+self.product);
         $location.path('/')
     }
 
