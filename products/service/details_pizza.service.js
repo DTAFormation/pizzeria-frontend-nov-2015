@@ -4,7 +4,7 @@ angular.module('pzWebApp.products').service('detPizService', function ($http) {
                 return response.data;
         }
 
-        var url = "http://127.0.0.1:8080/details_pizza.json";
+        var url = "http://127.0.0.1:1234/details_pizza.json";
 
         this.promesse = $http.get(url)
                 .then(handleResponse)

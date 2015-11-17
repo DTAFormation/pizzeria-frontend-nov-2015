@@ -4,8 +4,11 @@
   "description": "projet angularjs",
   "main": "index.js",
   "scripts": {
+    "api_clients": "json-server --port=2000 clientDB.json",
     "api_desserts": "json-server --port=1235 TMP_desserts.json",
     "api_boissons": "json-server --port=1236 TMP_boissons.json",
+    "api_boissons": "json-server --port=3017 TMP_pizza_list.json",
     "start": "live-server --port=1234"
   }
 }
+  
