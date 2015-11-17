@@ -38,6 +38,11 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
         templateUrl:"products/view/card.html",
         controller:"cardCtrl",
         controllerAs: "ctrl"
+    })
+    .when("/menu_list",{
+        templateUrl:"products/view/menu_list.html",
+        controller:"menuCtrl",
+        controllerAs: "ctrl"
     });
 });
 
@@ -217,5 +222,14 @@ angular.module('pzWebApp.products')
         console.log("Target product is "+self.product);
         $location.path('/')
     }
+})
+.controller('menuCtrl', function(menuService) {
+    var self = this;
+    self.title = "Liste des menus";
+
+    //liste des boissons
+    menuService.getMenus().then(function(data){
+        self.menus = data;
+    })
 
 });
