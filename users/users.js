@@ -36,7 +36,8 @@ angular.module('pzWebApp.users').controller('inscriptionCtrl', function(userServ
 		if (this.inscriptionForm.$invalid) {
 			alert('Un champs est vide ou invalide !')
 			return
-		}
+		}        
+        //Redirection vers le home
         inscriptionService.promessePost(this.client) .then(function () {
 				$location.path('/')
 			});
@@ -52,7 +53,8 @@ angular.module('pzWebApp.users').controller('editionCtrl', function(userService,
     
     
      editionService.promesseGet.then(function (client) {
-            self.client =client[0]
+         console.log("client : " + client)
+            self.client =client
         }.bind(this))
         
      this.saveForm = function () {
@@ -60,6 +62,7 @@ angular.module('pzWebApp.users').controller('editionCtrl', function(userService,
 			alert('Un champs est vide ou invalide !')
 			return
 		}
+        //Redirection vers le home
         editionService.promessePut(this.client)
             .then(function () {
 				$location.path('/')

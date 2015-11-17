@@ -6,10 +6,10 @@ function handleResponse(response) {
 
 console.log('inscriptionService')
 
-// TODO A remplacer par la connection à la BDD
-var url = 'http://localhost:2000/client'
+var url = 'http://localhost:8080/client'
 
 this.promessePost = function promessePost(client) { 
+    console.log("le nom du client envoyé est : "+client.nom)
     return $http.post(url + '/', client)
                     .then(handleResponse)}
 });

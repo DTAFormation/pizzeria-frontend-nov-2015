@@ -34,10 +34,7 @@ angular.module('pzWebApp.home').config(function($routeProvider) {
 angular.module('pzWebApp.home').controller('homeCtrl', function(userService) {
 
     var self = this;
-    
-    self.connected = userService.isConnected();
     self.title = "Page Home";
-
 
 });
 angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
