@@ -1,7 +1,8 @@
 // Déclaration du module 'home'
 angular.module('pzWebApp.home', [
     'ngRoute',
-    'pzWebApp.shared',   
+    'pzWebApp.shared',
+    'ngMap'  
 ]);
 
 
