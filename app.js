@@ -6,6 +6,7 @@ angular.module('pzWebApp', [
     'pzWebApp.home',
     'pzWebApp.users',
     'pzWebApp.products',
+    'pzWebApp.orders',
     'ngStorage'
 ]);
 
