@@ -51,19 +51,25 @@ angular.module('pzWebApp.products')
     }.bind(this))
     
 })
-.controller('pizza_listCtrl', function (userService, pizza_listService) {
+.controller('pizza_listCtrl', function (pizza_listService) {
 
     var self = this;
     self.title = "Liste de pizzas";
 
-    self.pizzas = null; //dessert sélectionné par l'utilisateur
+    self.pizzas = null; 
 
-    //liste des desserts
     pizza_listService.getPizzas().then(function(data){
        self.pizzas = data;
    })
 
+    this.redirect = function(adresse){
+
+        console.log("Redirection");
+        $window.location.href = 'details_pizza?pizza=adresse'
+    }
+
 })
+/*
 .filter('inSlicesOf', 
         ['$rootScope',  
         function($rootScope) {
@@ -89,6 +95,7 @@ angular.module('pzWebApp.products')
             return makeSlices; 
         }]
     )
+*/
 .controller('productsCtrl', function(userService) {
 
     var self = this;
