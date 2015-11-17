@@ -11,14 +11,13 @@ and open the template in the editor.
 body{
     background: lightgrey;
 }
-
 .jumbotron{
     color: red;
     text-shadow: 2px 2px 4px white;
     box-shadow: 5px 5px 5px black;
     background-image:url(pizza.jpg);
     background-size: 100%;
-    margin-bottom: 0px;
+    
 }
 
 .footer{

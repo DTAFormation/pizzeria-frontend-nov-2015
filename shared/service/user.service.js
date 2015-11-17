@@ -11,7 +11,7 @@ angular.module('pzWebApp.shared').service('userService', function($http, $q) {
     };
 
     this.logout = function() {
-        // TODO : Gestion de la déconnexion
+        // TODO Gestion de la déconnexion
     };
 
 });
