@@ -199,6 +199,11 @@ angular.module('pzWebApp.products')
        self.desserts = data;
    })
 
+    //liste des pizzas
+    pizza_listService.getPizzas().then(function(data){
+       self.pizzas = data;
+   })
+
     //sauvegarde du choix du produit de l'utilisateur
     this.saveForm = function(){
 
