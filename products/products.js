@@ -13,6 +13,11 @@ angular.module('pzWebApp.products').config(function ($routeProvider) {
             templateUrl: "products/template/details_pizza.tpl.html",
             controller: "details_pizzaCtrl",
             controllerAs: "ctrl"
+        })
+        .when("/pizza_list",{
+            templateUrl:"products/template/pizza_list.tpl.html",
+            controller:"pizza_listCtrl",
+            controllerAs: "ctrl"
         });
 });
 
@@ -31,4 +36,44 @@ angular.module('pzWebApp.products').controller('details_pizzaCtrl', function (us
     
     // ...
 
-});
+}),
+angular.module('pzWebApp.products').controller('pizza_listCtrl', function (userService, pizza_listService) {
+
+    var self = this;
+    var id = 1;
+    self.title = "Liste de pizzas";
+
+    pizza_listService.promesse.then(function (pizza) {
+        self.pizzas = pizza;
+        
+    }.bind(this))
+    
+    // ...
+
+})
+.filter('inSlicesOf', 
+        ['$rootScope',  
+        function($rootScope) {
+            makeSlices = function(items, count) { 
+                if (!count)            
+                    count = 3;               
+                if (!angular.isArray(items) && !angular.isString(items)) return items;               
+                var array = [];
+                for (var i = 0; i < items.length; i++) {
+                    var chunkIndex = parseInt(i / count, 10);
+                    var isFirst = (i % count === 0);
+                    if (isFirst)
+                        array[chunkIndex] = [];
+                    array[chunkIndex].push(items[i]);
+                }
+                if (angular.equals($rootScope.arrayinSliceOf, array))
+                    return $rootScope.arrayinSliceOf;
+                else
+                    $rootScope.arrayinSliceOf = array;
+                    
+                return array;
+            };       
+            return makeSlices; 
+        }]
+    )
+;
