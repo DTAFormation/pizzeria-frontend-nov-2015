@@ -1,8 +1,7 @@
 // Déclaration du module 'products'
 angular.module('pzWebApp.products', [
     'ngRoute',
-    'pzWebApp.shared',
-    'ngStorage'
+    'pzWebApp.shared'
 ]);
 
 // Configuration du module 'products'
@@ -35,6 +34,11 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
         controller:"boissonCtrl",
         controllerAs: "ctrl"
     })
+    .when("/card",{
+        templateUrl:"products/view/card.html",
+        controller:"cardCtrl",
+        controllerAs: "ctrl"
+    })
     .when("/menu_list",{
         templateUrl:"products/view/menu_list.html",
         controller:"menuCtrl",
@@ -57,19 +61,25 @@ angular.module('pzWebApp.products')
     }.bind(this))
     
 })
-.controller('pizza_listCtrl', function (userService, pizza_listService) {
+.controller('pizza_listCtrl', function (pizza_listService) {
 
     var self = this;
     self.title = "Liste de pizzas";
 
-    self.pizzas = null; //dessert sélectionné par l'utilisateur
+    self.pizzas = null; 
 
-    //liste des desserts
     pizza_listService.getPizzas().then(function(data){
-       self.desserts = data;
+       self.pizzas = data;
    })
 
+    this.redirect = function(adresse){
+
+        console.log("Redirection");
+        $window.location.href = 'details_pizza?pizza=adresse'
+    }
+
 })
+/*
 .filter('inSlicesOf', 
         ['$rootScope',  
         function($rootScope) {
@@ -95,6 +105,7 @@ angular.module('pzWebApp.products')
             return makeSlices; 
         }]
     )
+*/
 .controller('productsCtrl', function(userService) {
 
     var self = this;
@@ -172,6 +183,45 @@ angular.module('pzWebApp.products')
         $location.path('/')
     }
 
+})
+.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $sessionStorage) {
+
+    var self = this;
+
+    self.title = "Choisissez un produit parmis la carte:";
+
+    self.cardForm = null; //formulaire correspondant au choix d'un produit de la carte
+
+    self.product = null; //produit sélectionné par l'utilisateur
+
+    //liste des boissons
+    boissonService.getBoissons().then(function(data){
+       self.boissons = data;
+   })
+
+    //liste des desserts
+    dessertService.getDesserts().then(function(data){
+       self.desserts = data;
+   })
+
+    //sauvegarde du choix du produit de l'utilisateur
+    this.saveForm = function(){
+
+        if(this.cardForm.$invalid || self.product == null)
+        {
+            alert("Merci de sélectionner un produit");
+            return;
+        }
+
+        if($sessionStorage.products == null)
+        {
+            $sessionStorage.products = [];
+        }
+        $sessionStorage.products.push(self.product);
+
+        console.log("Target product is "+self.product);
+        $location.path('/')
+    }
 })
 .controller('menuCtrl', function(menuService) {
     var self = this;
