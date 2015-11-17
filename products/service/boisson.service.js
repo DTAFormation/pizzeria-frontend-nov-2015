@@ -7,7 +7,7 @@ angular.module('pzWebApp.products').service('boissonService', function($http, $q
 
     this.getBoissons = function() {
         console.log("Get boissons")
-        return $http.get('http://localhost:1236/boissons')
+        	return $http.get('http://localhost:8080/drink')
 			.then(handleResponse)
     };
 
