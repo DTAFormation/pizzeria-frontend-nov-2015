@@ -60,7 +60,7 @@ angular.module('pzWebApp.products')
 
     //liste des desserts
     pizza_listService.getPizzas().then(function(data){
-       self.desserts = data;
+       self.pizzas = data;
    })
 
 })
