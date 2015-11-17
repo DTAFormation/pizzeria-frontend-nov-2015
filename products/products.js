@@ -1,8 +1,7 @@
 // Déclaration du module 'products'
 angular.module('pzWebApp.products', [
     'ngRoute',
-    'pzWebApp.shared',
-    'ngStorage'
+    'pzWebApp.shared'
 ]);
 
 // Configuration du module 'products'
@@ -35,6 +34,11 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
         controller:"boissonCtrl",
         controllerAs: "ctrl"
     });
+    // .when("/card",{
+    //     templateUrl:"products/view/card.html",
+    //     controller:"cardCtrl",
+    //     controllerAs: "ctrl"
+    // });
 });
 
 // Contrôleur principal du module 'products'
