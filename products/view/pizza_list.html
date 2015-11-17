@@ -1,0 +1,13 @@
+<h1>{{ctrl.title}}</h1>
+	
+<div ng-app ng-controller="pizza_listCtrl as plCtrl">
+	<table>
+		<tbody>
+			<tr ng-repeat="pizza in plCtrl.pizzas | inSlicesOf:3">
+				<td class="" ng-repeat="item in pizza">
+					<a href="details_pizza?pizza={{item.id}}"><img ng-src="{{item.img}}"></a>
+				</td>
+			</tr>
+		</tbody>		
+	</table>		
+</div>
