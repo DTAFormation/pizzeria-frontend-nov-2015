@@ -2,9 +2,8 @@
 angular.module('pzWebApp.home', [
     'ngRoute',
     'pzWebApp.shared',
-    'ngMap',
-    'ngStorage'  
-]);
+    'ngMap'
+    ]);
 
 
 // Configuration du module 'home'
@@ -62,14 +61,13 @@ angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
 
 });
 
-angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$scope, $localStorage){
+angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$scope, $localStorage, $sessionStorage){
 
     var self = this;  
 
 
     self.title = "Mon panier";
-    self.datas
-
+    
 
    panierService.product.then(function (product){        
         self.product = product.data.product
@@ -90,8 +88,10 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
                             $scope.data = $localStorage.data 
                         
                                         
-                } 
-    
+                }
+
+    console.log($sessionStorage.product)
+    self.datas = $sessionStorage.product
         
 
 });

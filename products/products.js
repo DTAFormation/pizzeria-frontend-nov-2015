@@ -1,8 +1,7 @@
 // Déclaration du module 'products'
 angular.module('pzWebApp.products', [
     'ngRoute',
-    'pzWebApp.shared',
-    'ngStorage'
+    'pzWebApp.shared'
 ]);
 
 // Configuration du module 'products'
@@ -134,7 +133,7 @@ angular.module('pzWebApp.products')
 
 })
 .controller('boissonCtrl', function(boissonService, $location, $sessionStorage) {
-
+    console.log($sessionStorage.products)
     var self = this;
 
     self.title = "Choisissez une boisson:";
