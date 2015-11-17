@@ -5,7 +5,8 @@ angular.module('pzWebApp', [
     'pzWebApp.shared',
     'pzWebApp.home',
     'pzWebApp.users',
-    'pzWebApp.products'
+    'pzWebApp.products',
+    'ngStorage'
 ]);
 
 
@@ -24,6 +25,7 @@ angular.module('pzWebApp').run(function($rootScope) {
 });
 
 // Contrôleur qui pilote globalement l'application
-angular.module('pzWebApp').controller("pzWebAppCtrl", function() {
+angular.module('pzWebApp').controller("pzWebAppCtrl", function(userService) {
     this.title = "Pizzeria Web";
+    this.connected = userService.isConnected()
 });

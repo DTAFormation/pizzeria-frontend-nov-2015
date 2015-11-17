@@ -1,5 +1,5 @@
       <div class="jumbotron text-center">
-      	<h1>Pizza Web</h1>
+      	<h1 ng-bind="ctrl.title"></h1>
       </div>
 	<nav class="navbar navbar-inverse">
 		<div class="container">
@@ -7,9 +7,14 @@
 			<ul class="nav navbar-nav">
 				<li><a href="#home">Accueil</a></li>
 				<li><a href="#info">Info</a></li>
-				<li><a href="#home" ng-hide>Connexion</a></li>
-				<li><a href="#home" ng-hide>Inscription</a></li>
-				<li><a href="#home" ng-show>Deconnexion</a></li>
+				<li><a href="#menu_list">Menus</a></li>
+				<li><a href="#pizza_list">Pizzas</a></li>
+				<li><a href="#boissons">Boissons</a></li>
+				<li><a href="#desserts">Desserts</a></li>
+				<li><a href="#panier">Panier</a></li>
+				<li><a href="#home" ng-hide="ctrl.connected">Connexion</a></li>
+				<li><a href="#home" ng-hide="ctrl.connected">Inscription</a></li>
+				<li><a href="#home" ng-show="ctrl.connected">Deconnexion</a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
 		</div>

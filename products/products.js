@@ -34,6 +34,11 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
         controller:"boissonCtrl",
         controllerAs: "ctrl"
     });
+    // .when("/card",{
+    //     templateUrl:"products/view/card.html",
+    //     controller:"cardCtrl",
+    //     controllerAs: "ctrl"
+    // });
 });
 
 // Contrôleur principal du module 'products'
@@ -103,7 +108,7 @@ angular.module('pzWebApp.products')
     self.title = "Page Products";
 
 })
-.controller('dessertCtrl', function(dessertService, $location) {
+.controller('dessertCtrl', function(dessertService, $location, $sessionStorage) {
 
     var self = this;
 
@@ -127,12 +132,19 @@ angular.module('pzWebApp.products')
             return;
         }
 
+        if($sessionStorage.products == null)
+        {
+            $sessionStorage.products = [];
+        }
+        $sessionStorage.products.push(self.dessert);
+
         console.log("Target dessert is "+self.dessert);
+
         $location.path('/')
     }
 
 })
-.controller('boissonCtrl', function(boissonService, $location) {
+.controller('boissonCtrl', function(boissonService, $location, $sessionStorage) {
 
     var self = this;
 
@@ -155,6 +167,12 @@ angular.module('pzWebApp.products')
             alert("Merci de sélectionner une boisson");
             return;
         }
+
+        if($sessionStorage.products == null)
+        {
+            $sessionStorage.products = [];
+        }
+        $sessionStorage.products.push(self.boisson);
 
         console.log("Target boisson is "+self.boisson);
         $location.path('/')
