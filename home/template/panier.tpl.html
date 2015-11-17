@@ -1,0 +1,49 @@
+<h1>{{ctrl.title}}</h1>
+<h2>Produits</h2>
+<table class="table table-striped">
+<thead>
+	<tr>
+		<th>Id</th>
+		<th>Nom</th>
+		<th>Prix</th>
+		<th>Type</th>
+		<th>Taille</th>
+		<th>Format</th>			 		
+	</tr>			 		
+</thead>
+
+<tbody>
+	<tr ng-repeat="product in ctrl.product track by $index">
+		<td>{{product.id}}</td>
+		<td>{{product.type}}</td>	
+		<td>{{product.nom}}</td>
+		<td>{{product.prix}}€</td>		
+		<td>{{product.taille}}</td>
+		<td>{{product.format}}</td>
+		
+	</tr>
+</tbody>
+</table>
+
+<h2>Menu</h2>
+<table class="table table-striped">
+<thead>
+	<tr>
+		<th>Id</th>
+		<th>Nom</th>
+		<th>Prix</th>		 		
+	</tr>			 		
+</thead>
+
+<tbody>
+	<tr ng-repeat="menu in ctrl.menu track by $index">
+		<td>{{menu.id}}</td>
+		<td>{{menu.nom}}</td>	
+		<td>{{menu.prix}}€</td>		
+		
+	</tr>
+</tbody>
+</table>
+
+    
+

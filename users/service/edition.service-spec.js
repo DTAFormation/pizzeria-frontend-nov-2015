@@ -1,0 +1,5 @@
+describe('editionServiceTest', function() {
+
+    // Tests
+
+});

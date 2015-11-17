@@ -1,0 +1,52 @@
+{
+  "desserts": [
+    {
+      "id": 1,
+      "name": "Dessert1",
+      "description": "description du dessert1",
+      "price": 1.5
+    },
+    {
+      "id": 2,
+      "name": "Dessert2",
+      "description": "description du dessert2",
+      "price": 2.5
+    },
+    {
+      "id": 3,
+      "name": "Dessert3",
+      "description": "description du dessert3",
+      "price": 3.5
+    },
+    {
+      "id": 4,
+      "name": "Dessert4",
+      "description": "description du dessert4",
+      "price": 4.5
+    },
+    {
+      "id": 5,
+      "name": "Dessert5",
+      "description": "description du dessert5",
+      "price": 5.5
+    },
+    {
+      "id": 6,
+      "name": "Dessert6",
+      "description": "description du dessert6",
+      "price": 6.5
+    },
+    {
+      "id": 7,
+      "name": "Dessert7",
+      "description": "description du dessert7",
+      "price": 7.5
+    },
+    {
+      "id": 8,
+      "name": "Dessert8",
+      "description": "description du dessert8",
+      "price": 8.5
+    }
+  ]
+}
