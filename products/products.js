@@ -1,7 +1,8 @@
 // Déclaration du module 'products'
 angular.module('pzWebApp.products', [
     'ngRoute',
-    'pzWebApp.shared'
+    'pzWebApp.shared',
+    'ngStorage'
 ]);
 
 // Configuration du module 'products'
@@ -96,7 +97,7 @@ angular.module('pzWebApp.products')
     self.title = "Page Products";
 
 })
-.controller('dessertCtrl', function(dessertService, $location) {
+.controller('dessertCtrl', function(dessertService, $location, $sessionStorage) {
 
     var self = this;
 
@@ -120,12 +121,19 @@ angular.module('pzWebApp.products')
             return;
         }
 
+        if($sessionStorage.products == null)
+        {
+            $sessionStorage.products = [];
+        }
+        $sessionStorage.products.push(self.dessert);
+
         console.log("Target dessert is "+self.dessert);
+
         $location.path('/')
     }
 
 })
-.controller('boissonCtrl', function(boissonService, $location) {
+.controller('boissonCtrl', function(boissonService, $location, $sessionStorage) {
 
     var self = this;
 
@@ -148,6 +156,12 @@ angular.module('pzWebApp.products')
             alert("Merci de sélectionner une boisson");
             return;
         }
+
+        if($sessionStorage.products == null)
+        {
+            $sessionStorage.products = [];
+        }
+        $sessionStorage.products.push(self.boisson);
 
         console.log("Target boisson is "+self.boisson);
         $location.path('/')

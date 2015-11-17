@@ -2,7 +2,7 @@
 
 <form name="ctrl.dessertForm">
 	<div ng-repeat="dessert in ctrl.desserts track by $index">
-		<input type="radio" ng-model="ctrl.dessert" value="{{dessert}}">{{dessert.nom}} {{ dessert.prix }}
+		<input type="radio" ng-model="ctrl.dessert" value="{{dessert}}">{{dessert.nom}} {{ dessert.prix }}€
 	</div>
 	<button type="submit" ng-click="ctrl.saveForm()">Choisir</button>
 </form>
