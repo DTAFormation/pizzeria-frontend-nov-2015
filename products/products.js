@@ -109,7 +109,7 @@ angular.module('pzWebApp.products')
 
 })
 .controller('dessertCtrl', function(dessertService, $location, $sessionStorage) {
-
+    console.log($sessionStorage.products)
     var self = this;
 
     self.title = "Choisissez un dessert:";
@@ -136,9 +136,10 @@ angular.module('pzWebApp.products')
         {
             $sessionStorage.products = [];
         }
+        console.log(self.dessert)
         $sessionStorage.products.push(self.dessert);
 
-        console.log("Target dessert is "+self.dessert);
+        //console.log("Target dessert is "+self.dessert);
 
         $location.path('/')
     }
@@ -174,7 +175,7 @@ angular.module('pzWebApp.products')
         }
         $sessionStorage.products.push(self.boisson);
 
-        console.log("Target boisson is "+self.boisson);
+        //console.log("Target boisson is "+self.boisson);
         $location.path('/')
     }
 

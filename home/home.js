@@ -37,8 +37,8 @@ angular.module('pzWebApp.home').controller('homeCtrl', function(userService) {
     self.title = "Page Home";
 
 });
-angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
-
+angular.module('pzWebApp.home').controller('infoCtrl', function(userService, $sessionStorage) {
+    console.log($sessionStorage.products)
     var self = this;
 
     self.title = "Page information";
@@ -58,38 +58,39 @@ angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
 
 });
 
-angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$scope, $localStorage, $sessionStorage){
+angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$localStorage, $sessionStorage, $routeParams, $scope){
 
     var self = this;  
-
+    console.log($sessionStorage)
 
     self.title = "Mon panier";
+
     
+    self.data = [];
 
-   panierService.product.then(function (product){        
-        self.product = product.data.product
-        self.menu = product.data.menu                         
-    }.bind(this))
-    
-     $scope.save = function() {
+    self.product = null
 
-                    $localStorage.data = [{"id": 1,"nom": "margarita","prix": 10,"type":"pizzas","taille":"XLarge","format": "","nombre" : 1 },
-                    {"id": 1,"nom": "margarita","prix": 10,"type":"pizzas","taille":"XLarge","format": "","nombre" : 1 },
-                    {"id": 1,"nom": "margarita","prix": 10,"type":"pizzas","taille":"XLarge","format": "","nombre" : 1 },
-                    {"id": 1,"nom": "margarita","prix": 10}]
-                    self.datas = $localStorage.data                                         
-                }.bind(this)
- 
-     $scope.load = function() {
-                
-                            $scope.data = $localStorage.data 
-                        
-                                        
-                }
+     $sessionStorage.products.forEach(function(y){       
+                  
+        self.data.push(JSON.parse(y))      
+     
+     })
 
-    console.log($sessionStorage.product)
-    self.datas = $sessionStorage.product
+     console.log( $routeParams.produit)
+     console.log( $scope.produit)
+
+
+     this.add = function() {
+    console.log( self.product)
+    console.log( self.product)
         
+     }
+
+     this.supp = function() {
+        console.log( $routeParams.product)
+        console.log( $scope.product)
+        
+     }   
 
 });
 
