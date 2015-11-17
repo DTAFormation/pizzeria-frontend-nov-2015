@@ -1,15 +1,15 @@
 <h2>{{ctrl.title}}</h2>
 
 <form name="ctrl.cardForm">
-	<h3>Liste des pizzas</h3>
+	<h3 ng-hide="ctrl.pizzas == null || ctrl.pizzas.length == 0">Liste des pizzas</h3>
 	<div ng-repeat="pizza in ctrl.pizzas track by $index">
 		<input type="radio" ng-model="ctrl.product" value="{{pizza}}">{{pizza.nom}} {{ pizza.prix }}€
 	</div>
-	<h3>Liste des desserts</h3>
+	<h3 ng-hide="ctrl.desserts == null || ctrl.desserts.length == 0">Liste des desserts</h3>
 	<div ng-repeat="dessert in ctrl.desserts track by $index">
 		<input type="radio" ng-model="ctrl.product" value="{{dessert}}">{{dessert.nom}} {{ dessert.prix }}€
 	</div>
-	<h3>Liste des boissons</h3>
+	<h3 ng-hide="ctrl.boissons == null || ctrl.boissons.length == 0">Liste des boissons</h3>
 	<div ng-repeat="boisson in ctrl.boissons track by $index">
 		<input type="radio" ng-model="ctrl.product" value="{{boisson}}">{{boisson.nom}} {{ boisson.prix }}€
 	</div>
