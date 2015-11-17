@@ -25,7 +25,7 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
             controllerAs: "ctrl"
         })
     .when("/pizza_list",{
-            templateUrl:"products/view/pizza_list.tpl.html",
+            templateUrl:"products/view/pizza_list.html",
             controller:"pizza_listCtrl",
             controllerAs: "ctrl"
         })
@@ -54,15 +54,14 @@ angular.module('pzWebApp.products')
 .controller('pizza_listCtrl', function (userService, pizza_listService) {
 
     var self = this;
-    var id = 1;
     self.title = "Liste de pizzas";
 
-    pizza_listService.promesse.then(function (pizza) {
-        self.pizzas = pizza;
-        
-    }.bind(this))
-    
-    // ...
+    self.pizzas = null; //dessert sélectionné par l'utilisateur
+
+    //liste des desserts
+    pizza_listService.getPizzas().then(function(data){
+       self.desserts = data;
+   })
 
 })
 .filter('inSlicesOf', 

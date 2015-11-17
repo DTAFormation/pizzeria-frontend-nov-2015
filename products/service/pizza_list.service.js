@@ -1,15 +1,18 @@
 angular.module('pzWebApp.products').service('pizza_listService', function($http, $q) {
 
 	//var url = 'http://localhost:3000/'
-	var url = "http://127.0.0.1:8080/pizza_list.json"
+	var url = "http://localhost:3017/pizzas"
 
-
-	function handleResponse(response){
+	function handleResponse(response) {
+		console.log("Success !")
 		return response.data
 	}
 
-	this.promesse = $http.get(url)
-                .then(handleResponse)
+    this.getPizzas = function() {
+        console.log("Get pizzas")
+        return $http.get(url)
+			.then(handleResponse)
+    };
 
 })
 

@@ -1,3 +1,6 @@
+{
+    "pizzas":
+
 [
     {
         "name": "reine",
@@ -73,3 +76,5 @@
         "img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
     }
 ]
+
+}
