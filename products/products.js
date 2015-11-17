@@ -25,7 +25,7 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
             controllerAs: "ctrl"
         })
     .when("/pizza_list",{
-            templateUrl:"products/view/pizza_list.tpl.html",
+            templateUrl:"products/view/pizza_list.html",
             controller:"pizza_listCtrl",
             controllerAs: "ctrl"
         })
