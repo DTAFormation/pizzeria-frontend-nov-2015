@@ -1,9 +1,9 @@
 // Déclaration du module 'home'
 angular.module('pzWebApp.home', [
     'ngRoute',
-    'pzWebApp.shared',
-    'ngMap'
+    'pzWebApp.shared',   
 ]);
+
 
 // Configuration du module 'home'
 angular.module('pzWebApp.home').config(function($routeProvider) {
@@ -19,6 +19,11 @@ angular.module('pzWebApp.home').config(function($routeProvider) {
             templateUrl:"home/template/info.tpl.html",
             controller:"infoCtrl",
             controllerAs: "ctrl"
+        })
+        .when("/panier",{
+            templateUrl:"home/template/panier.tpl.html",
+            controller:"panierCtrl",
+            controllerAs: "ctrl"
         });
 
 });
@@ -32,8 +37,8 @@ angular.module('pzWebApp.home').controller('homeCtrl', function(userService) {
     self.title = "Page Home";
 
 
-})
-.controller('infoCtrl', function(userService) {
+});
+angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
 
     var self = this;
 
@@ -53,3 +58,21 @@ angular.module('pzWebApp.home').controller('homeCtrl', function(userService) {
 
 
 });
+
+angular.module('pzWebApp.home').controller('panierCtrl', function(panierService){
+
+    var self = this;  
+
+
+    self.title = "Mon panier";
+
+
+   panierService.product.then(function (product){        
+        self.product = product.data.product
+        self.menu = product.data.menu                         
+    }.bind(this))
+    
+
+
+});
+
