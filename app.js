@@ -5,7 +5,8 @@ angular.module('pzWebApp', [
     'pzWebApp.shared',
     'pzWebApp.home',
     'pzWebApp.users',
-    'pzWebApp.products'
+    'pzWebApp.products',
+    'pzWebApp.orders'
 ]);
 
 
