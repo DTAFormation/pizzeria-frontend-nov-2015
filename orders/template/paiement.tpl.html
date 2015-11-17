@@ -1,0 +1,36 @@
+<h2> {{ctrl.title}}</h2>
+
+<form name="paiementForm" ng-submit="paiementCtrl.saveForm()">
+
+	<label for="ligne">Payer en ligne</label>
+	<input id="ligne" type="radio" name="choixPaiement" value="ligne" ng-model="ngpaie">
+	<label for="recup">Payer à la récupération</label>
+	<input id="recup" type="radio" name="choixPaiement" value="recup" ng-model="ngpaie">
+
+	<div ng-show="ngpaie=='ligne'">
+		<br>
+		<h3> en ligne</h3>
+		<label for="paypal">Payer via Paypal</label>
+		<input id="paypal" type="radio" name="choixPaiementLigne" value="paypal" ng-model="ngpaieligne">
+		<label for="cb">Payer par carte bancaire</label>
+		<input id="cb" type="radio" name="choixPaiementLigne" value="cb" ng-model="ngpaieligne">
+
+		<div ng-show="ngpaieligne=='paypal'">
+			<p>Paypal</p>
+		</div>
+		<div ng-show="ngpaieligne=='cb'">
+			<label for="num">numéro de carte</label>
+			<input type="text" id="num">
+		</div>
+	</div>
+	<div ng-show="ngpaie=='recup'">
+		<br>
+		<h3> à la récupération</h3>
+		<label for="espece">Payer en espèce</label>
+		<input id="espece" type="radio" name="choixPaiementRecup" value="espece">
+		<label for="cbrecup">Payer par carte bancaire</label>
+		<input id="cbrecup" type="radio" name="choixPaiementRecup" value="cb">
+	</div>
+	<input type="submit">
+
+</form>
