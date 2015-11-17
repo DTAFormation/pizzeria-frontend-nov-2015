@@ -11,13 +11,16 @@ and open the template in the editor.
 body{
     background: lightgrey;
 }
+
 .jumbotron{
-    color: red;
     text-shadow: 2px 2px 4px white;
     box-shadow: 5px 5px 5px black;
     background-image:url(pizza.jpg);
     background-size: 100%;
-    
+}
+
+.jumbotron h1{
+    color: red;
 }
 
 .footer{
@@ -30,6 +33,10 @@ body{
 .panel{
     padding: 5px;
     margin-bottom: 5px;
+}
+
+.navbar .container{
+    background-color: inherit;
 }
 
 .container{
