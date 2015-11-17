@@ -1,80 +1,77 @@
 {
-    "pizzas":
-
-[
+  "pizzas": [
     {
-        "name": "reine",
-        "ingredients": [
-            "sauce tomate",
-            "mozza",
-            "jambon",
-            "champignons"
-        ],
-        "img": "https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg"
+      "name": "reine",
+      "ingredients": [
+        "sauce tomate",
+        "mozza",
+        "jambon",
+        "champignons"
+      ],
+      "img": "https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg"
     },
     {
-        "name": "margarita",
-        "ingredients": [
-            "sauce tomate",
-            "mozza"
-        ],
-        "img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
+      "name": "margarita",
+      "ingredients": [
+        "sauce tomate",
+        "mozza"
+      ],
+      "img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
     },
     {
-        "name": "Savoyarde",
-        "ingredients": [
-            "creme fraiche",
-            "mozza",
-            "lardon",
-            "pomme de terre",
-            "reblochon"
-        ],
-        "img": "https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg"
+      "name": "Savoyarde",
+      "ingredients": [
+        "creme fraiche",
+        "mozza",
+        "lardon",
+        "pomme de terre",
+        "reblochon"
+      ],
+      "img": "https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg"
     },
     {
-        "name": "margarita",
-        "ingredients": [
-            "sauce tomate",
-            "mozza"
-        ],
-        "img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
+      "name": "margarita",
+      "ingredients": [
+        "sauce tomate",
+        "mozza"
+      ],
+      "img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
     },
     {
-        "name": "reine",
-        "ingredients": [
-            "sauce tomate",
-            "mozza",
-            "jambon",
-            "champignons"
-        ],
-        "img": "https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg"
+      "name": "reine",
+      "ingredients": [
+        "sauce tomate",
+        "mozza",
+        "jambon",
+        "champignons"
+      ],
+      "img": "https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg"
     },
     {
-        "name": "margarita",
-        "ingredients": [
-            "sauce tomate",
-            "mozza"
-        ],
-        "img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
+      "name": "margarita",
+      "ingredients": [
+        "sauce tomate",
+        "mozza"
+      ],
+      "img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
     },
     {
-        "name": "reine",
-        "ingredients": [
-            "sauce tomate",
-            "mozza",
-            "jambon",
-            "champignons"
-        ],
-        "img": "https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg"
+      "name": "reine",
+      "ingredients": [
+        "sauce tomate",
+        "mozza",
+        "jambon",
+        "champignons"
+      ],
+      "img": "https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg"
     },
     {
-        "name": "margarita",
-        "ingredients": [
-            "sauce tomate",
-            "mozza"
-        ],
-        "img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
+      "name": "margarita",
+      "ingredients": [
+        "sauce tomate",
+        "mozza"
+      ],
+      "img": "https://cdn-catalog.pizzahut.fr/images/fr/20150511174125092.jpg"
     }
-]
-
+  ]
 }
