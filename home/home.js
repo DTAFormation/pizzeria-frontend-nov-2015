@@ -3,7 +3,6 @@ angular.module('pzWebApp.home', [
     'ngRoute',
     'pzWebApp.shared',
     'ngMap',
-    'ngStorage'  
 ]);
 
 
