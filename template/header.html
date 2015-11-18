@@ -15,8 +15,9 @@
 				<li><a href="#desserts">Desserts</a></li>
 				<!-- Jusqu'ici :) -->
 				<li><a href="#panier">Panier</a></li>
-				<li><a href="#connexion" ng-hide="ctrl.connected()">Connexion</a></li>
 				<li><a href="#inscription" ng-hide="ctrl.connected()">Inscription</a></li>
+				<li><a href="#connexion" ng-hide="ctrl.connected()">Connexion</a></li>
+				<li><a href="#edition" ng-show="ctrl.connected()">Compte</a></li>				
 				<li><a ng-click="ctrl.logout()" ng-show="ctrl.connected()" href="">Deconnexion</a></li>
 			</ul>
 		</div><!--/.nav-collapse -->
