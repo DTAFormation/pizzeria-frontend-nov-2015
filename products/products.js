@@ -20,7 +20,7 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
         controllerAs: "ctrl"
     })
      .when("/details_pizza", {
-            templateUrl: "products/template/details_pizza.tpl.html",
+            templateUrl: "products/view/details_pizza.html",
             controller: "details_pizzaCtrl",
             controllerAs: "ctrl"
         })
@@ -49,17 +49,24 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
 // Contrôleur principal du module 'products'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('pzWebApp.products')
-.controller('details_pizzaCtrl', function (userService, detPizService) {
-
+.controller('details_pizzaCtrl', function (userService, detPizService, $routeParams) {
+    var id = $routeParams.pizza
     var self = this;
-    var id = 0;
     
     self.title = "Détails pizza";
+    self.pizza = null
+
+    /*
     detPizService.promesse.then(function (pizza) {
         self.pizza = pizza[id];
         
     }.bind(this))
-    
+    */
+
+    console.log(id)
+    detPizService.getPizza(id).then(function(data){
+       self.pizza = data;
+   })
 })
 .controller('pizza_listCtrl', function (pizza_listService) {
 
@@ -72,11 +79,7 @@ angular.module('pzWebApp.products')
        self.pizzas = data;
    })
 
-    this.redirect = function(adresse){
 
-        console.log("Redirection");
-        $window.location.href = 'details_pizza?pizza=adresse'
-    }
 
 })
 /*
