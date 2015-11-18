@@ -95,7 +95,7 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
         if(i>=2){
           console.log("dans le if")
           self.datafinal[0] = self.data[0]                     
-          self.datafinal[0].nombre = 0
+          self.datafinal[0].nombre = 1
            while (i--) {
             val = self.data[i];
             j = i;

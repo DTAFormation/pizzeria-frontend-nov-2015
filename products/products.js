@@ -113,8 +113,8 @@ angular.module('pzWebApp.products')
     self.title = "Page Products";
 
 })
-.controller('dessertCtrl', function(dessertService, $location, $sessionStorage) {
-    console.log($sessionStorage.products)
+.controller('dessertCtrl', function(dessertService, $location, $localStorage) {
+    console.log($localStorage.products)
     var self = this;
 
     self.title = "Choisissez un dessert:";
@@ -137,12 +137,12 @@ angular.module('pzWebApp.products')
             return;
         }
 
-        if($sessionStorage.products == null)
+        if($localStorage.products == null)
         {
-            $sessionStorage.products = [];
+            $localStorage.products = [];
         }
         console.log(self.dessert)
-        $sessionStorage.products.push(self.dessert);
+        $localStorage.products.push(self.dessert);
 
         //console.log("Target dessert is "+self.dessert);
 
@@ -150,8 +150,8 @@ angular.module('pzWebApp.products')
     }
 
 })
-.controller('boissonCtrl', function(boissonService, $location, $sessionStorage) {
-    console.log($sessionStorage.products)
+.controller('boissonCtrl', function(boissonService, $location, $localStorage) {
+    console.log($localStorage.products)
     var self = this;
 
     self.title = "Choisissez une boisson:";
@@ -174,18 +174,18 @@ angular.module('pzWebApp.products')
             return;
         }
 
-        if($sessionStorage.products == null)
+        if($localStorage.products == null)
         {
-            $sessionStorage.products = [];
+            $localStorage.products = [];
         }
-        $sessionStorage.products.push(self.boisson);
+        $localStorage.products.push(self.boisson);
 
         //console.log("Target boisson is "+self.boisson);
         $location.path('/')
     }
 
 })
-.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $sessionStorage) {
+.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $localStorage) {
 
     var self = this;
 
@@ -221,14 +221,14 @@ angular.module('pzWebApp.products')
             return;
         }
 
-        if($sessionStorage.products == null)
+        if($localStorage.products == null)
         {
-            $sessionStorage.products = [];
+            $localStorage.products = [];
         }
 
-        $sessionStorage.products = $sessionStorage.products.concat(selectedPizzas);
-        $sessionStorage.products = $sessionStorage.products.concat(selectedDesserts);
-        $sessionStorage.products = $sessionStorage.products.concat(selectedBoissons);
+        $localStorage.products = $localStorage.products.concat(selectedPizzas);
+        $localStorage.products = $localStorage.products.concat(selectedDesserts);
+        $localStorage.products = $localStorage.products.concat(selectedBoissons);
 
         console.log("Pizzas added are "+ selectedPizzas);
         console.log("Desserts added are "+ selectedDesserts);
