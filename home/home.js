@@ -2,9 +2,9 @@
 angular.module('pzWebApp.home', [
     'ngRoute',
     'pzWebApp.shared',
-    'ngMap',
-    'ngStorage'  
-]);
+    'ngMap'
+    ]);
+
 
 
 // Configuration du module 'home'
@@ -38,8 +38,8 @@ angular.module('pzWebApp.home').controller('homeCtrl', function(userService) {
     self.title = "Page Home";
 
 });
-angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
-
+angular.module('pzWebApp.home').controller('infoCtrl', function(userService, $sessionStorage) {
+    console.log($sessionStorage.products)
     var self = this;
 
     self.title = "Page information";
@@ -59,37 +59,104 @@ angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
 
 });
 
-angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$scope, $localStorage){
+angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$localStorage, $sessionStorage, $routeParams, $scope){
 
-    var self = this;  
-
+    var self = this;
+    
 
     self.title = "Mon panier";
-    self.datas
 
-
-   panierService.product.then(function (product){        
-        self.product = product.data.product
-        self.menu = product.data.menu                         
-    }.bind(this))
     
-     $scope.save = function() {
+    self.data = [];
+    self.dataprovi= [];
+    self.datafinal = [];
 
-                    $localStorage.data = [{"id": 1,"nom": "margarita","prix": 10,"type":"pizzas","taille":"XLarge","format": "","nombre" : 1 },
-                    {"id": 1,"nom": "margarita","prix": 10,"type":"pizzas","taille":"XLarge","format": "","nombre" : 1 },
-                    {"id": 1,"nom": "margarita","prix": 10,"type":"pizzas","taille":"XLarge","format": "","nombre" : 1 },
-                    {"id": 1,"nom": "margarita","prix": 10}]
-                    self.datas = $localStorage.data                                         
-                }.bind(this)
- 
-     $scope.load = function() {
-                
-                            $scope.data = $localStorage.data 
-                        
-                                        
-                } 
+    self.product = null
+    self.iterator = 0
+    self.iterator2 = 1
+    self.datai = 0
     
+    console.log($localStorage.products.length)
+    
+    if($localStorage.products.length>1){
+      console.log("la")
+
+     $localStorage.products.forEach(function(y){     
+               
+        self.data.push(JSON.parse(y))
+        console.log(self.data)
+
+      })
+
+
+
+        var i =  self.data.length, j , val ;     
+        console.log(i) 
+
+        if(i>=2){
+          console.log("dans le if")
+          self.datafinal[0] = self.data[0]                     
+          self.datafinal[0].nombre = 1
+           while (i--) {
+            val = self.data[i];
+            j = i;
+            
+            while (j--) {
+              if(self.data[j].id == val.id){
+                console.log("lala")                 
+                self.datafinal[self.datai].nombre++
+                console.log(self.datafinal[self.datai].nombre)
+              } 
+              else{
+                self.datafinal.push(val)
+                self.datafinal[self.datai].nombre = 1
+              }            
+            }
+      }
+        }
+
+        else{
+          self.datafinal.push(JSON.parse(y))
+          self.datafinal[0].nombre=1;         
+        }
+      }
+     
+    
+
+     
+
+
+     this.add = function(id) {
+      console.log(id)   
+      self.iterator = 0
+      self.datafinal.forEach(function(y){      
+       
+        if (y.id == id){
+          console.log(y)
+          self.datafinal[self.iterator].nombre++
+        }        
+     
+     })
         
+     }
+
+     this.supp = function(id) {
+      self.iterator = 0
+      self.datafinal.forEach(function(y){      
+       
+        if (y.id == id){
+          console.log(y)
+          self.datafinal[self.iterator].nombre--
+          if( self.datafinal[self.iterator].nombre == 0 ){
+            self.datafinal.splice(self.iterator,1)
+            $localStorage.products.splice(self.iterator,1)
+          }
+        }        
+     
+     })
+        
+     }
+
 
 });
 
