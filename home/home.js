@@ -69,90 +69,105 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
     
     self.data = [];
     self.dataprovi= [];
+    self.datauni = [] ;
     self.datafinal = [];
 
     self.product = null
     self.iterator = 0
-    self.iterator2 = 1
+    self.iterator2 = 0
     self.datai = 0
-    
-    console.log($localStorage.products.length)
-    
-    if($localStorage.products.length>1){
-      console.log("la")
 
-     $localStorage.products.forEach(function(y){     
+    var cache = {};
+    console.log($localStorage.products)
+    $localStorage.products.forEach(function(y){     
                
         self.data.push(JSON.parse(y))
         console.log(self.data)
 
       })
+    function filtrerParID(obj) {
+  if ('id' in obj && typeof(obj.id) === 'number' && !isNaN(obj.id)) {
+    return true;
+ } else {
+    elementsInvalides++;
+    return false;
+  }
+}
 
 
 
-        var i =  self.data.length, j , val ;     
-        console.log(i) 
 
-        if(i>=2){
-          console.log("dans le if")
-          self.datafinal[0] = self.data[0]                     
-          self.datafinal[0].nombre = 1
-           while (i--) {
-            val = self.data[i];
-            j = i;
-            
-            while (j--) {
-              if(self.data[j].id == val.id){
-                console.log("lala")                 
-                self.datafinal[self.datai].nombre++
-                console.log(self.datafinal[self.datai].nombre)
-              } 
-              else{
-                self.datafinal.push(val)
-                self.datafinal[self.datai].nombre = 1
-              }            
-            }
+
+  self.datatrie = self.data.filter(filtrerParID)
+  console.log('Tableau filtré\n',   self.datatrie)
+
+
+  self.datauni = self.datatrie.filter(function(elem, index, array){
+          return cache[elem.id]?0:cache[elem.id]=1;
+  });
+
+
+  console.log('Tableau unique\n', self.datauni)
+
+
+  self.datatrie.forEach(function(x){    
+    var compt = 0
+    console.log('self.iterator',self.iterator)
+    
+    self.datatrie.forEach(function(z){  
+
+      if (self.datatrie[self.iterator].id == z.id)
+      {
+        compt++ 
       }
-        }
+      console.log('compteur',compt)
 
-        else{
-          self.datafinal.push(JSON.parse(y))
-          self.datafinal[0].nombre=1;         
-        }
-      }
-     
+    })
+
+    
+    console.log('id',self.datauni[self.iterator2].id )
+    console.log('nombre',self.datauni[self.iterator2].nombre )
+
+
+    if(self.datauni[self.iterator2].id != self.datatrie[self.iterator].id)
+    {
+      self.iterator2++
+    }
+    self.datauni[self.iterator2].nombre = compt
+    console.log('self.iterator2',self.iterator2)   
+    self.iterator++
     
 
-     
+
+  })
+
 
 
      this.add = function(id) {
       console.log(id)   
-      self.iterator = 0
-      self.datafinal.forEach(function(y){      
+      self.iterator3 = 0
+      self.datauni.forEach(function(y){      
        
         if (y.id == id){
           console.log(y)
-          self.datafinal[self.iterator].nombre++
-        }        
+          self.datauni[self.iterator3].nombre++
+        }
+        self.iterator3++        
      
      })
         
      }
 
      this.supp = function(id) {
-      self.iterator = 0
-      self.datafinal.forEach(function(y){      
+      self.iterator3 = 0
+      self.datauni.forEach(function(y){     
        
         if (y.id == id){
           console.log(y)
-          self.datafinal[self.iterator].nombre--
-          if( self.datafinal[self.iterator].nombre == 0 ){
-            self.datafinal.splice(self.iterator,1)
-            $localStorage.products.splice(self.iterator,1)
-          }
-        }        
-     
+          self.datauni[self.iterator3].nombre--        
+        }
+        self.iterator3++       
+      
      })
         
      }
