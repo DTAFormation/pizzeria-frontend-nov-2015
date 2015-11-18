@@ -33,12 +33,17 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
         templateUrl:"products/view/boisson.html",
         controller:"boissonCtrl",
         controllerAs: "ctrl"
+    })
+    .when("/card",{
+        templateUrl:"products/view/card.html",
+        controller:"cardCtrl",
+        controllerAs: "ctrl"
+    })
+    .when("/menu_list",{
+        templateUrl:"products/view/menu_list.html",
+        controller:"menuCtrl",
+        controllerAs: "ctrl"
     });
-    // .when("/card",{
-    //     templateUrl:"products/view/card.html",
-    //     controller:"cardCtrl",
-    //     controllerAs: "ctrl"
-    // });
 });
 
 // Contrôleur principal du module 'products'
@@ -111,7 +116,7 @@ angular.module('pzWebApp.products')
     self.title = "Page Products";
 
 })
-.controller('dessertCtrl', function(dessertService, $location, $sessionStorage) {
+.controller('dessertCtrl', function(dessertService, $location, $localStorage) {
 
     var self = this;
 
@@ -135,11 +140,11 @@ angular.module('pzWebApp.products')
             return;
         }
 
-        if($sessionStorage.products == null)
+        if($localStorage.products == null)
         {
-            $sessionStorage.products = [];
+            $localStorage.products = [];
         }
-        $sessionStorage.products.push(self.dessert);
+        $localStorage.products.push(self.dessert);
 
         console.log("Target dessert is "+self.dessert);
 
@@ -147,7 +152,7 @@ angular.module('pzWebApp.products')
     }
 
 })
-.controller('boissonCtrl', function(boissonService, $location, $sessionStorage) {
+.controller('boissonCtrl', function(boissonService, $location, $localStorage) {
 
     var self = this;
 
@@ -171,14 +176,77 @@ angular.module('pzWebApp.products')
             return;
         }
 
-        if($sessionStorage.products == null)
+        if($localStorage.products == null)
         {
-            $sessionStorage.products = [];
+            $localStorage.products = [];
         }
-        $sessionStorage.products.push(self.boisson);
+        $localStorage.products.push(self.boisson);
 
         console.log("Target boisson is "+self.boisson);
         $location.path('/')
     }
+
+})
+.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $localStorage) {
+
+    var self = this;
+
+    self.title = "Choisissez un produit parmis la carte:";
+
+    self.cardForm = null; //formulaire correspondant au choix d'un produit de la carte
+
+    //liste des boissons
+    boissonService.getBoissons().then(function(data){
+       self.boissons = data;
+   })
+
+    //liste des desserts
+    dessertService.getDesserts().then(function(data){
+       self.desserts = data;
+   })
+
+    //liste des pizzas
+    pizza_listService.getPizzas().then(function(data){
+       self.pizzas = data;
+   })
+
+    //sauvegarde du choix du produit de l'utilisateur
+    this.saveForm = function(){
+
+        var selectedPizzas = self.pizzas.filter(function(piz){  return piz.selected});
+        var selectedDesserts = self.desserts.filter(function(piz){  return piz.selected});
+        var selectedBoissons = self.boissons.filter(function(piz){  return piz.selected});
+
+        if(this.cardForm.$invalid || (selectedPizzas.length == 0 && selectedDesserts.length == 0 && selectedBoissons.length == 0))
+        {
+            alert("Merci de sélectionner un produit");
+            return;
+        }
+
+        if($localStorage.products == null)
+        {
+            $localStorage.products = [];
+        }
+
+        $localStorage.products = $localStorage.products.concat(selectedPizzas);
+        $localStorage.products = $localStorage.products.concat(selectedDesserts);
+        $localStorage.products = $localStorage.products.concat(selectedBoissons);
+
+        console.log("Pizzas added are "+ selectedPizzas);
+        console.log("Desserts added are "+ selectedDesserts);
+        console.log("Boissons added are "+ selectedBoissons);
+        
+        //retour sur la home
+        $location.path('/')
+    }
+})
+.controller('menuCtrl', function(menuService) {
+    var self = this;
+    self.title = "Liste des menus";
+
+    //liste des boissons
+    menuService.getMenus().then(function(data){
+        self.menus = data;
+    })
 
 });

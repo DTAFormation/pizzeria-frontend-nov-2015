@@ -1,0 +1,25 @@
+<h2>{{ctrl.title}}</h2>
+
+<form name="ctrl.cardForm">
+	
+	<h3 ng-hide="ctrl.pizzas == null || ctrl.pizzas.length == 0">Liste des pizzas</h3>
+	<div ng-repeat="pizza in ctrl.pizzas track by $index">
+		<input type="checkbox" ng-model="pizza.selected">
+		<label>{{pizza.nom}} {{ pizza.prix }}€</label>
+	</div>
+	
+
+	<h3 ng-hide="ctrl.desserts == null || ctrl.desserts.length == 0">Liste des desserts</h3>
+	<div ng-repeat="dessert in ctrl.desserts track by $index">
+		<input type="checkbox" ng-model="dessert.selected">
+		<label>{{dessert.nom}} {{ dessert.prix }}€</label>
+	</div>
+
+	<h3 ng-hide="ctrl.boissons == null || ctrl.boissons.length == 0">Liste des boissons</h3>
+	<div ng-repeat="boisson in ctrl.boissons track by $index">
+		<input type="checkbox" ng-model="boisson.selected">
+		<label>{{boisson.nom}} {{ boisson.prix }}€</label>
+	</div>
+
+	<button type="submit" ng-click="ctrl.saveForm()">Choisir</button>
+</form>
