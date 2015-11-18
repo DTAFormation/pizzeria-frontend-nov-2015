@@ -1,0 +1,7 @@
+<h2>{{ctrl.title}}</h2>
+
+<ul>
+	<div ng-repeat="produit in ctrl.menu track by $index">
+		<li><a href="#/{{produit.id}}">{{produit.nom}}</a>
+	</div>
+</ul>

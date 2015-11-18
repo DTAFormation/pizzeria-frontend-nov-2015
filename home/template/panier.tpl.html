@@ -14,7 +14,7 @@
 </thead>
 
 <tbody>
-	<tr ng-repeat="product in ctrl.data track by $index">
+	<tr ng-repeat="product in ctrl.datafinal track by $index">
 		<td>{{product.id}}</td>
 		<td>{{product.nom}}</td>	
 		<td>{{product.prix}}€</td>
@@ -22,9 +22,9 @@
 		<td>{{product.taille}}</td>
 		<td>{{product.format}}</td>
 		<td>
-		<button type="button" class="btn btn-default  btn-xs" >-</button>
+		<button type="button" class="btn btn-default  btn-xs" ng-click="ctrl.supp(product.id)" >-</button>
 		{{product.nombre}}
-		<button type="button" class="btn btn-default  btn-xs" ng-model="ctrl.product" value="{{product}}" ng-click="ctrl.add()">+</button>			
+		<button type="button" class="btn btn-default  btn-xs" ng-model="ctrl.product" value="{{product}}" ng-click="ctrl.add(product.id)">+</button>			
 		</td>
 		
 		

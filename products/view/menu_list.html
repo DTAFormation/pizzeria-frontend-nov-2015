@@ -2,6 +2,6 @@
 
 <ul>
 	<div ng-repeat="menu in ctrl.menus track by $index">
-		<li><a href="#menu_detail/{{menu.id}}" ng-model="ctrl.menu">{{menu.nom}}</a> {{ menu.prix }}€
+		<li><a href="#menu/{{menu.id}}">{{menu.nom}}</a> {{ menu.prix }}€
 	</div>
 </ul>

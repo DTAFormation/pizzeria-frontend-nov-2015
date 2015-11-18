@@ -41,6 +41,11 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
     })
     .when("/menu_list",{
         templateUrl:"products/view/menu_list.html",
+        controller:"listMenuCtrl",
+        controllerAs: "ctrl"
+    })
+    .when("/menu/:idMenu",{
+        templateUrl:"products/view/menu.html",
         controller:"menuCtrl",
         controllerAs: "ctrl"
     });
@@ -117,10 +122,8 @@ angular.module('pzWebApp.products')
 
 })
 
-
-.controller('dessertCtrl', function(dessertService, $location, $sessionStorage) {
-    console.log($sessionStorage.products)
-
+.controller('dessertCtrl', function(dessertService, $location, $localStorage) {
+    console.log($localStorage.products)
     var self = this;
 
     self.title = "Choisissez un dessert:";
@@ -151,19 +154,12 @@ angular.module('pzWebApp.products')
         $localStorage.products.push(self.dessert);
 
         console.log(self.dessert)
-
-
-        //console.log("Target dessert is "+self.dessert);
-
         $location.path('/')
     }
 
 })
-
 .controller('boissonCtrl', function(boissonService, $location, $localStorage) {
-
-    console.log($sessionStorage.products)
-
+    console.log($localStorage.products)
     var self = this;
 
     self.title = "Choisissez une boisson:";
@@ -250,13 +246,24 @@ angular.module('pzWebApp.products')
         $location.path('/')
     }
 })
-.controller('menuCtrl', function(menuService) {
+.controller('listMenuCtrl', function(listMenuService) {
     var self = this;
     self.title = "Liste des menus";
 
-    //liste des boissons
-    menuService.getMenus().then(function(data){
+    //liste des menus
+    listMenuService.getMenus().then(function(data){
         self.menus = data;
+    })
+
+})
+.controller('menuCtrl', function(menuService, $routeParams) {
+    var self = this;
+    self.title = "Menu:";
+    var id = $routeParams.idMenu
+
+    //contenu d'un menu
+    menuService.getMenu(id).then(function(data){
+        self.menu = data;
     })
 
 });
