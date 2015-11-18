@@ -1,18 +1,20 @@
-angular.module('pzWebApp.shared').service('userService', function($http, $q) {
+angular.module('pzWebApp.shared').service('userService', function ($http, $q, $localStorage) {
 
-    var connected = false;    
+    var connected = false;
 
-    return{
-        isConnected : function() {
+    return {
+        isConnected: function () {
             return connected;
         },
-    
-        login : function(login, password) {
-            // TODO : Gestion de la connexion
+
+        login: function (client) {
+            $localStorage.client = client;
+            connected = true;
         },
-    
-        logout : function() {
-            // TODO Gestion de la déconnexion
+
+        logout: function () {
+            delete $localStorage.client;
+            connected = false;
         }
     };
 
