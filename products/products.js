@@ -116,7 +116,10 @@ angular.module('pzWebApp.products')
     self.title = "Page Products";
 
 })
-.controller('dessertCtrl', function(dessertService, $location, $localStorage) {
+
+
+.controller('dessertCtrl', function(dessertService, $location, $sessionStorage) {
+    console.log($sessionStorage.products)
 
     var self = this;
 
@@ -144,15 +147,22 @@ angular.module('pzWebApp.products')
         {
             $localStorage.products = [];
         }
+
         $localStorage.products.push(self.dessert);
 
-        console.log("Target dessert is "+self.dessert);
+        console.log(self.dessert)
+
+
+        //console.log("Target dessert is "+self.dessert);
 
         $location.path('/')
     }
 
 })
+
 .controller('boissonCtrl', function(boissonService, $location, $localStorage) {
+
+    console.log($sessionStorage.products)
 
     var self = this;
 
@@ -182,7 +192,7 @@ angular.module('pzWebApp.products')
         }
         $localStorage.products.push(self.boisson);
 
-        console.log("Target boisson is "+self.boisson);
+        //console.log("Target boisson is "+self.boisson);
         $location.path('/')
     }
 
