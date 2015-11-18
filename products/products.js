@@ -41,6 +41,11 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
     })
     .when("/menu_list",{
         templateUrl:"products/view/menu_list.html",
+        controller:"listMenuCtrl",
+        controllerAs: "ctrl"
+    })
+    .when("/menu/:idMenu",{
+        templateUrl:"products/view/menu.html",
         controller:"menuCtrl",
         controllerAs: "ctrl"
     });
@@ -223,13 +228,24 @@ angular.module('pzWebApp.products')
         $location.path('/')
     }
 })
-.controller('menuCtrl', function(menuService) {
+.controller('listMenuCtrl', function(listMenuService) {
     var self = this;
     self.title = "Liste des menus";
 
-    //liste des boissons
-    menuService.getMenus().then(function(data){
+    //liste des menus
+    listMenuService.getMenus().then(function(data){
         self.menus = data;
+    })
+
+})
+.controller('menuCtrl', function(menuService, $routeParams) {
+    var self = this;
+    self.title = "Menu:";
+    var id = $routeParams.idMenu
+
+    //contenu d'un menu
+    menuService.getMenu(id).then(function(data){
+        self.menu = data;
     })
 
 });
