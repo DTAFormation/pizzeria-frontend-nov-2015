@@ -117,10 +117,8 @@ angular.module('pzWebApp.products')
 
 })
 
-
-.controller('dessertCtrl', function(dessertService, $location, $sessionStorage) {
-    console.log($sessionStorage.products)
-
+.controller('dessertCtrl', function(dessertService, $location, $localStorage) {
+    console.log($localStorage.products)
     var self = this;
 
     self.title = "Choisissez un dessert:";
@@ -151,19 +149,12 @@ angular.module('pzWebApp.products')
         $localStorage.products.push(self.dessert);
 
         console.log(self.dessert)
-
-
-        //console.log("Target dessert is "+self.dessert);
-
         $location.path('/')
     }
 
 })
-
 .controller('boissonCtrl', function(boissonService, $location, $localStorage) {
-
-    console.log($sessionStorage.products)
-
+    console.log($localStorage.products)
     var self = this;
 
     self.title = "Choisissez une boisson:";
