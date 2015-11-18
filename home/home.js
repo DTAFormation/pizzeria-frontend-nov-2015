@@ -60,37 +60,102 @@ angular.module('pzWebApp.home').controller('infoCtrl', function(userService, $se
 
 angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$localStorage, $sessionStorage, $routeParams, $scope){
 
-    var self = this;  
-    console.log($sessionStorage)
+    var self = this;
+    
 
     self.title = "Mon panier";
 
     
     self.data = [];
+    self.dataprovi= [];
+    self.datafinal = [];
 
     self.product = null
+    self.iterator = 0
+    self.iterator2 = 1
+    self.datai = 0
+    
+    console.log($localStorage.products.length)
+    
+    if($localStorage.products.length>1){
+      console.log("la")
 
-     $sessionStorage.products.forEach(function(y){       
-                  
-        self.data.push(JSON.parse(y))      
+     $localStorage.products.forEach(function(y){     
+               
+        self.data.push(JSON.parse(y))
+        console.log(self.data)
+
+      })
+
+
+
+        var i =  self.data.length, j , val ;     
+        console.log(i) 
+
+        if(i>=2){
+          console.log("dans le if")
+          self.datafinal[0] = self.data[0]                     
+          self.datafinal[0].nombre = 0
+           while (i--) {
+            val = self.data[i];
+            j = i;
+            
+            while (j--) {
+              if(self.data[j].id == val.id){
+                console.log("lala")                 
+                self.datafinal[self.datai].nombre++
+                console.log(self.datafinal[self.datai].nombre)
+              } 
+              else{
+                self.datafinal.push(val)
+                self.datafinal[self.datai].nombre = 1
+              }            
+            }
+      }
+        }
+
+        else{
+          self.datafinal.push(JSON.parse(y))
+          self.datafinal[0].nombre=1;         
+        }
+      }
+     
+    
+
+     
+
+
+     this.add = function(id) {
+      console.log(id)   
+      self.iterator = 0
+      self.datafinal.forEach(function(y){      
+       
+        if (y.id == id){
+          console.log(y)
+          self.datafinal[self.iterator].nombre++
+        }        
      
      })
-
-     console.log( $routeParams.produit)
-     console.log( $scope.produit)
-
-
-     this.add = function() {
-    console.log( self.product)
-    console.log( self.product)
         
      }
 
-     this.supp = function() {
-        console.log( $routeParams.product)
-        console.log( $scope.product)
+     this.supp = function(id) {
+      self.iterator = 0
+      self.datafinal.forEach(function(y){      
+       
+        if (y.id == id){
+          console.log(y)
+          self.datafinal[self.iterator].nombre--
+          if( self.datafinal[self.iterator].nombre == 0 ){
+            self.datafinal.splice(self.iterator,1)
+            $localStorage.products.splice(self.iterator,1)
+          }
+        }        
+     
+     })
         
-     }   
+     }
+
 
 });
 
