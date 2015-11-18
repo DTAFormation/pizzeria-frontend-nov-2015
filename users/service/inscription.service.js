@@ -14,7 +14,6 @@ angular.module('pzWebApp.users').service('inscriptionService', function ($http) 
     this.promessePost = function promessePost(client) {
         console.log("le nom du client envoyé est : " + client.nom)
         return $http.post(url + '/', client)
-            .then(successCallback)
-            .error(errorCallback)     
+            .then(successCallback)   
     }
 });
