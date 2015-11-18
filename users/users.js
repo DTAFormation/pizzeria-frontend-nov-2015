@@ -43,9 +43,10 @@ angular.module('pzWebApp.users').controller('inscriptionCtrl', function (userSer
             alert('Un champs est vide ou invalide !')
             return
         }
+        self.client = this.client;
         inscriptionService.promessePost(this.client)
-            .then(function (reponse) {
-                //Redirection vers le home
+            .then(function (reponse) {  
+                userService.login(self.client);          
                 $location.path('/')
             }, function (reason) {
                 alert('Le mail ou le login est déjà utilisé !');
@@ -80,7 +81,7 @@ angular.module('pzWebApp.users').controller('editionCtrl', function (userService
     }
 });
 
-angular.module('pzWebApp.users').controller('connexionCtrl', function (userService, connexionService, $location, $localStorage) {
+angular.module('pzWebApp.users').controller('connexionCtrl', function (userService, connexionService, $location) {
 
     var self = this;
 
@@ -99,7 +100,7 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
                 if( self.client === "") {
                     console.log("login/mdp invalide")
                 } else {
-                    $localStorage.client = self.client
+                    userService.login(self.client);
                     $location.path('/')
                     console.log("connexion réussie")                    
                 }
