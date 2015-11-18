@@ -1,12 +1,16 @@
-angular.module('pzWebApp.products').service('detPizService', function ($http) {
+angular.module('pzWebApp.products').service('detPizService', function ($http, $q) {
 
         function handleResponse(response) {
-                return response.data;
-        }
+        console.log("Success !")
+        return response.data
+    }
 
-        var url = "http://127.0.0.1:1234/details_pizza.json";
-
-        this.promesse = $http.get(url)
-                .then(handleResponse)
+        this.getPizza = function(id) {
+        	console.log("Get pizzas")        	
+        	var url = 'http://localhost:8080/pizzaUne?id='+id;
+        	console.log(url)
+	        return $http.get(url).
+	        	then(handleResponse)
+    	};
         
 });
