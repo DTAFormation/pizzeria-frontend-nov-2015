@@ -1,8 +1,7 @@
 // Déclaration du module 'products'
 angular.module('pzWebApp.products', [
     'ngRoute',
-    'pzWebApp.shared',
-    'ngStorage'
+    'pzWebApp.shared'
 ]);
 
 // Configuration du module 'products'
@@ -34,6 +33,16 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
         templateUrl:"products/view/boisson.html",
         controller:"boissonCtrl",
         controllerAs: "ctrl"
+    })
+    .when("/card",{
+        templateUrl:"products/view/card.html",
+        controller:"cardCtrl",
+        controllerAs: "ctrl"
+    })
+    .when("/menu_list",{
+        templateUrl:"products/view/menu_list.html",
+        controller:"menuCtrl",
+        controllerAs: "ctrl"
     });
 });
 
@@ -52,19 +61,25 @@ angular.module('pzWebApp.products')
     }.bind(this))
     
 })
-.controller('pizza_listCtrl', function (userService, pizza_listService) {
+.controller('pizza_listCtrl', function (pizza_listService) {
 
     var self = this;
     self.title = "Liste de pizzas";
 
-    self.pizzas = null; //dessert sélectionné par l'utilisateur
+    self.pizzas = null; 
 
-    //liste des desserts
     pizza_listService.getPizzas().then(function(data){
-       self.desserts = data;
+       self.pizzas = data;
    })
 
+    this.redirect = function(adresse){
+
+        console.log("Redirection");
+        $window.location.href = 'details_pizza?pizza=adresse'
+    }
+
 })
+/*
 .filter('inSlicesOf', 
         ['$rootScope',  
         function($rootScope) {
@@ -90,6 +105,7 @@ angular.module('pzWebApp.products')
             return makeSlices; 
         }]
     )
+*/
 .controller('productsCtrl', function(userService) {
 
     var self = this;
@@ -166,5 +182,68 @@ angular.module('pzWebApp.products')
         console.log("Target boisson is "+self.boisson);
         $location.path('/')
     }
+
+})
+.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $sessionStorage) {
+
+    var self = this;
+
+    self.title = "Choisissez un produit parmis la carte:";
+
+    self.cardForm = null; //formulaire correspondant au choix d'un produit de la carte
+
+    //liste des boissons
+    boissonService.getBoissons().then(function(data){
+       self.boissons = data;
+   })
+
+    //liste des desserts
+    dessertService.getDesserts().then(function(data){
+       self.desserts = data;
+   })
+
+    //liste des pizzas
+    pizza_listService.getPizzas().then(function(data){
+       self.pizzas = data;
+   })
+
+    //sauvegarde du choix du produit de l'utilisateur
+    this.saveForm = function(){
+
+        var selectedPizzas = self.pizzas.filter(function(piz){  return piz.selected});
+        var selectedDesserts = self.desserts.filter(function(piz){  return piz.selected});
+        var selectedBoissons = self.boissons.filter(function(piz){  return piz.selected});
+
+        if(this.cardForm.$invalid || (selectedPizzas.length == 0 && selectedDesserts.length == 0 && selectedBoissons.length == 0))
+        {
+            alert("Merci de sélectionner un produit");
+            return;
+        }
+
+        if($sessionStorage.products == null)
+        {
+            $sessionStorage.products = [];
+        }
+
+        $sessionStorage.products = $sessionStorage.products.concat(selectedPizzas);
+        $sessionStorage.products = $sessionStorage.products.concat(selectedDesserts);
+        $sessionStorage.products = $sessionStorage.products.concat(selectedBoissons);
+
+        console.log("Pizzas added are "+ selectedPizzas);
+        console.log("Desserts added are "+ selectedDesserts);
+        console.log("Boissons added are "+ selectedBoissons);
+        
+        //retour sur la home
+        $location.path('/')
+    }
+})
+.controller('menuCtrl', function(menuService) {
+    var self = this;
+    self.title = "Liste des menus";
+
+    //liste des boissons
+    menuService.getMenus().then(function(data){
+        self.menus = data;
+    })
 
 });

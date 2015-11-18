@@ -37,7 +37,6 @@ angular.module('pzWebApp.home').controller('homeCtrl', function(userService) {
     var self = this;
     self.title = "Page Home";
 
-
 });
 angular.module('pzWebApp.home').controller('infoCtrl', function(userService) {
 
