@@ -1,30 +1,30 @@
 <h1>{{ctrl.title}}</h1>
-<h2>Produits</h2>
+<h2 class="bg-info" >Produits</h2>
 <table class="table table-striped">
 <thead>
 	<tr>
-		<th>Id</th>
-		<th>Nom</th>
-		<th>Prix</th>
-		<th>Type</th>
-		<th>Taille</th>
-		<th>Format</th>
-		<th>Ajouter/Supprimer</th>		 		
+		<th class="text-center">Id</th>
+		<th class="text-center">Nom</th>
+		<th class="text-center">Prix</th>
+		<th class="text-center">Type</th>
+		<th class="text-center">Taille</th>
+		<th class="text-center">Format</th>
+		<th class="text-center">Ajouter/Supprimer</th>		 		
 	</tr>			 		
 </thead>
 
 <tbody>
-	<tr ng-repeat="product in ctrl.datafinal track by $index">
-		<td>{{product.id}}</td>
-		<td>{{product.nom}}</td>	
-		<td>{{product.prix}}€</td>
-		<td>{{product.type}}</td>		
-		<td>{{product.taille}}</td>
-		<td>{{product.format}}</td>
-		<td>
+	<tr ng-repeat="product in ctrl.datauni track by $index">
+		<td class="text-center">{{product.id}}</td>
+		<td class="text-center">{{product.nom}}</td>	
+		<td class="text-center">{{product.prix}}€</td>
+		<td class="text-center">{{product.type}}</td>		
+		<td class="text-center">{{product.taille}}</td>
+		<td class="text-center">{{product.format}}</td>
+		<td class="text-center">
 		<button type="button" class="btn btn-default  btn-xs" ng-click="ctrl.supp(product.id)" >-</button>
 		{{product.nombre}}
-		<button type="button" class="btn btn-default  btn-xs" ng-model="ctrl.product" value="{{product}}" ng-click="ctrl.add(product.id)">+</button>			
+		<button type="button" class="btn btn-default  btn-xs" ng-model="ctrl.product" ng-click="ctrl.add(product.id)">+</button>			
 		</td>
 		
 		
@@ -32,23 +32,23 @@
 </tbody>
 </table>
 
-<h2>Menu</h2>
+<h2 class="bg-info">Menu</h2>
 <table class="table table-striped">
 <thead>
 	<tr>
-		<th>Id</th>
-		<th>Nom</th>
-		<th>Prix</th>
-		<th>Ajouter/Supprimer</th>		 		
+		<th class="text-center">Id</th>
+		<th class="text-center">Nom</th>
+		<th class="text-center">Prix</th>
+		<th class="text-center">Ajouter/Supprimer</th>		 		
 	</tr>			 		
 </thead>
 
 <tbody>
 	<tr ng-repeat="menu in ctrl.menu track by $index">
-		<td>{{menu.id}}</td>
-		<td>{{menu.nom}}</td>	
-		<td>{{menu.prix}}€</td>
-		<td>
+		<td class="text-center">{{menu.id}}</td>
+		<td class="text-center">{{menu.nom}}</td>	
+		<td class="text-center">{{menu.prix}}€</td>
+		<td class="text-center">
 		<button type="button" class="btn btn-primary btn-xs">-</button>
 		
 		<button type="button" class="btn btn-primary btn-xs">+</button>			
@@ -57,7 +57,10 @@
 	</tr>
 </tbody>
 </table>
-
-
+<br> <br> 
+<div class="text-right">
+<button type="button" class="btn btn-warning  btn-lg" ng-model="ctrl.product" ng-click="ctrl.save()">Commander</button>
+</div>
+<br> <br> 
 
 
