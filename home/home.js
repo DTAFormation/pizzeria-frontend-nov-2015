@@ -6,6 +6,7 @@ angular.module('pzWebApp.home', [
     ]);
 
 
+
 // Configuration du module 'home'
 angular.module('pzWebApp.home').config(function($routeProvider) {
 

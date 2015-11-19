@@ -20,7 +20,7 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
         controllerAs: "ctrl"
     })
      .when("/details_pizza", {
-            templateUrl: "products/template/details_pizza.tpl.html",
+            templateUrl: "products/view/details_pizza.html",
             controller: "details_pizzaCtrl",
             controllerAs: "ctrl"
         })
@@ -41,6 +41,11 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
     })
     .when("/menu_list",{
         templateUrl:"products/view/menu_list.html",
+        controller:"listMenuCtrl",
+        controllerAs: "ctrl"
+    })
+    .when("/menu/:idMenu",{
+        templateUrl:"products/view/menu.html",
         controller:"menuCtrl",
         controllerAs: "ctrl"
     });
@@ -49,17 +54,24 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
 // Contrôleur principal du module 'products'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('pzWebApp.products')
-.controller('details_pizzaCtrl', function (userService, detPizService) {
-
+.controller('details_pizzaCtrl', function (userService, detPizService, $routeParams) {
+    var id = $routeParams.pizza
     var self = this;
-    var id = 0;
     
     self.title = "Détails pizza";
+    self.pizza = null
+
+    /*
     detPizService.promesse.then(function (pizza) {
         self.pizza = pizza[id];
         
     }.bind(this))
-    
+    */
+
+    console.log(id)
+    detPizService.getPizza(id).then(function(data){
+       self.pizza = data;
+   })
 })
 .controller('pizza_listCtrl', function (pizza_listService) {
 
@@ -72,11 +84,7 @@ angular.module('pzWebApp.products')
        self.pizzas = data;
    })
 
-    this.redirect = function(adresse){
 
-        console.log("Redirection");
-        $window.location.href = 'details_pizza?pizza=adresse'
-    }
 
 })
 /*
@@ -113,6 +121,7 @@ angular.module('pzWebApp.products')
     self.title = "Page Products";
 
 })
+
 .controller('dessertCtrl', function(dessertService, $location, $localStorage) {
     console.log($localStorage.products)
     var self = this;
@@ -141,11 +150,10 @@ angular.module('pzWebApp.products')
         {
             $localStorage.products = [];
         }
-        console.log(self.dessert)
+
         $localStorage.products.push(self.dessert);
 
-        //console.log("Target dessert is "+self.dessert);
-
+        console.log(self.dessert)
         $location.path('/')
     }
 
@@ -238,13 +246,24 @@ angular.module('pzWebApp.products')
         $location.path('/')
     }
 })
-.controller('menuCtrl', function(menuService) {
+.controller('listMenuCtrl', function(listMenuService) {
     var self = this;
     self.title = "Liste des menus";
 
-    //liste des boissons
-    menuService.getMenus().then(function(data){
+    //liste des menus
+    listMenuService.getMenus().then(function(data){
         self.menus = data;
+    })
+
+})
+.controller('menuCtrl', function(menuService, $routeParams) {
+    var self = this;
+    self.title = "Menu:";
+    var id = $routeParams.idMenu
+
+    //contenu d'un menu
+    menuService.getMenu(id).then(function(data){
+        self.menu = data;
     })
 
 });
