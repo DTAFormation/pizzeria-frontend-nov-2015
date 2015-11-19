@@ -4,13 +4,12 @@
 	<table>
 		<tbody>
 			<tr ng-repeat="pizza in ctrl.pizzas "> <!-- | inSlicesOf:3 -->
-	<!-- 
-				<button type="submit" ng-click="ctrl.redirect({{pizza.id}})">Choisir</button>
-
-	-->
-				<a ng-href="details_pizza?pizza={{pizza.id}}"><td>{{pizza.nom}} {{pizza.id}} TEST</td></a> <br>
-
-				<!-- <link rel="stylesheet" data-ng-href="{{pizza.id}}" href="details_pizza">TEST</link> -->
+				<td><a ng-href="#details_pizza?pizza={{pizza.id}}">{{pizza.nom}} {{pizza.id}}</a></td> <br>
+				<!-- <td><p>../img/{{pizza.nom}}.jpg </p><br> -->
+				<td><a ng-href="#details_pizza?pizza={{pizza.id}}"><img src="/template/IMG/{{pizza.nom}}.jpg"></a></td> <br>
+				<!-- 
+				
+				<link rel="stylesheet" data-ng-href="{{pizza.id}}" href="details_pizza">TEST</link> -->
 				<!-- tentative de lien via href-->
 				<!-- <td class="" ng-repeat="item in pizza">
 					<a href="details_pizza?pizza={{item.id}}"><img ng-src="{{item.img}}"></a> // lien par image

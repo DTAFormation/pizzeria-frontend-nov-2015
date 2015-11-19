@@ -11,22 +11,23 @@ angular.module('pzWebApp', [
 ]);
 
 
-angular.module('pzWebApp').config(function($routeProvider) {
+angular.module('pzWebApp').config(function ($routeProvider) {
 
     // Ici, les routes générales de l'application
     // Pas de route spécifique ici !
     // Elles doivent être déclarées dans des sous-modules (comme 'home')   
     $routeProvider
-    .otherwise({redirectTo:'/home'});
+        .otherwise({ redirectTo: '/home' });
 
 });
 
-angular.module('pzWebApp').run(function($rootScope) {
+angular.module('pzWebApp').run(function ($rootScope) {
 
 });
 
 // Contrôleur qui pilote globalement l'application
-angular.module('pzWebApp').controller("pzWebAppCtrl", function(userService) {
+angular.module('pzWebApp').controller("pzWebAppCtrl", function (userService, $localStorage, $scope) {
     this.title = "Pizzeria Web";
-    this.connected = userService.isConnected()
+    this.connected = userService.isConnected;
+    this.logout = userService.logout;
 });
