@@ -38,8 +38,7 @@ angular.module('pzWebApp.home').controller('homeCtrl', function(userService) {
     self.title = "Page Home";
 
 });
-angular.module('pzWebApp.home').controller('infoCtrl', function(userService, $sessionStorage) {
-    console.log($sessionStorage.products)
+angular.module('pzWebApp.home').controller('infoCtrl', function(userService, $sessionStorage) {    
     var self = this;
 
     self.title = "Page information";
@@ -78,30 +77,38 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
     self.datai = 0
 
     var cache = {};
-    console.log($localStorage.products)
-    $localStorage.products.forEach(function(y){     
+
+     
+
+
+    if(!$localStorage.products)
+        {
+            $localStorage.products = [];
+        }
+
+
+    //Récupération données localstorage
+    console.log($localStorage.products)    
+    $localStorage.products.forEach(function(y){   
                
-        self.data.push(JSON.parse(y))
+        self.data.push(y)
         console.log(self.data)
 
       })
-    function filtrerParID(obj) {
-  if ('id' in obj && typeof(obj.id) === 'number' && !isNaN(obj.id)) {
-    return true;
- } else {
-    elementsInvalides++;
-    return false;
-  }
-}
 
 
 
 
 
-  self.datatrie = self.data.filter(filtrerParID)
-  console.log('Tableau filtré\n',   self.datatrie)
 
+  //Trier tableau par id
+  self.datatrie = self.data  
+  self.datatrie.sort(function(a, b){   
+    return a.id-b.id})
 
+  console.log('Tableau trié\n',   self.datatrie)
+
+  //Création tableau unique
   self.datauni = self.datatrie.filter(function(elem, index, array){
           return cache[elem.id]?0:cache[elem.id]=1;
   });
@@ -109,7 +116,7 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
 
   console.log('Tableau unique\n', self.datauni)
 
-
+//calcul du nombre d'éléments
   self.datatrie.forEach(function(x){    
     var compt = 0
     console.log('self.iterator',self.iterator)
@@ -125,24 +132,27 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
     })
 
     
-    console.log('id',self.datauni[self.iterator2].id )
-    console.log('nombre',self.datauni[self.iterator2].nombre )
+   // console.log('id',self.datauni[self.iterator2].id )
+    //console.log('nombre',self.datauni[self.iterator2].nombre )
 
-
+    console.log(compt)
+    
     if(self.datauni[self.iterator2].id != self.datatrie[self.iterator].id)
     {
-      self.iterator2++
+      self.iterator2++      
     }
     self.datauni[self.iterator2].nombre = compt
-    console.log('self.iterator2',self.iterator2)   
+    console.log('compteur',compt)
+    console.log('self.datauni',self.datauni)
+    console.log('self.iterator2',self.iterator2) 
+    
+      
     self.iterator++
     
-
-
   })
 
 
-
+//FONCTION ajouter ou supprimer produit
      this.add = function(id) {
       console.log(id)   
       self.iterator3 = 0
@@ -152,26 +162,62 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
           console.log(y)
           self.datauni[self.iterator3].nombre++
         }
-        self.iterator3++        
+        self.iterator3++       
      
      })
-        
+      
+      upload()
      }
-
+//FONCTION ajouter ou supprimer produit
      this.supp = function(id) {
       self.iterator3 = 0
-      self.datauni.forEach(function(y){     
+      self.datauni.forEach(function(y){    
        
         if (y.id == id){
           console.log(y)
-          self.datauni[self.iterator3].nombre--        
+          self.datauni[self.iterator3].nombre--
+          if(self.datauni[self.iterator3].nombre<=0){
+            self.datauni.splice(self.iterator3,1)
+          }      
         }
         self.iterator3++       
       
      })
-        
+      upload()  
      }
 
+
+
+     upload = function(){
+     var products = []
+      self.datauni.forEach(function(y){
+        var elementPanier = new Object();        
+        elementPanier.id = y.id
+        elementPanier.format = y.format
+        elementPanier.ingredients = y.ingredients
+        elementPanier.nom = y.nom                   
+        elementPanier.prix = y.prix
+        elementPanier.taille = y.taille
+        elementPanier.type = y.type
+
+        for(var i = 0 ; i<y.nombre ; i++ ){
+          console.log('elementPanier', elementPanier)
+          console.log(y.nombre)          
+          products.push(elementPanier)
+         
+        }
+         $localStorage.products = products;
+        
+      })
+      console.log('$localStorage.products', $localStorage.products)
+     } 
+
+
+     this.save = function(){
+      $localStorage.panierFinal = []
+      $localStorage.panierFinal.push($localStorage.products)
+      console.log($localStorage.panierFinal)
+     }
 
 });
 
