@@ -1,7 +1,18 @@
-<h2>{{ctrl.title}}</h2>
-
-<ul>
-	<div ng-repeat="produit in ctrl.menu track by $index">
-		<li><a href="#/{{produit.id}}">{{produit.nom}}</a>
-	</div>
-</ul>
+<br>
+<form name="ctrl.menuForm">
+	<ul class="list-group">
+		<li class="list-group-item">Menu : {{ctrl.menu.nom}}</li>
+		<li class="list-group-item">Prix : {{ctrl.menu.prix}} €</li>
+		<li class="list-group-item">
+			Produits : 
+			<ul>
+				<div ng-repeat="produit in ctrl.menu.produits track by $index">
+					<li ng-show="'{{produit.type}}' === 'PIZZA'"><a href="/details_pizza">{{produit.nom}}</a></li>
+					<li ng-hide="'{{produit.type}}' === 'PIZZA'">{{produit.nom}}</li>
+				</div>
+			</ul>
+		</li>
+	</ul>
+	<button type="submit" ng-click="ctrl.saveForm()">Choisir</button>
+</form>
+<br/>

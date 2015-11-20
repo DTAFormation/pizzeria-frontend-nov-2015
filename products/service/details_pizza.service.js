@@ -1,15 +1,19 @@
-angular.module('pzWebApp.products').service('detPizService', function ($http, $q) {
+angular.module('pzWebApp.products').service('detPizService', function ($http, $q, pizzConfig)  {
 
     function handleResponse(response) {
         console.log("Success !")
         return response.data
     }
 
-    this.getPizza = function (id) {
-        console.log("Get pizza")
-        var url = ('http://localhost:8080/pizza/'.id);
-        console.log(url)
-        return $http.get(url).then(handleResponse)
+
+        this.getPizza = function(id) {
+        	console.log("Get pizza")        	
+        	var url = pizzConfig.PIZZA_RESOURCE_URL + "/" + id;
+        	console.log(url)
+            console.log("Retour")
+	        return $http.get(url).
+	        	then(handleResponse)
+    	};
         
     };
 

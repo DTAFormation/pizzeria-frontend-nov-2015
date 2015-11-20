@@ -1,7 +1,4 @@
-angular.module('pzWebApp.products').service('pizza_listService', function($http, $q) {
-
-	var url = 'http://localhost:8080/pizza'
-	//var url = "http://localhost:3017/pizzas"
+angular.module('pzWebApp.products').service('pizza_listService', function($http, $q, pizzConfig) {
 
 	function handleResponse(response) {
 		console.log("Success !")
@@ -10,7 +7,7 @@ angular.module('pzWebApp.products').service('pizza_listService', function($http,
 
     this.getPizzas = function() {
         console.log("Get pizzas")
-        return $http.get(url)
+        return $http.get(pizzConfig.PIZZA_RESOURCE_URL)
 			.then(handleResponse)
     };
 
