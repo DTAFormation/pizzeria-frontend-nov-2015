@@ -39,19 +39,18 @@
 		<th class="text-center">Id</th>
 		<th class="text-center">Nom</th>
 		<th class="text-center">Prix</th>
-		<th class="text-center">Ajouter/Supprimer</th>		 		
+		<th class="text-center">Supprimer</th>		 		
 	</tr>			 		
 </thead>
 
 <tbody>
-	<tr ng-repeat="menu in ctrl.menu track by $index">
+	<tr ng-repeat="menu in ctrl.dataMenu track by $index">
 		<td class="text-center">{{menu.id}}</td>
 		<td class="text-center">{{menu.nom}}</td>	
 		<td class="text-center">{{menu.prix}}€</td>
 		<td class="text-center">
-		<button type="button" class="btn btn-primary btn-xs">-</button>
-		
-		<button type="button" class="btn btn-primary btn-xs">+</button>			
+		<button type="button" class="btn btn-primary btn-xs" ng-click="ctrl.supprimerMenu(menu)">Supprimer</button>	
+					
 		</td>	
 		
 	</tr>

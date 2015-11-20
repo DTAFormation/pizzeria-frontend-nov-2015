@@ -58,7 +58,7 @@ angular.module('pzWebApp.home').controller('infoCtrl', function(userService, $se
 
 });
 
-angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$localStorage, $sessionStorage, $routeParams, $scope){
+angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$localStorage, $routeParams, $scope){
 
     var self = this;
     
@@ -76,6 +76,8 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
     self.iterator2 = 0
     self.datai = 0
 
+    self.dataMenu = []
+
     var cache = {};
 
      
@@ -84,6 +86,11 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
     if(!$localStorage.products)
         {
             $localStorage.products = [];
+        }
+
+    if(!$localStorage.menu)
+        {
+            $localStorage.menu = [];
         }
 
 
@@ -95,6 +102,9 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
         console.log(self.data)
 
       })
+
+    console.log("menu",$localStorage.menu)
+    self.dataMenu = $localStorage.menu
 
 
 
@@ -170,27 +180,33 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
      }
 //FONCTION ajouter ou supprimer produit
      this.supp = function(id) {
-      self.iterator3 = 0
+      self.iterator3 = 0            
       self.datauni.forEach(function(y){    
        
-        if (y.id == id){
-          console.log(y)
+        if (y.id == id){          
           self.datauni[self.iterator3].nombre--
-          if(self.datauni[self.iterator3].nombre<=0){
+          if(self.datauni[self.iterator3].nombre<=0){                       
+            if(self.datauni.length == 1 ){
+              self.datauni = []
+              $localStorage.products = []
+            }
             self.datauni.splice(self.iterator3,1)
+                    
           }      
         }
         self.iterator3++       
       
      })
+      
       upload()  
      }
-
+      
 
 
      upload = function(){
      var products = []
       self.datauni.forEach(function(y){
+        console.log("la")
         var elementPanier = new Object();        
         elementPanier.id = y.id
         elementPanier.format = y.format
@@ -213,15 +229,40 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
      } 
 
 
+     this.supprimerMenu = function(menu){
+      console.log(menu.id)
+      var i = 0
+      self.dataMenu.forEach(function(y){        
+        if(menu == y){
+          console.log("testOK")
+          self.dataMenu.splice(i,1)
+        }
+        i++
+      })
+     }
+
+
      this.save = function(){
       $localStorage.panierFinal = []
-      $localStorage.panierFinal.push($localStorage.products)
-      console.log($localStorage.panierFinal)
+      if($localStorage.products == null){
+        $localStorage.panierFinal.push($localStorage.products)
+      }
+
+      if($localStorage.menu == null){
+        $localStorage.panierFinal.push($localStorage.menu)
+      }
+
+      console.log("localstorage panier final",$localStorage.panierFinal)
+      
+      
      }
 
      this.total = function(){
       var total = 0 ;
       $localStorage.products.forEach(function(y){
+        total += y.prix;
+      })
+       $localStorage.menu.forEach(function(y){
         total += y.prix;
       })
       return total
