@@ -1,7 +1,7 @@
 // Déclaration du module 'products'
 angular.module('pzWebApp.products', [
     'ngRoute',
-    'pzWebApp.shared'
+    'pzWebApp.shared',
 ]);
 
 // Configuration du module 'products'
@@ -153,7 +153,8 @@ angular.module('pzWebApp.products')
 
         $localStorage.products.push(JSON.parse(self.dessert));
 
-        console.log(self.dessert)
+        console.log("Target dessert is "+self.dessert);
+
         $location.path('/')
     }
 
@@ -188,7 +189,8 @@ angular.module('pzWebApp.products')
         }
         $localStorage.products.push(JSON.parse(self.boisson));
 
-        //console.log("Target boisson is "+self.boisson);
+        console.log("Target boisson is "+self.boisson);
+
         $location.path('/')
     }
 

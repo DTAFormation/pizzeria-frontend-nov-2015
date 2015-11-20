@@ -219,5 +219,13 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
       console.log($localStorage.panierFinal)
      }
 
+     this.total = function(){
+      var total = 0 ;
+      $localStorage.products.forEach(function(y){
+        total += y.prix;
+      })
+      return total
+     }
+
 });
 
