@@ -172,7 +172,7 @@ angular.module('pzWebApp.products')
     //liste des boissons
     boissonService.getBoissons().then(function(data){
        self.boissons = data;
-   })
+    })
 
     //sauvegarde du choix de la boisson de l'utilisateur
     this.saveForm = function(){
@@ -258,7 +258,9 @@ angular.module('pzWebApp.products')
     })
 
 })
-.controller('menuCtrl', function(menuService, $routeParams) {
+.controller('menuCtrl', function(menuService, $routeParams, $localStorage, $location) {
+    console.log($localStorage.menu)
+    
     var self = this;
     self.title = "Menu:";
     var id = $routeParams.idMenu
@@ -267,5 +269,15 @@ angular.module('pzWebApp.products')
     menuService.getMenu(id).then(function(data){
         self.menu = data;
     })
+
+    this.saveForm = function(){
+        if(!$localStorage.menu)
+        {
+            $localStorage.menu = [];
+        }
+        $localStorage.menu.push(self.menu);
+    
+        $location.path('/')
+    }
 
 });
