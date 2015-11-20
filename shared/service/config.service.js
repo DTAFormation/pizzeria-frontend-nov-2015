@@ -8,5 +8,7 @@ angular.module('pzWebApp.shared').constant('pizzConfig',{
 	'DETAIL_PIZZA_RESOURCE_URL': BACKEND_BASE_URL + '/pizzaUne?id=',
 	'DESSERT_RESOURCE_URL': BACKEND_BASE_URL + '/dessert',
 	'MENU_RESOURCE_URL': BACKEND_BASE_URL + '/menu/',
-	'PIZZA_RESOURCE_URL': BACKEND_BASE_URL + '/pizza'
+	'PIZZA_RESOURCE_URL': BACKEND_BASE_URL + '/pizza',
+	'COMMAND_RESOURCE_URL' : BACKEND_BASE_URL + '/command'
+
 })

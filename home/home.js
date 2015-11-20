@@ -58,7 +58,7 @@ angular.module('pzWebApp.home').controller('infoCtrl', function(userService, $se
 
 });
 
-angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$localStorage, $sessionStorage, $routeParams, $scope){
+angular.module('pzWebApp.home').controller('panierCtrl', function(userService, panierService,$localStorage, $sessionStorage, $routeParams, $location){
 
     var self = this;
     
@@ -92,6 +92,11 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
         {
             $localStorage.menu = [];
         }
+
+    if((!$localStorage.panierConnexion) || ($localStorage.panierConnexion == 1)){
+      $localStorage.panierConnexion = 0
+      console.log('$localStorage.panierConnexion', $localStorage.panierConnexion)
+    }
 
 
     //Récupération données localstorage
@@ -253,7 +258,10 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
       }
 
       console.log("localstorage panier final",$localStorage.panierFinal)
-      
+       if(userService.isConnected()){
+        console.log("client connecté")
+       }
+       else {$location.path('/connexion')}
       
      }
 
@@ -266,6 +274,15 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
         total += y.prix;
       })
       return total
+     }
+
+
+     this.hideCommand = function(){
+      if((self.datauni.length == 0) && (self.dataMenu.length == 0)){
+        return true;
+      }
+      else{ return false;}
+     
      }
 
 });
