@@ -1,7 +1,7 @@
 // Déclaration du module 'products'
 angular.module('pzWebApp.products', [
     'ngRoute',
-    'pzWebApp.shared'
+    'pzWebApp.shared',
 ]);
 
 // Configuration du module 'products'
