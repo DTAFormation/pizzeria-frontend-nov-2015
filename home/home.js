@@ -170,27 +170,34 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
      }
 //FONCTION ajouter ou supprimer produit
      this.supp = function(id) {
-      self.iterator3 = 0
+      self.iterator3 = 0            
       self.datauni.forEach(function(y){    
        
-        if (y.id == id){
-          console.log(y)
+        if (y.id == id){          
           self.datauni[self.iterator3].nombre--
           if(self.datauni[self.iterator3].nombre<=0){
-            self.datauni.splice(self.iterator3,1)
+            
+            
+            if(self.datauni.length == 1 ){
+              self.datauni = []
+              $localStorage.products = []
+            }
+                    
           }      
         }
         self.iterator3++       
       
      })
+      
       upload()  
      }
-
+      
 
 
      upload = function(){
      var products = []
       self.datauni.forEach(function(y){
+        console.log("la")
         var elementPanier = new Object();        
         elementPanier.id = y.id
         elementPanier.format = y.format
