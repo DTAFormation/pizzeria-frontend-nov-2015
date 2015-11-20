@@ -45,28 +45,33 @@ angular.module('pzWebApp.users').controller('inscriptionCtrl', function (userSer
         }
         self.client = this.client;
         inscriptionService.promessePost(this.client)
-            .then(function (reponse) {  
-                userService.login(self.client);          
+            .then(function (reponse) {
+                userService.login(reponse.data);          
                 $location.path('/')
             }, function (reason) {
-                alert('Le mail ou le login est déjà utilisé !');
+                if (reason.status == 400)
+                    alert(reason.data);
+                else
+                    alert('Une erreur est intervenue')
             }
                 );
     }
 
 });
 
-angular.module('pzWebApp.users').controller('editionCtrl', function (userService, editionService, $location) {
+angular.module('pzWebApp.users').controller('editionCtrl', function (userService, editionService, $location, $localStorage) {
 
     var self = this;
 
     self.title = "Page d'edition";
 
 
-    editionService.promesseGet.then(function (client) {
+   /* editionService.promesseGet.then(function (client) {
         console.log("client : " + client)
         self.client = client
-    }.bind(this))
+    }.bind(this))*/
+    
+    self.client= $localStorage.client;
 
     this.saveForm = function () {
         if (this.editionForm.$invalid) {
@@ -94,17 +99,24 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
         }
         //Redirection vers le home
         connexionService.promessePut(this.login, this.mdp)
-            .then(function (client) {
-                self.client = client;
-                console.log('client : '+ self.client)
-                if( self.client === "") {
+            .then(function (response) {
+                userService.login(response.data);
+                $location.path('/');
+                /*self.client = client;
+                console.log('client : ' + self.client)
+                if (self.client === "") {
                     console.log("login/mdp invalide")
                 } else {
                     userService.login(self.client);
                     $location.path('/')
-                    console.log("connexion réussie")                    
-                }
-            }.bind(this));
+                    console.log("connexion réussie")
+                }*/
+            } , function (reason) {
+                 if (reason.status == 400)
+                    alert(reason.data);
+                else
+                    alert('Une erreur est intervenue')
+            });
     }
 
 });
