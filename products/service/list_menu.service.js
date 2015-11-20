@@ -7,7 +7,7 @@ angular.module('pzWebApp.products').service('listMenuService', function($http, $
 
     this.getMenus = function() {
         console.log("Recuperation menus")
-        	return $http.get('http://localhost:8080/menu')
+        	return $http.get('http://localhost:8080/menus')
 			.then(handleResponse)
     };
 
