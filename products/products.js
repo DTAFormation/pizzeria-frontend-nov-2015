@@ -264,6 +264,10 @@ angular.module('pzWebApp.products')
     var self = this;
     self.title = "Menu:";
     var id = $routeParams.idMenu
+    
+    self.pizza = null
+    self.boisson = null
+    self.dessert = null
 
     //contenu d'un menu
     menuService.getMenu(id).then(function(data){
@@ -271,11 +275,24 @@ angular.module('pzWebApp.products')
     })
 
     this.saveForm = function(){
+        if(this.menuForm.$invalid || self.pizza == null || self.boisson == null || self.dessert == null)
+        {
+            alert("Merci de sélectionner un élément dans chaque catégorie");
+            return;
+        }
+        
         if(!$localStorage.menu)
         {
             $localStorage.menu = [];
         }
         $localStorage.menu.push(self.menu);
+        if(!$localStorage.products)
+        {
+            $localStorage.products = [];
+        }
+        $localStorage.products.push(self.pizza);
+        $localStorage.products.push(self.boisson);
+        $localStorage.products.push(self.dessert);
     
         $location.path('/')
     }
