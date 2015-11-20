@@ -1,10 +1,19 @@
 <h1>{{ctrl.title}}</h1>
 <div>
 	<table>
-		<tbody>
+		<tbody>			
 			<tr ng-repeat="pizza in ctrl.pizzas "> <!-- | inSlicesOf:3 -->
-				<td>{{pizza.nom}}</td>
-				<td><a ng-href="#details_pizza?pizza={{pizza.id}}"><img ng-src="/template/IMG_PIZZA/{{pizza.image}}"></a></td>>
+
+				<td>
+					<table>
+					<tr>
+						<td>{{pizza.nom}}</td>
+					</tr>
+					<tr>
+						<td><a ng-href="#details_pizza?id={{pizza.id}}"><img height="20%" width="20%" ng-src="/template/IMG_PIZZA/{{pizza.image}}"></a></td>
+					</tr>
+					</table>
+				</td>				
 			</tr>
 		</tbody>		
 	</table>	

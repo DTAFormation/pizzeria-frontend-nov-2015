@@ -55,7 +55,7 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('pzWebApp.products')
 .controller('details_pizzaCtrl', function (userService, detPizService, $routeParams) {
-    var id = $routeParams.pizza
+    var id = $routeParams.id
     var self = this;
     
     self.title = "Détails pizza";
