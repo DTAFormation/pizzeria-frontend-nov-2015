@@ -1,4 +1,4 @@
-angular.module('pzWebApp.products').service('detPizService', function ($http, $q) {
+angular.module('pzWebApp.products').service('detPizService', function ($http, $q, pizzConfig)  {
 
         function handleResponse(response) {
         console.log("Success !")
@@ -7,7 +7,7 @@ angular.module('pzWebApp.products').service('detPizService', function ($http, $q
 
         this.getPizza = function(id) {
         	console.log("Get pizzas")        	
-        	var url = 'http://localhost:8080/pizzaUne?id='+id;
+        	var url = pizzConfig.DETAIL_PIZZA_RESOURCE_URL + id;
         	console.log(url)
 	        return $http.get(url).
 	        	then(handleResponse)
