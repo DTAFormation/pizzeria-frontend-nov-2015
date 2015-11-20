@@ -144,7 +144,7 @@ angular.module('pzWebApp.products')
         {
             $localStorage.products = [];
         }
-        $localStorage.products.push(self.dessert);
+        $localStorage.products.push(JSON.parse(self.dessert));
 
         console.log("Target dessert is "+self.dessert);
 
@@ -180,9 +180,10 @@ angular.module('pzWebApp.products')
         {
             $localStorage.products = [];
         }
-        $localStorage.products.push(self.boisson);
+        $localStorage.products.push(JSON.parse(self.boisson));
 
         console.log("Target boisson is "+self.boisson);
+
         $location.path('/')
     }
 
