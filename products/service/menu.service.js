@@ -1,4 +1,4 @@
-angular.module('pzWebApp.products').service('menuService', function($http, $q) {
+angular.module('pzWebApp.products').service('menuService', function($http, $q, pizzConfig) {
 
 	function handleResponse(response) {
 		console.log("Success !")
@@ -7,8 +7,7 @@ angular.module('pzWebApp.products').service('menuService', function($http, $q) {
 
     this.getMenu = function(id) {
         console.log("Recuperation menu")
-		console.log('http://localhost:8080/menu/'+id)
-        	return $http.get('http://localhost:8080/menu/'+id)
+        	return $http.get(pizzConfig.MENU_RESOURCE_URL+id)
 			.then(handleResponse)
     };
 
