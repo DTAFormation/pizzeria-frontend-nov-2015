@@ -61,13 +61,6 @@ angular.module('pzWebApp.products')
     self.title = "Détails pizza";
     self.pizza = null
 
-    /*
-    detPizService.promesse.then(function (pizza) {
-        self.pizza = pizza[id];
-        
-    }.bind(this))
-    */
-
     console.log(id)
     detPizService.getPizza(id).then(function(data){
        self.pizza = data;
