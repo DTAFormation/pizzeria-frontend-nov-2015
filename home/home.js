@@ -185,13 +185,12 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
        
         if (y.id == id){          
           self.datauni[self.iterator3].nombre--
-          if(self.datauni[self.iterator3].nombre<=0){
-            
-            
+          if(self.datauni[self.iterator3].nombre<=0){                       
             if(self.datauni.length == 1 ){
               self.datauni = []
               $localStorage.products = []
             }
+            self.datauni.splice(self.iterator3,1)
                     
           }      
         }
@@ -261,6 +260,9 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
      this.total = function(){
       var total = 0 ;
       $localStorage.products.forEach(function(y){
+        total += y.prix;
+      })
+       $localStorage.menu.forEach(function(y){
         total += y.prix;
       })
       return total
