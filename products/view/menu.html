@@ -4,11 +4,35 @@
 		<li class="list-group-item">Menu : {{ctrl.menu.nom}}</li>
 		<li class="list-group-item">Prix : {{ctrl.menu.prix}} €</li>
 		<li class="list-group-item">
-			Produits : 
+			Pizzas : 
 			<ul>
 				<div ng-repeat="produit in ctrl.menu.produits track by $index">
-					<li ng-show="'{{produit.type}}' === 'PIZZA'"><a href="/details_pizza">{{produit.nom}}</a></li>
-					<li ng-hide="'{{produit.type}}' === 'PIZZA'">{{produit.nom}}</li>
+					<li ng-show="produit.type === 'PIZZA'">
+						<input type="radio" ng-model="ctrl.pizza" value="{{produit}}">
+						<a href="/#details_pizza?pizza={{produit.id}}">{{produit.nom}}</a>
+					</li>
+				</div>
+			</ul>
+		</li>
+		<li class="list-group-item">
+			Boissons : 
+			<ul>
+				<div ng-repeat="produit in ctrl.menu.produits track by $index">
+					<li ng-show="produit.type === 'BOISSON'">
+						<input type="radio" ng-model="ctrl.boisson" value="{{produit}}">
+						{{produit.nom}}
+					</li>
+				</div>
+			</ul>
+		</li>
+		<li class="list-group-item">
+			Desserts : 
+			<ul>
+				<div ng-repeat="produit in ctrl.menu.produits track by $index">
+					<li ng-show="produit.type === 'DESSERT'">
+						<input type="radio" ng-model="ctrl.dessert" value="{{produit}}">
+						{{produit.nom}}
+					</li>
 				</div>
 			</ul>
 		</li>
