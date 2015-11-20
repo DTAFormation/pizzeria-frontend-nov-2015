@@ -76,6 +76,8 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
     self.iterator2 = 0
     self.datai = 0
 
+    self.dataMenu = []
+
     var cache = {};
 
      
@@ -84,6 +86,11 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
     if(!$localStorage.products)
         {
             $localStorage.products = [];
+        }
+
+    if(!$localStorage.menu)
+        {
+            $localStorage.menu = [];
         }
 
 
@@ -95,6 +102,9 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
         console.log(self.data)
 
       })
+
+    console.log("menu",$localStorage.menu)
+    self.dataMenu = $localStorage.menu
 
 
 
@@ -220,10 +230,32 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
      } 
 
 
+     this.supprimerMenu = function(menu){
+      console.log(menu.id)
+      var i = 0
+      self.dataMenu.forEach(function(y){        
+        if(menu == y){
+          console.log("testOK")
+          self.dataMenu.splice(i,1)
+        }
+        i++
+      })
+     }
+
+
      this.save = function(){
       $localStorage.panierFinal = []
-      $localStorage.panierFinal.push($localStorage.products)
-      console.log($localStorage.panierFinal)
+      if($localStorage.products == null){
+        $localStorage.panierFinal.push($localStorage.products)
+      }
+
+      if($localStorage.menu == null){
+        $localStorage.panierFinal.push($localStorage.menu)
+      }
+
+      console.log("localstorage panier final",$localStorage.panierFinal)
+      
+      
      }
 
      this.total = function(){
