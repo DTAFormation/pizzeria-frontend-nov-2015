@@ -59,7 +59,7 @@ angular.module('pzWebApp.home').controller('infoCtrl', function(userService, $se
 
 });
 
-angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$localStorage, $sessionStorage, $routeParams, $scope){
+angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$localStorage, $routeParams, $scope){
 
     var self = this;
     
