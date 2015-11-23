@@ -6,9 +6,10 @@ angular.module('pzWebApp.products').service('detPizService', function ($http, $q
     }
 
         this.getPizza = function(id) {
-        	console.log("Get pizzas")        	
-        	var url = pizzConfig.DETAIL_PIZZA_RESOURCE_URL + id;
+        	console.log("Get pizza")        	
+        	var url = pizzConfig.PIZZA_RESOURCE_URL + "/" + id;
         	console.log(url)
+            console.log("Retour")
 	        return $http.get(url).
 	        	then(handleResponse)
     	};
