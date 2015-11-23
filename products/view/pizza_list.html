@@ -1,8 +1,9 @@
 <h1>{{ctrl.title}}</h1>
+
 <div ng-repeat="pizza in ctrl.pizzas track by $index">	
 	<a ng-href="#details_pizza?id={{pizza.id}}">
-	<object class="resize-pizza" data="/template/IMG_PIZZA/{{pizza.image}}" type="image/png"> 
-    	<img class="resize-pizza" src="/template/IMG_PIZZA/4saisons.jpg" alt="PIZZA {{pizza.nom}}"/> <!-- default image -->
+	<object class="resize-pizza" data="{{ctrl.url}}{{pizza.image}}" type="image/png">
+    	<img class="resize-pizza" ng-src="{{ctrl.url}}4saisons.jpg" ng-alt="PIZZA {{pizza.nom}}"/> <!-- default image -->
     </object>
     </a>
 </div>

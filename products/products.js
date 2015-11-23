@@ -66,18 +66,17 @@ angular.module('pzWebApp.products')
        self.pizza = data;
    })
 })
-.controller('pizza_listCtrl', function (pizza_listService) {
+.controller('pizza_listCtrl', function (pizza_listService,pizzConfig) {
 
     var self = this;
     self.title = "Liste de pizzas";
 
     self.pizzas = null; 
+    self.url=pizzConfig.IMG_PIZZA_URL;
 
     pizza_listService.getPizzas().then(function(data){
        self.pizzas = data;
    })
-
-
 
 })
 /*
