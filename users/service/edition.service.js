@@ -1,20 +1,12 @@
-angular.module('pzWebApp.users').service('editionService', function ($http) {
+angular.module('pzWebApp.users').service('editionService', function ($http, pizzConfig) {
 
 	function handleResponse(response) {
         return response.data
     }
 
-	console.log('editionService')
-	//TODO à remplacer par la variable de cession
-	var id = 1
-	
-	var url = 'http://localhost:8080/client'
-	this.promesseGet = $http.get(url+"/"+id)
-		.then(handleResponse)
 
 	this.promessePut = function promessePut(client) {
-		console.log("je passe dans la promesse put : "+client.nom)
-		return $http.put(url, client)
+		return $http.put(pizzConfig.CLIENT_RESOURCE_URL, client)
 			.then(handleResponse)
 	}
 });
