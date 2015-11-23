@@ -4,6 +4,16 @@ angular.module('pzWebApp.products', [
     'pzWebApp.shared',
 ]);
 
+angular.module('fallback',[]).directive('fallbackSrc', function () {
+    return{
+        link: function postLink(scope, element, attrs) {
+            element.bind('error', function () {
+                angular.element(this).attr("src", attrs.fallbackSrc);
+            });
+        }
+    }
+});
+
 // Configuration du module 'products'
 angular.module('pzWebApp.products').config(function($routeProvider) {
 
