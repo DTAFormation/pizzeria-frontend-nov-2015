@@ -1,9 +1,20 @@
-<h2>{{ctrl.title}}</h2>
+<h2 class="text-center">{{ctrl.title}}</h2>
 
-<form name="ctrl.boissonForm">
-	<div ng-repeat="boisson in ctrl.boissons track by $index">
-		<input type="radio" ng-model="ctrl.boisson" value="{{boisson}}">{{boisson.nom}} {{ boisson.prix }}€
-		<img class="resize-list" src=" http://dtaformation.github.io/pizzeria-web-image-nov-2015/boisson.jpg" alt="Image de la boisson {{boisson.nom}}" />
-	</div>
-	<button type="submit" ng-click="ctrl.saveForm()">Choisir</button>
-</form>
+<div class="row">
+
+	<form name="ctrl.boissonForm">
+		
+		<div class="form-group col-md-3" ng-repeat="boisson in ctrl.boissons track by $index">
+			<div class="thumbnail" ng-click="ctrl.selectBoisson(boisson)" ng-class="ctrl.getBoissonClass(boisson)">
+				<img class="resize-list" src="{{boisson.image}}" alt="Image de la boisson {{boisson.nom}}" />
+
+				<div class="caption">
+					<h3 class="text-center">{{boisson.nom}} {{ boisson.prix }} €</h3>
+				</div>
+				
+			</div>
+			
+		</div>
+	</form>
+</div>
+<button class="btn btn-primary btn-lg btn-block" type="submit" ng-click="ctrl.saveForm()">Choisir</button>

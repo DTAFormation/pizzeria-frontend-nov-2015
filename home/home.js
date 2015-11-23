@@ -58,7 +58,9 @@ angular.module('pzWebApp.home').controller('infoCtrl', function(userService, $se
 
 });
 
-angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,$localStorage, $routeParams, $scope){
+
+angular.module('pzWebApp.home').controller('panierCtrl', function(userService, panierService,$localStorage, $sessionStorage, $routeParams, $location){
+
 
     var self = this;
     
@@ -92,6 +94,11 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
         {
             $localStorage.menu = [];
         }
+
+    if((!$localStorage.panierConnexion) || ($localStorage.panierConnexion == 1)){
+      $localStorage.panierConnexion = 0
+      console.log('$localStorage.panierConnexion', $localStorage.panierConnexion)
+    }
 
 
     //Récupération données localstorage
@@ -244,16 +251,26 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
 
      this.save = function(){
       $localStorage.panierFinal = []
-      if($localStorage.products == null){
+      console.log(self.totalcommande)
+      if($localStorage.products.length >0){
         $localStorage.panierFinal.push($localStorage.products)
       }
 
-      if($localStorage.menu == null){
+      if($localStorage.menu.length >0){
         $localStorage.panierFinal.push($localStorage.menu)
       }
+      if(self.totalcommande >0){
+        $localStorage.panierFinal.total = self.totalcommande
+      }
+      
+
 
       console.log("localstorage panier final",$localStorage.panierFinal)
-      
+       if(userService.isConnected()){
+        console.log("client connecté")
+        $location.path('/commande')
+       }
+       else {$location.path('/connexion')}
       
      }
 
@@ -265,7 +282,17 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(panierService,
        $localStorage.menu.forEach(function(y){
         total += y.prix;
       })
+       self.totalcommande = total
       return total
+     }
+
+
+     this.hideCommand = function(){
+      if((self.datauni.length == 0) && (self.dataMenu.length == 0)){
+        return true;
+      }
+      else{ return false;}
+     
      }
 
 });

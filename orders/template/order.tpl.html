@@ -1,0 +1,28 @@
+<h1>{{ctrl.title}}</h1>
+<h2>Retrait Commande</h2>
+
+<form name="ctrl.orderForm">
+		
+		
+
+		<label class="radio-inline">
+			<input type="radio" ng-model="ctrl.type" value="A_EMPORTER" ng-change="ctrl.aEmporter(ctrl.type)">  A emporter
+		</label>
+		<label class="radio-inline">
+  			<input type="radio" ng-model="ctrl.type" value="SUR_PLACE" ng-change="ctrl.surPlace(ctrl.type)"> Sur place
+		</label>
+		<label class="radio-inline">
+  			<input type="radio"  ng-model="ctrl.type" value="EN_LIVRAISON" ng-change="ctrl.enLivraison(ctrl.type)"> En livraison 
+  		</label>
+  		<div ng-show="ctrl.etat()">		
+		<textarea class="form-control" rows="3"  >{{ctrl.adresse}}</textarea>
+
+		<button type="button" ng-click="ctrl.actualise()"> actualiser adresse</button>
+
+		</div>
+		<br> <br>
+		<div class="text-right">
+		<button type="submit" class="btn btn-primary" ng-click="ctrl.saveForm()">Choisir</button>
+		</div>
+		<br> <br>
+</form>

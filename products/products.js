@@ -124,6 +124,16 @@ angular.module('pzWebApp.products')
 
     self.dessert = null; //dessert sélectionné par l'utilisateur
 
+    self.selectDessert = function(dessert) {
+        self.dessert = dessert;
+    }
+
+    self.getDessertClass = function(dessert) {
+        if(angular.equals(self.dessert , dessert)) {
+            return "produitselectionne";
+        }
+    }
+
     //liste des desserts
     dessertService.getDesserts().then(function(data){
        self.desserts = data;
@@ -143,7 +153,7 @@ angular.module('pzWebApp.products')
             $localStorage.products = [];
         }
 
-        $localStorage.products.push(JSON.parse(self.dessert));
+        $localStorage.products.push(self.dessert);
 
         console.log("Target dessert is "+self.dessert);
 
@@ -152,7 +162,6 @@ angular.module('pzWebApp.products')
 
 })
 .controller('boissonCtrl', function(boissonService, $location, $localStorage) {
-    console.log($localStorage.products)
     var self = this;
 
     self.title = "Choisissez une boisson:";
@@ -166,8 +175,18 @@ angular.module('pzWebApp.products')
        self.boissons = data;
     })
 
+    self.selectBoisson = function(boisson) {
+        self.boisson = boisson;
+    }
+
+    self.getBoissonClass = function(boisson) {
+        if(angular.equals(self.boisson , boisson)) {
+            return "produitselectionne";
+        }
+    }
+
     //sauvegarde du choix de la boisson de l'utilisateur
-    this.saveForm = function(){
+    self.saveForm = function(){
 
         if(this.boissonForm.$invalid || self.boisson == null)
         {
@@ -179,7 +198,7 @@ angular.module('pzWebApp.products')
         {
             $localStorage.products = [];
         }
-        $localStorage.products.push(JSON.parse(self.boisson));
+        $localStorage.products.push(self.boisson);
 
         console.log("Target boisson is "+self.boisson);
 
@@ -191,7 +210,7 @@ angular.module('pzWebApp.products')
 
     var self = this;
 
-    self.title = "Choisissez un produit parmis la carte:";
+    self.title = "Notre carte:";
 
     self.cardForm = null; //formulaire correspondant au choix d'un produit de la carte
 
@@ -256,6 +275,10 @@ angular.module('pzWebApp.products')
     var self = this;
     self.title = "Menu:";
     var id = $routeParams.idMenu
+    
+    self.pizza = null
+    self.boisson = null
+    self.dessert = null
 
     //contenu d'un menu
     menuService.getMenu(id).then(function(data){
@@ -263,13 +286,37 @@ angular.module('pzWebApp.products')
     })
 
     this.saveForm = function(){
+        if(this.menuForm.$invalid || self.pizza == null || self.boisson == null || self.dessert == null)
+        {
+            alert("Merci de sélectionner un élément dans chaque catégorie");
+            return;
+        }
+        
         if(!$localStorage.menu)
         {
             $localStorage.menu = [];
         }
         $localStorage.menu.push(self.menu);
+        if(!$localStorage.menu.pizza)
+        {
+            $localStorage.menu.pizza = [];
+        }
+        $localStorage.menu.pizza.push(self.pizza);
+        if(!$localStorage.menu.boisson)
+        {
+            $localStorage.menu.boisson = [];
+        }
+        $localStorage.menu.boisson.push(self.boisson);
+        if(!$localStorage.menu.dessert)
+        {
+            $localStorage.menu.dessert = [];
+        }
+        $localStorage.menu.dessert.push(self.dessert);
+        console.log(self.pizza)
+        console.log(self.boisson)
+        console.log(self.dessert)
     
-        $location.path('/')
+        $location.path('/panier')
     }
 
 });

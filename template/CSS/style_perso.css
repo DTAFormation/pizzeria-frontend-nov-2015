@@ -39,11 +39,12 @@ body{
     background-color: inherit;
 }
 
-.container{
+.box-white{
     background-color: white;
 }
 
 img.resize-list {
+<<<<<<< HEAD
     width:60px;
     height:50px;
 }
@@ -52,3 +53,24 @@ img.resize-list {
     width:30%;
     height:30%;
 }
+=======
+    width:228px;
+}
+
+.thumbnail:hover { 
+    border: 1px solid red;
+    cursor: pointer;
+}
+
+.produitselectionne { 
+    border: 1px solid red;
+}
+
+.menu_list {
+    padding-left: 0px;
+}
+
+ul{
+    list-style: none;
+}
+>>>>>>> 62a4ecf9a020d348db93cdb966c57d4615536361
