@@ -4,9 +4,9 @@
 <h1>{{ctrl.title}}</h1>
 <form name="ctrl.connexionForm" ng-submit="connexionForm.saveForm()" novalidate>
 	<div class="form-inline">
-		
+
 		<div class="form-group">
-			<label for="login">Login : *</label>	
+			<label for="login">Login : *</label>
 			<input id="login" name="login" ng-model="ctrl.login" class="form-control" required/>
 		</div>
 
@@ -23,3 +23,8 @@
 	<br>
 
 </form>
+
+<br>
+<br>
+<p> Pas encore de compte ?</p>
+<a ng-href="#/inscription">Inscrivez-vous dès maintenant !</a>

@@ -23,6 +23,10 @@ angular.module('pzWebApp.users').config(function ($routeProvider) {
             templateUrl: "users/template/connexion.tpl.html",
             controller: "connexionCtrl",
             controllerAs: "ctrl"
+        }).when("/validation", {
+            templateUrl: "users/template/validation.tpl.html",
+            controller: "validationCtrl",
+            controllerAs: "ctrl"
         });
 });
 
@@ -64,8 +68,8 @@ angular.module('pzWebApp.users').controller('editionCtrl', function (userService
     var self = this;
 
     self.title = "Page d'edition";
-self.client = {};
-    angular.copy($localStorage.client,self.client) ;
+    self.client = {};
+    angular.copy($localStorage.client, self.client);
     self.change = false;
     self.login = self.client.login;
     self.mdp = self.client.mdp;
@@ -79,7 +83,7 @@ self.client = {};
             });
     }
 
-    this.saveForm = function ()  {
+    this.saveForm = function () {
         if (this.editionForm.$dirty) {
 
             if (this.editionForm.$invalid) {
@@ -107,7 +111,7 @@ self.client = {};
                     self.client.mdp = self.mdp;
                 }
             } else {
-               putClient(this.client)
+                putClient(this.client)
             }
         }
     }
@@ -136,23 +140,39 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
                 else{
                     $location.path('/commande');
                 }
-                
-                /*self.client = client;
-                console.log('client : ' + self.client)
-                if (self.client === "") {
-                    console.log("login/mdp invalide")
-                } else {
-                    userService.login(self.client);
-                    $location.path('/')
-                    console.log("connexion réussie")
-                }*/
+           
 
-            }, function (reason) {
-                if (reason.status == 400)
+
+            } , function (reason) {
+                 if (reason.status == 400)
                     alert(reason.data);
                 else
                     alert('Une erreur est intervenue')
             });
     }
+
+});
+
+angular.module('pzWebApp.users').controller('validationCtrl', function (userService, validationService, $location, $routeParams) {
+
+    var self = this;
+    self.id = $routeParams.id
+    self.hash = $routeParams.hash
+    self.information =""
+    self.title = "Page de validation";
+    
+    
+    validationService.promessePut(self.id, self.hash)
+        .then(function (response) {
+            self.information = "Votre compte a bien été validé."
+            userService.login(response.data);
+        }, function (reason) {
+            if (reason.status == 400) {
+                self.information=reason.data               
+            }
+            else {                
+                alert('Une erreur est intervenue')
+            }
+        });
 
 });

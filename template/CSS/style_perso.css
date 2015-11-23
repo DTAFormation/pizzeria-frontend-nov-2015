@@ -41,14 +41,20 @@ body{
 
 .box-white{
     background-color: white;
+    padding:3px 10px 10px 10px;
 }
 
 img.resize-list {
     width:228px;
 }
 
+.resize-pizza {
+    width:100%;
+    height:100%;
+}
+
 .thumbnail:hover { 
-    border: 1px solid red;
+    border: 1px solid blue;
     cursor: pointer;
 }
 
