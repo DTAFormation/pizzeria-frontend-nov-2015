@@ -54,37 +54,30 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
 // Contrôleur principal du module 'products'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('pzWebApp.products')
-.controller('details_pizzaCtrl', function (userService, detPizService, $routeParams) {
+.controller('details_pizzaCtrl', function (userService, detPizService, pizzConfig, $routeParams) {
     var id = $routeParams.id
     var self = this;
     
     self.title = "Détails pizza";
     self.pizza = null
-
-    /*
-    detPizService.promesse.then(function (pizza) {
-        self.pizza = pizza[id];
-        
-    }.bind(this))
-    */
-
+    self.url=pizzConfig.IMG_PIZZA_URL;
+    
     console.log(id)
     detPizService.getPizza(id).then(function(data){
        self.pizza = data;
    })
 })
-.controller('pizza_listCtrl', function (pizza_listService) {
+.controller('pizza_listCtrl', function (pizza_listService,pizzConfig) {
 
     var self = this;
     self.title = "Liste de pizzas";
 
     self.pizzas = null; 
+    self.url=pizzConfig.IMG_PIZZA_URL;
 
     pizza_listService.getPizzas().then(function(data){
        self.pizzas = data;
    })
-
-
 
 })
 /*
@@ -122,9 +115,11 @@ angular.module('pzWebApp.products')
 
 })
 
-.controller('dessertCtrl', function(dessertService, $location, $localStorage) {
-    console.log($localStorage.products)
+.controller('dessertCtrl', function(dessertService, $location, $localStorage, pizzConfig) {
+
     var self = this;
+
+    self.urlImageDessert = pizzConfig.IMG_DESSERT_URL;
 
     self.title = "Choisissez un dessert:";
 
@@ -169,8 +164,10 @@ angular.module('pzWebApp.products')
     }
 
 })
-.controller('boissonCtrl', function(boissonService, $location, $localStorage) {
+.controller('boissonCtrl', function(boissonService, $location, $localStorage, pizzConfig) {
     var self = this;
+
+    self.urlImageBoisson = pizzConfig.IMG_BOISSON_URL;
 
     self.title = "Choisissez une boisson:";
 
@@ -214,9 +211,13 @@ angular.module('pzWebApp.products')
     }
 
 })
-.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $localStorage) {
+.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $localStorage, pizzConfig) {
 
     var self = this;
+
+    self.urlImagePizza = pizzConfig.IMG_PIZZA_URL;
+    self.urlImageBoisson = pizzConfig.IMG_BOISSON_URL;
+    self.urlImageDessert = pizzConfig.IMG_DESSERT_URL;
 
     self.title = "Notre carte:";
 
