@@ -86,7 +86,7 @@ angular.module('pzWebApp.users').controller('editionCtrl', function (userService
     }
 });
 
-angular.module('pzWebApp.users').controller('connexionCtrl', function (userService, connexionService, $location) {
+angular.module('pzWebApp.users').controller('connexionCtrl', function (userService, connexionService, $location, $localStorage) {
 
     var self = this;
 
@@ -101,7 +101,14 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
         connexionService.promessePut(this.login, this.mdp)
             .then(function (response) {
                 userService.login(response.data);
-                $location.path('/');
+                if(!$localStorage.panierFinal){
+                    $location.path('/');
+                    
+                }
+                else{
+                    $location.path('/commande');
+                }
+                
                 /*self.client = client;
                 console.log('client : ' + self.client)
                 if (self.client === "") {
