@@ -39,11 +39,19 @@ body{
     background-color: inherit;
 }
 
-.container{
+.box-white{
     background-color: white;
 }
 
 img.resize-list {
-    width:60px;
-    height:50px;
+    width:228px;
+}
+
+.thumbnail:hover { 
+    border: 1px solid red;
+    cursor: pointer;
+}
+
+.produitselectionne { 
+    border: 1px solid red;
 }
