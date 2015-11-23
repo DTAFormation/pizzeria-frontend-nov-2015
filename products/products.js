@@ -114,9 +114,11 @@ angular.module('pzWebApp.products')
 
 })
 
-.controller('dessertCtrl', function(dessertService, $location, $localStorage) {
-    console.log($localStorage.products)
+.controller('dessertCtrl', function(dessertService, $location, $localStorage, pizzConfig) {
+
     var self = this;
+
+    self.urlImageDessert = pizzConfig.IMG_DESSERT_URL;
 
     self.title = "Choisissez un dessert:";
 
@@ -161,8 +163,10 @@ angular.module('pzWebApp.products')
     }
 
 })
-.controller('boissonCtrl', function(boissonService, $location, $localStorage) {
+.controller('boissonCtrl', function(boissonService, $location, $localStorage, pizzConfig) {
     var self = this;
+
+    self.urlImageBoisson = pizzConfig.IMG_BOISSON_URL;
 
     self.title = "Choisissez une boisson:";
 
@@ -206,9 +210,13 @@ angular.module('pzWebApp.products')
     }
 
 })
-.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $localStorage) {
+.controller('cardCtrl', function(boissonService, dessertService, pizza_listService, $location, $localStorage, pizzConfig) {
 
     var self = this;
+
+    self.urlImagePizza = pizzConfig.IMG_PIZZA_URL;
+    self.urlImageBoisson = pizzConfig.IMG_BOISSON_URL;
+    self.urlImageDessert = pizzConfig.IMG_DESSERT_URL;
 
     self.title = "Notre carte:";
 
