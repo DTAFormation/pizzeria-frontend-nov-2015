@@ -2,6 +2,7 @@
 angular.module('pzWebApp.orders', [
     'ngRoute',
     'pzWebApp.shared'
+
 ]);
 
 // Configuration du module 'orders'
@@ -63,10 +64,17 @@ angular.module('pzWebApp.orders').controller('paiementCtrl', function (userServi
             return
         }
 
-       $localStorage.order.paiement = self.type
-       $localStorage.order.paye = false
-       $localStorage.order.etat = 'EN_COURS'
+        $localStorage.order.paiement = self.type
+       $localStorage.order.paye = "false";
+       $localStorage.order.etat = 'EN_COURS';
+       $localStorage.order.produits =[];
+       $localStorage.order.total=0;
+       $localStorage.order.type = 'SUR_PLACE'
        console.log($localStorage.order)
+
+       paiementService.saveCommand($localStorage.order).then(function(){
+        alert ("Youpi commande enregistrée")
+       })
 
     }
     

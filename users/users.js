@@ -131,7 +131,9 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
         //Redirection vers le home
         connexionService.promessePut(this.login, this.mdp)
             .then(function (response) {
+
                 userService.login(response.data);                
+
                 if(!$localStorage.panierFinal){
                     $location.path('/');
                     
@@ -139,9 +141,12 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
                 else{
                     $location.path('/commande');
                 }
+           
 
-                
-            }, function (reason) {
+
+
+            } , function (reason) {
+
                  if (reason.status == 400)
                     alert(reason.data);
                 else
