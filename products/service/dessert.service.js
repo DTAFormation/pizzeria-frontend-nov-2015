@@ -1,4 +1,4 @@
-angular.module('pzWebApp.products').service('dessertService', function($http, $q) {
+angular.module('pzWebApp.products').service('dessertService', function($http, $q, pizzConfig) {
 
 	function handleResponse(response) {
 		console.log("Success !")
@@ -7,7 +7,7 @@ angular.module('pzWebApp.products').service('dessertService', function($http, $q
 
     this.getDesserts = function() {
         console.log("Get desserts")
-			return $http.get('http://localhost:8080/dessert')
+			return $http.get(pizzConfig.DESSERT_RESOURCE_URL)
 			.then(handleResponse)
     };
 

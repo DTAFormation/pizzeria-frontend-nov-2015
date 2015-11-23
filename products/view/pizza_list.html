@@ -1,20 +1,20 @@
 <h1>{{ctrl.title}}</h1>
-	
 <div>
 	<table>
-		<tbody>
+		<tbody>			
 			<tr ng-repeat="pizza in ctrl.pizzas "> <!-- | inSlicesOf:3 -->
-				<td><a ng-href="#details_pizza?pizza={{pizza.id}}">{{pizza.nom}} {{pizza.id}}</a></td> <br>
-				<!-- <td><p>../img/{{pizza.nom}}.jpg </p><br> -->
-				<td><a ng-href="#details_pizza?pizza={{pizza.id}}"><img src="/template/IMG/{{pizza.nom}}.jpg"></a></td> <br>
-				<!-- 
-				
-				<link rel="stylesheet" data-ng-href="{{pizza.id}}" href="details_pizza">TEST</link> -->
-				<!-- tentative de lien via href-->
-				<!-- <td class="" ng-repeat="item in pizza">
-					<a href="details_pizza?pizza={{item.id}}"><img ng-src="{{item.img}}"></a> // lien par image
-				</td>-->
+
+				<td>
+					<table>
+					<tr>
+						<td>{{pizza.nom}}</td>
+					</tr>
+					<tr>
+						<td><a ng-href="#details_pizza?id={{pizza.id}}"><img height="20%" width="20%" ng-src="/template/IMG_PIZZA/{{pizza.image}}"></a></td>
+					</tr>
+					</table>
+				</td>				
 			</tr>
 		</tbody>		
-	</table>		
+	</table>	
 </div>

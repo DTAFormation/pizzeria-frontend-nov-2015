@@ -1,4 +1,4 @@
-<h2>{{ctrl.title}}</h2>
+<!-- <h2>{{ctrl.title}}</h2>
 
 <form name="ctrl.dessertForm">
 	<div ng-repeat="dessert in ctrl.desserts track by $index">
@@ -7,3 +7,25 @@
 	</div>
 	<button type="submit" ng-click="ctrl.saveForm()">Choisir</button>
 </form>
+ -->
+
+<h2 class="text-center">{{ctrl.title}}</h2>
+
+<div class="row">
+
+	<form class="" name="ctrl.dessertForm">
+		
+		<div class="form-group col-md-3" ng-repeat="dessert in ctrl.desserts track by $index">
+			<div class="thumbnail" ng-click="ctrl.selectDessert(dessert)" ng-class="ctrl.getDessertClass(dessert)">
+				<img class="resize-list" src="{{dessert.image}}" alt="Image de la dessert {{dessert.nom}}" />
+
+				<div class="caption">
+					<h3 class="text-center">{{dessert.nom}} {{ dessert.prix }} €</h3>
+				</div>
+				
+			</div>
+			
+		</div>
+	</form>
+</div>
+<button class="btn btn-primary btn-lg btn-block" type="submit" ng-click="ctrl.saveForm()">Choisir</button>

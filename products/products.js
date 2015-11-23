@@ -1,7 +1,7 @@
 // Déclaration du module 'products'
 angular.module('pzWebApp.products', [
     'ngRoute',
-    'pzWebApp.shared'
+    'pzWebApp.shared',
 ]);
 
 // Configuration du module 'products'
@@ -41,6 +41,11 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
     })
     .when("/menu_list",{
         templateUrl:"products/view/menu_list.html",
+        controller:"listMenuCtrl",
+        controllerAs: "ctrl"
+    })
+    .when("/menu/:idMenu",{
+        templateUrl:"products/view/menu.html",
         controller:"menuCtrl",
         controllerAs: "ctrl"
     });
@@ -50,7 +55,7 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('pzWebApp.products')
 .controller('details_pizzaCtrl', function (userService, detPizService, $routeParams) {
-    var id = $routeParams.pizza
+    var id = $routeParams.id
     var self = this;
     
     self.title = "Détails pizza";
@@ -116,8 +121,9 @@ angular.module('pzWebApp.products')
     self.title = "Page Products";
 
 })
-.controller('dessertCtrl', function(dessertService, $location, $localStorage) {
 
+.controller('dessertCtrl', function(dessertService, $location, $localStorage) {
+    console.log($localStorage.products)
     var self = this;
 
     self.title = "Choisissez un dessert:";
@@ -125,6 +131,16 @@ angular.module('pzWebApp.products')
     self.dessertForm = null; //formulaire correspondant au choix du dessert
 
     self.dessert = null; //dessert sélectionné par l'utilisateur
+
+    self.selectDessert = function(dessert) {
+        self.dessert = dessert;
+    }
+
+    self.getDessertClass = function(dessert) {
+        if(angular.equals(self.dessert , dessert)) {
+            return "produitselectionne";
+        }
+    }
 
     //liste des desserts
     dessertService.getDesserts().then(function(data){
@@ -144,7 +160,8 @@ angular.module('pzWebApp.products')
         {
             $localStorage.products = [];
         }
-        $localStorage.products.push(JSON.parse(self.dessert));
+
+        $localStorage.products.push(self.dessert);
 
         console.log("Target dessert is "+self.dessert);
 
@@ -153,7 +170,6 @@ angular.module('pzWebApp.products')
 
 })
 .controller('boissonCtrl', function(boissonService, $location, $localStorage) {
-
     var self = this;
 
     self.title = "Choisissez une boisson:";
@@ -165,10 +181,20 @@ angular.module('pzWebApp.products')
     //liste des boissons
     boissonService.getBoissons().then(function(data){
        self.boissons = data;
-   })
+    })
+
+    self.selectBoisson = function(boisson) {
+        self.boisson = boisson;
+    }
+
+    self.getBoissonClass = function(boisson) {
+        if(angular.equals(self.boisson , boisson)) {
+            return "produitselectionne";
+        }
+    }
 
     //sauvegarde du choix de la boisson de l'utilisateur
-    this.saveForm = function(){
+    self.saveForm = function(){
 
         if(this.boissonForm.$invalid || self.boisson == null)
         {
@@ -176,11 +202,11 @@ angular.module('pzWebApp.products')
             return;
         }
 
-        if($localStorage.products == null)
+        if(!$localStorage.products)
         {
             $localStorage.products = [];
         }
-        $localStorage.products.push(JSON.parse(self.boisson));
+        $localStorage.products.push(self.boisson);
 
         console.log("Target boisson is "+self.boisson);
 
@@ -224,7 +250,7 @@ angular.module('pzWebApp.products')
             return;
         }
 
-        if($localStorage.products == null)
+        if(!$localStorage.products)
         {
             $localStorage.products = [];
         }
@@ -241,13 +267,53 @@ angular.module('pzWebApp.products')
         $location.path('/')
     }
 })
-.controller('menuCtrl', function(menuService) {
+.controller('listMenuCtrl', function(listMenuService) {
     var self = this;
     self.title = "Liste des menus";
 
-    //liste des boissons
-    menuService.getMenus().then(function(data){
+    //liste des menus
+    listMenuService.getMenus().then(function(data){
         self.menus = data;
     })
+
+})
+.controller('menuCtrl', function(menuService, $routeParams, $localStorage, $location) {
+    console.log($localStorage.menu)
+    
+    var self = this;
+    self.title = "Menu:";
+    var id = $routeParams.idMenu
+    
+    self.pizza = null
+    self.boisson = null
+    self.dessert = null
+
+    //contenu d'un menu
+    menuService.getMenu(id).then(function(data){
+        self.menu = data;
+    })
+
+    this.saveForm = function(){
+        if(this.menuForm.$invalid || self.pizza == null || self.boisson == null || self.dessert == null)
+        {
+            alert("Merci de sélectionner un élément dans chaque catégorie");
+            return;
+        }
+        
+        if(!$localStorage.menu)
+        {
+            $localStorage.menu = [];
+        }
+        $localStorage.menu.push(self.menu);
+        if(!$localStorage.products)
+        {
+            $localStorage.products = [];
+        }
+        $localStorage.products.push(self.pizza);
+        $localStorage.products.push(self.boisson);
+        $localStorage.products.push(self.dessert);
+    
+        $location.path('/')
+    }
 
 });

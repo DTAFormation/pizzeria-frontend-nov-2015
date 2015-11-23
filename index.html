@@ -14,7 +14,7 @@
 
 </head>
 
-<body>
+<body class="container">
 
   <!-- JS from Bower Components -->
   <script src="lib/angular/angular.js"></script>
@@ -27,6 +27,7 @@
 
   <!-- Main App JS -->
   <script src="shared/shared.js"></script>
+  <script src="shared/service/config.service.js"></script>
   <script src="shared/service/user.service.js"></script>
   <script src="home/home.js"></script>
   <script src="home/service/home.service.js"></script>
@@ -38,6 +39,7 @@
   <script src="products/service/pizza_list.service.js"></script>
   <script src="products/service/dessert.service.js"></script>
   <script src="products/service/boisson.service.js"></script>
+  <script src="products/service/list_menu.service.js"></script>
   <script src="products/service/menu.service.js"></script>
   <script src="users/users.js"></script>
   <script src="users/service/edition.service.js"></script>
@@ -61,15 +63,15 @@
 
   <header ng-include="'template/header.html'"></header>
 
-  <div>
-    <div id="content" class="container">
+ <div class="row"> 
+    <div id="content" class="col-md-12">
 
-      <div ng-view>
+      <div class="" ng-view>
       </div>
 
 
-    </div>
-  </div>
+    </div> 
+   </div> 
 
   <footer ng-include="'template/footer.html'"></footer>
 
