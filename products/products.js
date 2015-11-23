@@ -218,7 +218,7 @@ angular.module('pzWebApp.products')
 
     var self = this;
 
-    self.title = "Choisissez un produit parmis la carte:";
+    self.title = "Notre carte:";
 
     self.cardForm = null; //formulaire correspondant au choix d'un produit de la carte
 

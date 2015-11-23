@@ -1,25 +1,43 @@
-<h2>{{ctrl.title}}</h2>
+<h2 class="text-center">{{ctrl.title}}</h2>
 
 <form name="ctrl.cardForm">
-	
-	<h3 ng-hide="ctrl.pizzas == null || ctrl.pizzas.length == 0">Liste des pizzas</h3>
-	<div ng-repeat="pizza in ctrl.pizzas track by $index">
-		<input type="checkbox" ng-model="pizza.selected">
-		<label>{{pizza.nom}} {{ pizza.prix }}€</label>
-	</div>
-	
 
-	<h3 ng-hide="ctrl.desserts == null || ctrl.desserts.length == 0">Liste des desserts</h3>
-	<div ng-repeat="dessert in ctrl.desserts track by $index">
-		<input type="checkbox" ng-model="dessert.selected">
-		<label>{{dessert.nom}} {{ dessert.prix }}€</label>
-	</div>
-
-	<h3 ng-hide="ctrl.boissons == null || ctrl.boissons.length == 0">Liste des boissons</h3>
-	<div ng-repeat="boisson in ctrl.boissons track by $index">
-		<input type="checkbox" ng-model="boisson.selected">
-		<label>{{boisson.nom}} {{ boisson.prix }}€</label>
+	<h3 class="text-center" ng-hide="ctrl.pizzas == null || ctrl.pizzas.length == 0">Liste des pizzas</h3>
+	<div class="row">
+		<div class="form-group col-md-3" ng-repeat="pizza in ctrl.pizzas track by $index">
+			<div class="thumbnail" ng-click="pizza.selected = !pizza.selected" ng-class="pizza.selected ? 'produitselectionne':''">
+				<img class="resize-list" src="{{pizza.image}}" alt="Image de la pizza {{pizza.nom}}" />
+				<div class="caption">
+					<h3 class="text-center">{{pizza.nom}} {{ pizza.prix }} €</h3>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<button type="submit" ng-click="ctrl.saveForm()">Choisir</button>
+	<h3 class="text-center" ng-hide="ctrl.desserts == null || ctrl.desserts.length == 0">Liste des desserts</h3>
+	<div class="row">
+		<div class="form-group col-md-3" ng-repeat="dessert in ctrl.desserts track by $index">
+			<div class="thumbnail" ng-click="dessert.selected = !dessert.selected" ng-class="dessert.selected ? 'produitselectionne':''">
+				<img class="resize-list" src="{{dessert.image}}" alt="Image du dessert {{dessert.nom}}" />
+				<div class="caption">
+					<h3 class="text-center">{{dessert.nom}} {{ dessert.prix }} €</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h3 class="text-center" ng-hide="ctrl.boissons == null || ctrl.boissons.length == 0">Liste des boissons</h3>
+	<div class="row">
+		<div class="form-group col-md-3" ng-repeat="boisson in ctrl.boissons track by $index">
+			<div class="thumbnail" ng-click="boisson.selected = !boisson.selected" ng-class="boisson.selected ? 'produitselectionne':''">
+				<img class="resize-list" src="{{boisson.image}}" alt="Image de la boisson {{boisson.nom}}" />
+				<div class="caption">
+					<h3 class="text-center">{{boisson.nom}} {{ boisson.prix }} €</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </form>
+
+<button class="btn btn-primary btn-lg btn-block" type="submit" ng-click="ctrl.saveForm()">Choisir</button>
