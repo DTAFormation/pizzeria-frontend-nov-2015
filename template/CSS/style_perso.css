@@ -44,6 +44,16 @@ body{
 }
 
 img.resize-list {
+<<<<<<< HEAD
+    width:60px;
+    height:50px;
+}
+
+.resize-pizza {
+    width:30%;
+    height:30%;
+}
+=======
     width:228px;
 }
 
@@ -63,3 +73,4 @@ img.resize-list {
 ul{
     list-style: none;
 }
+>>>>>>> 62a4ecf9a020d348db93cdb966c57d4615536361

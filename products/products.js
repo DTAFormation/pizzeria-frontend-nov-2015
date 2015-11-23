@@ -61,30 +61,22 @@ angular.module('pzWebApp.products')
     self.title = "Détails pizza";
     self.pizza = null
 
-    /*
-    detPizService.promesse.then(function (pizza) {
-        self.pizza = pizza[id];
-        
-    }.bind(this))
-    */
-
     console.log(id)
     detPizService.getPizza(id).then(function(data){
        self.pizza = data;
    })
 })
-.controller('pizza_listCtrl', function (pizza_listService) {
+.controller('pizza_listCtrl', function (pizza_listService,pizzConfig) {
 
     var self = this;
     self.title = "Liste de pizzas";
 
     self.pizzas = null; 
+    self.url=pizzConfig.IMG_PIZZA_URL;
 
     pizza_listService.getPizzas().then(function(data){
        self.pizzas = data;
    })
-
-
 
 })
 /*
