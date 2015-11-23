@@ -305,15 +305,26 @@ angular.module('pzWebApp.products')
             $localStorage.menu = [];
         }
         $localStorage.menu.push(self.menu);
-        if(!$localStorage.products)
+        if(!$localStorage.menu.pizza)
         {
-            $localStorage.products = [];
+            $localStorage.menu.pizza = [];
         }
-        $localStorage.products.push(self.pizza);
-        $localStorage.products.push(self.boisson);
-        $localStorage.products.push(self.dessert);
+        $localStorage.menu.pizza.push(self.pizza);
+        if(!$localStorage.menu.boisson)
+        {
+            $localStorage.menu.boisson = [];
+        }
+        $localStorage.menu.boisson.push(self.boisson);
+        if(!$localStorage.menu.dessert)
+        {
+            $localStorage.menu.dessert = [];
+        }
+        $localStorage.menu.dessert.push(self.dessert);
+        console.log(self.pizza)
+        console.log(self.boisson)
+        console.log(self.dessert)
     
-        $location.path('/')
+        $location.path('/panier')
     }
 
 });
