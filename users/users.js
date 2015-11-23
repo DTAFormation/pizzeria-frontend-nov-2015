@@ -46,8 +46,8 @@ angular.module('pzWebApp.users').controller('inscriptionCtrl', function (userSer
         self.client = this.client;
         inscriptionService.promessePost(this.client)
             .then(function (reponse) {
-                userService.login(reponse.data);          
-                $location.path('/')
+                userService.login(reponse.data);
+                //$location.path('/')
             }, function (reason) {
                 if (reason.status == 400)
                     alert(reason.data);
@@ -64,25 +64,52 @@ angular.module('pzWebApp.users').controller('editionCtrl', function (userService
     var self = this;
 
     self.title = "Page d'edition";
+self.client = {};
+    angular.copy($localStorage.client,self.client) ;
+    self.change = false;
+    self.login = self.client.login;
+    self.mdp = self.client.mdp;
 
-
-   /* editionService.promesseGet.then(function (client) {
-        console.log("client : " + client)
-        self.client = client
-    }.bind(this))*/
-    
-    self.client= $localStorage.client;
-
-    this.saveForm = function () {
-        if (this.editionForm.$invalid) {
-            alert('Un champs est vide ou invalide !')
-            return
-        }
-        //Redirection vers le home
-        editionService.promessePut(this.client)
+    function putClient(client) {
+        editionService.promessePut(client)
             .then(function () {
+                $localStorage.client = self.client
+                alert("Vos informations personnelles ont bien été mises à jour.")
                 $location.path('/')
             });
+    }
+
+    this.saveForm = function ()  {
+        if (this.editionForm.$dirty) {
+
+            if (this.editionForm.$invalid) {
+                alert('Un champs est vide ou invalide !')
+                return
+            }
+            var confirmMessage = undefined
+            if (this.client.login != self.login) {
+                confirmMessage = "Voulez-vous vraiment modifier votre login ?"
+            }
+
+            if (this.client.mdp != self.mdp) {
+                if (confirmMessage) {
+                    confirmMessage = confirmMessage.replace("?", "et votre mdp ?")
+                } else {
+                    confirmMessage = "Voulez-vous vraiment modifier votre mdp ?"
+                }
+            }
+
+            if (confirmMessage) {
+                if (confirm(confirmMessage)) {
+                    putClient(this.client)
+                } else {
+                    self.client.login = self.login;
+                    self.client.mdp = self.mdp;
+                }
+            } else {
+               putClient(this.client)
+            }
+        }
     }
 });
 
@@ -101,6 +128,7 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
         connexionService.promessePut(this.login, this.mdp)
             .then(function (response) {
                 userService.login(response.data);
+
                 if(!$localStorage.panierFinal){
                     $location.path('/');
                     
@@ -118,8 +146,9 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
                     $location.path('/')
                     console.log("connexion réussie")
                 }*/
-            } , function (reason) {
-                 if (reason.status == 400)
+
+            }, function (reason) {
+                if (reason.status == 400)
                     alert(reason.data);
                 else
                     alert('Une erreur est intervenue')
