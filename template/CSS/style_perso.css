@@ -41,6 +41,7 @@ body{
 
 .box-white{
     background-color: white;
+    padding:3px 10px 10px 10px;
 }
 
 img.resize-list {
@@ -48,7 +49,7 @@ img.resize-list {
 }
 
 .thumbnail:hover { 
-    border: 1px solid red;
+    border: 1px solid blue;
     cursor: pointer;
 }
 
