@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="form-group col-md-3" ng-repeat="pizza in ctrl.pizzas track by $index">
 			<div class="thumbnail" ng-click="pizza.selected = !pizza.selected" ng-class="pizza.selected ? 'produitselectionne':''">
-				<img class="resize-list" src="{{ctrl.urlImagePizza}}{{pizza.image}}" alt="Image de la pizza {{pizza.nom}}" />
+				<img class="resize-list" ng-src="{{ctrl.urlImagePizza}}{{pizza.image}}" alt="Image de la pizza {{pizza.nom}}" />
 				<div class="caption">
 					<h3 class="text-center">{{pizza.nom}} {{ pizza.prix }} €</h3>
 				</div>
@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="form-group col-md-3" ng-repeat="dessert in ctrl.desserts track by $index">
 			<div class="thumbnail" ng-click="dessert.selected = !dessert.selected" ng-class="dessert.selected ? 'produitselectionne':''">
-				<img class="resize-list" src="{{ctrl.urlImageDessert}}{{dessert.image}}" alt="Image du dessert {{dessert.nom}}" />
+				<img class="resize-list" ng-src="{{ctrl.urlImageDessert}}{{dessert.image}}" alt="Image du dessert {{dessert.nom}}" />
 				<div class="caption">
 					<h3 class="text-center">{{dessert.nom}} {{ dessert.prix }} €</h3>
 				</div>
@@ -30,7 +30,7 @@
 	<div class="row">
 		<div class="form-group col-md-3" ng-repeat="boisson in ctrl.boissons track by $index">
 			<div class="thumbnail" ng-click="boisson.selected = !boisson.selected" ng-class="boisson.selected ? 'produitselectionne':''">
-				<img class="resize-list" src="{{ctrl.urlImageBoisson}}{{boisson.image}}" alt="Image de la boisson {{boisson.nom}}" />
+				<img class="resize-list" ng-src="{{ctrl.urlImageBoisson}}{{boisson.image}}" alt="Image de la boisson {{boisson.nom}}" />
 				<div class="caption">
 					<h3 class="text-center">{{boisson.nom}} {{ boisson.prix }} €</h3>
 				</div>
