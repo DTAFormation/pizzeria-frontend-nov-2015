@@ -15,6 +15,5 @@ angular.module('pzWebApp.products').service('detPizService', function ($http, $q
 	        	then(handleResponse)
     	};
         
-    };
+    });
 
-});
