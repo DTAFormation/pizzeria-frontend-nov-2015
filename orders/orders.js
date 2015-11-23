@@ -14,7 +14,12 @@ angular.module('pzWebApp.orders').config(function($routeProvider) {
         controller:"paiementCtrl",
         controllerAs: "ctrl"
     })
-    ;
+    .when("/commande",{
+        templateUrl:"orders/template/order.tpl.html",
+        controller:"commandeCtrl",
+        controllerAs: "ctrl"
+    });
+    
 
 });
 
@@ -31,6 +36,28 @@ angular.module('pzWebApp.orders').controller('paiementCtrl', function (userServi
     }.bind(this))
     
     // ...
+
+})
+angular.module('pzWebApp.orders').controller('commandeCtrl', function (userService, paiementService, $localStorage) {
+
+    var self = this;
+        
+    self.title = "Commande";    
+    
+    self.type;
+
+
+    this.saveForm = function(){
+        if(!$localStorage.order)
+        {
+            $localStorage.order = [];
+        }
+
+        console.log(self.type)
+
+    }
+
+       
 
 })
 ;

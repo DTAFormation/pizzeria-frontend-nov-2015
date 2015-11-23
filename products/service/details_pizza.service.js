@@ -1,9 +1,10 @@
 angular.module('pzWebApp.products').service('detPizService', function ($http, $q, pizzConfig)  {
 
-        function handleResponse(response) {
+    function handleResponse(response) {
         console.log("Success !")
         return response.data
     }
+
 
         this.getPizza = function(id) {
         	console.log("Get pizza")        	
@@ -14,4 +15,5 @@ angular.module('pzWebApp.products').service('detPizService', function ($http, $q
 	        	then(handleResponse)
     	};
         
-});
+    });
+
