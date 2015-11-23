@@ -1,7 +1,14 @@
 <h2>{{ctrl.title}}</h2>
 
-<ul>
+<ul class="menu_list">
 	<div ng-repeat="menu in ctrl.menus track by $index">
-		<li><a href="#menu/{{menu.id}}">{{menu.nom}}</a> {{ menu.prix }}€</li>
+		<li class="panel panel-primary">
+			<div class="panel-heading">
+				<a href="#menu/{{menu.id}}" class="panel-title">{{menu.nom}}</a>
+			</div>
+			<div class="panel-body">
+				{{ menu.prix }}€ : {{ menu.description }}
+			</div>
+		</li>
 	</div>
 </ul>
