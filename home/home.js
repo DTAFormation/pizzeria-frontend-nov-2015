@@ -251,17 +251,24 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(userService, p
 
      this.save = function(){
       $localStorage.panierFinal = []
-      if($localStorage.products == null){
+      console.log(self.totalcommande)
+      if($localStorage.products.length >0){
         $localStorage.panierFinal.push($localStorage.products)
       }
 
-      if($localStorage.menu == null){
+      if($localStorage.menu.length >0){
         $localStorage.panierFinal.push($localStorage.menu)
       }
+      if(self.totalcommande >0){
+        $localStorage.panierFinal.total = self.totalcommande
+      }
+      
+
 
       console.log("localstorage panier final",$localStorage.panierFinal)
        if(userService.isConnected()){
         console.log("client connecté")
+        $location.path('/commande')
        }
        else {$location.path('/connexion')}
       
@@ -275,6 +282,7 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(userService, p
        $localStorage.menu.forEach(function(y){
         total += y.prix;
       })
+       self.totalcommande = total
       return total
      }
 
