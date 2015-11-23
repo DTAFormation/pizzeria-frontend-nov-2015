@@ -45,7 +45,13 @@ body{
 }
 
 img.resize-list {
-    width:228px;
+    width:60px;
+    height:50px;
+}
+
+.resize-pizza {
+    width:100%;
+    height:100%;
 }
 
 .thumbnail:hover { 
