@@ -113,7 +113,7 @@ self.client = {};
     }
 });
 
-angular.module('pzWebApp.users').controller('connexionCtrl', function (userService, connexionService, $location) {
+angular.module('pzWebApp.users').controller('connexionCtrl', function (userService, connexionService, $location, $localStorage) {
 
     var self = this;
 
@@ -128,9 +128,31 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
         connexionService.promessePut(this.login, this.mdp)
             .then(function (response) {
                 userService.login(response.data);
-                $location.path('/');
-            }, function (reason) {
                 if (reason.status == 400)
+
+                if(!$localStorage.panierFinal){
+                    $location.path('/');
+                    
+                }
+                else{
+                    $location.path('/commande');
+                }
+
+                
+            }, function (reason) {
+                
+                
+                /*self.client = client;
+                console.log('client : ' + self.client)
+                if (self.client === "") {
+                    console.log("login/mdp invalide")
+                } else {
+                    userService.login(self.client);
+                    $location.path('/')
+                    console.log("connexion réussie")
+                }*/
+            } , function (reason) {
+                 if (reason.status == 400)
                     alert(reason.data);
                 else
                     alert('Une erreur est intervenue')
