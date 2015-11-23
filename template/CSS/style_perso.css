@@ -55,3 +55,11 @@ img.resize-list {
 .produitselectionne { 
     border: 1px solid red;
 }
+
+.menu_list {
+    padding-left: 0px;
+}
+
+ul{
+    list-style: none;
+}

@@ -16,24 +16,13 @@ sauce tomate, mozza, jambon, champignons</p>-->
 	<h3>Pizza {{ctrl.pizza.nom}} :</h3>
 	<ul>
 		<div ng-repeat="i in ctrl.pizza.ingredients">
-			<li>{{i}}</li>
+			<li>{{i.nom}}</li>
 		</div>
 	</ul>
-	<img ng-src="/template/IMG_PIZZA/{{ctrl.pizza.image}}" alt="photo pizza" />
-	{{ctrl.pizza.image}}
-	{{ctrl.pizza}}
+	<p>Prix : {{ctrl.pizza.prix}} €</p>
+	<img ng-src="{{ctrl.pizza.image}}" alt="erreur photo pizza" />
+
 </div>
 
 <button>ajouter à la commande</button>
 
-<div>
-	<table>
-		<tbody>			
-			<tr ng-repeat="pizza in ctrl.pizza "> <!-- | inSlicesOf:3 -->
-				<td>
-					<h3>Pizza {{pizza.nom}} :</h3>	
-				</td>		
-			</tr>
-		</tbody>		
-	</table>	
-</div>
