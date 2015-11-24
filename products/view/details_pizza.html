@@ -1,6 +1,6 @@
 <!--
 	Usage de la syntaxe 'controller as' dans la déclaration de la route dans products.js
- -->
+-->
 <h2> {{ctrl.title}}</h2>
 
 
@@ -12,7 +12,10 @@
 		</div>
 	</ul>
 	<p>Prix : {{ctrl.pizza.prix}} €</p>
-	<img ng-src="{{ctrl.url}}{{ctrl.pizza.image}}" alt="erreur photo pizza" />
+	<!-- <img ng-src="{{ctrl.url}}{{ctrl.pizza.image}}" alt="erreur photo pizza" /> -->
+	<img ng-if="pizza.image && pizza.image.trim() != ''"class="resize-list" ng-src="{{ctrl.configService.IMG_PIZZA_URL}}{{pizza.image}}" alt="Image de la pizza {{pizza.nom}}" />
+
+	<img ng-if="!pizza.image || pizza.image.trim() == ''"class="resize-list" ng-src="{{ctrl.configService.IMG_URL_Default}}" alt="Image par défaut" />
 
 </div>
 
