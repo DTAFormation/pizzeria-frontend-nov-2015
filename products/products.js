@@ -54,13 +54,14 @@ angular.module('pzWebApp.products').config(function($routeProvider) {
 // Contrôleur principal du module 'products'
 // Usage de la syntaxe 'controller as', pas besoin du '$scope'
 angular.module('pzWebApp.products')
-.controller('details_pizzaCtrl', function (userService, detPizService, $routeParams) {
+.controller('details_pizzaCtrl', function (userService, detPizService, pizzConfig, $routeParams) {
     var id = $routeParams.id
     var self = this;
     
     self.title = "Détails pizza";
     self.pizza = null
-
+    self.url=pizzConfig.IMG_PIZZA_URL;
+    
     console.log(id)
     detPizService.getPizza(id).then(function(data){
        self.pizza = data;
@@ -277,13 +278,22 @@ angular.module('pzWebApp.products')
     })
 
 })
-.controller('menuCtrl', function(menuService, $routeParams, $localStorage, $location) {
+.controller('menuCtrl', function(menuService, $routeParams, $localStorage, $location, pizzConfig) {
     console.log($localStorage.menu)
     
     var self = this;
+
+    self.configService = pizzConfig;
+
     self.title = "Menu:";
     var id = $routeParams.idMenu
-    
+
+    self.filterProducts = function(prods,type) {
+        console.log(prods);
+        if(prods)  return prods.filter(function(prod){  return prod.type === type})
+            else return [];
+       ;
+    }
     self.pizza = null
     self.boisson = null
     self.dessert = null
