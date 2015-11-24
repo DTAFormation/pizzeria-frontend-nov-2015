@@ -7,7 +7,7 @@
 		<div class="form-group col-md-3" ng-repeat="boisson in ctrl.boissons track by $index">
 			<div class="thumbnail" ng-click="ctrl.selectBoisson(boisson)" ng-class="ctrl.getBoissonClass(boisson)">
 
-				<img ng-if="boisson.image && boisson.image.trim() != ''"class="resize-list" ng-src="{{ctrl.configService.IMG_PIZZA_URL}}{{boisson.image}}" alt="Image de la boisson {{boisson.nom}}" />
+				<img ng-if="boisson.image && boisson.image.trim() != ''"class="resize-list" ng-src="{{ctrl.configService.IMG_BOISSON_URL}}{{boisson.image}}" alt="Image de la boisson {{boisson.nom}}" />
 
 				<img ng-if="!boisson.image || boisson.image.trim() == ''"class="resize-list" ng-src="{{ctrl.configService.IMG_URL_Default}}" alt="Image par défaut" />
 
