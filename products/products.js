@@ -152,7 +152,7 @@ angular.module('pzWebApp.products')
 .controller('boissonCtrl', function(boissonService, $location, $localStorage, pizzConfig) {
     var self = this;
 
-    self.urlImageBoisson = pizzConfig.IMG_BOISSON_URL;
+    self.configService = pizzConfig;
 
     self.title = "Choisissez une boisson:";
 
