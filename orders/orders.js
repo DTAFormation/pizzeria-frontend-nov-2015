@@ -62,8 +62,8 @@ angular.module('pzWebApp.orders').controller('paiementCtrl', function (userServi
         }
 
     
-    $localStorage.order.paiement = "CARTE";
-    $localStorage.order.paye = "false";
+    $localStorage.order.paiement = self.type;
+    $localStorage.order.paye = false;
     $localStorage.order.Etat = 1;
     $localStorage.order.produits = $localStorage.panierFinal[0];
 
@@ -107,7 +107,7 @@ angular.module('pzWebApp.orders').controller('commandeCtrl', function (userServi
             return
         }
 
-        //$localStorage.order.client = $localStorage.client
+        $localStorage.order.client = $localStorage.client
         $localStorage.order.type = self.type        
         $localStorage.order.total = $localStorage.panierFinal.total 
            
