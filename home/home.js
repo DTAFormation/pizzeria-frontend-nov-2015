@@ -83,8 +83,7 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(userService, p
     self.dataMenuBoisson = []
     self.dataMenuDessert = []
 
-    var cache = {};
-
+    var cache = {};    
      
 
     console.log("menu",$localStorage.menu)
@@ -121,9 +120,9 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(userService, p
     console.log("boisson",$localStorage.menuBoisson)
     console.log("dessert",$localStorage.menuDessert)
     self.dataMenu = $localStorage.menu
-    self.dataMenuPizza = $localStorage.menuPizza
-    self.dataMenuBoisson = $localStorage.menuBoisson
-    self.dataMenuDessert = $localStorage.menuDessert
+    //self.dataMenuPizza = $localStorage.menuPizza
+    //self.dataMenuBoisson = $localStorage.menuBoisson
+    //self.dataMenuDessert = $localStorage.menuDessert
     
   //Trier tableau par id
   self.datatrie = self.data  
@@ -250,6 +249,7 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(userService, p
         if(menu == y){
           console.log("testOK")
           self.dataMenu.splice(i,1)
+          console.log($localStorage.menu)
         }
         i++
       })
@@ -264,7 +264,7 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(userService, p
       }
 
       if($localStorage.menu.length >0){
-        $localStorage.panierFinal.push($localStorage.menu)
+        //$localStorage.panierFinal[0].push(self.dataMenuPizza)
       }
       if(self.totalcommande >0){
         $localStorage.panierFinal.total = self.totalcommande
