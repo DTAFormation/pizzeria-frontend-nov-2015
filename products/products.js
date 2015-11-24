@@ -213,9 +213,7 @@ angular.module('pzWebApp.products')
 
     var self = this;
 
-    self.urlImagePizza = pizzConfig.IMG_PIZZA_URL;
-    self.urlImageBoisson = pizzConfig.IMG_BOISSON_URL;
-    self.urlImageDessert = pizzConfig.IMG_DESSERT_URL;
+    self.configService = pizzConfig;
 
     self.title = "Notre carte:";
 
