@@ -38,10 +38,7 @@ angular.module('pzWebApp.orders').controller('paiementCtrl', function (userServi
          alert ("aucune commande en cours")
           $location.path('/')
     }
-
-    paiementService.promesse.then(function () {        
-        
-    }.bind(this))
+   
 
 
     this.paiementLiquide= function (){        
@@ -64,17 +61,19 @@ angular.module('pzWebApp.orders').controller('paiementCtrl', function (userServi
             return
         }
 
-        $localStorage.order.paiement = self.type
-       $localStorage.order.paye = "false";
-       $localStorage.order.etat = 'EN_COURS';
-       $localStorage.order.produits =[];
-       $localStorage.order.total=0;
-       $localStorage.order.type = 'SUR_PLACE'
-       console.log($localStorage.order)
+    
+    $localStorage.order.paiement = "CARTE";
+    $localStorage.order.paye = "false";
+    $localStorage.order.Etat = 1;
+    $localStorage.order.produits = $localStorage.panierFinal[0];
 
-       paiementService.saveCommand($localStorage.order).then(function(){
-        alert ("Youpi commande enregistrée")
-       })
+    console.log($localStorage.panierFinal)
+    console.log($localStorage.order)
+       
+              
+       
+
+       paiementService.saveCommand($localStorage.order)
 
     }
     
@@ -87,7 +86,7 @@ angular.module('pzWebApp.orders').controller('commandeCtrl', function (userServi
         
     self.title = "Commande";
     self.enLiv = false 
-    $localStorage.order = []      
+    $localStorage.order = new Object()     
     
     self.type;
     self.adresse =  $localStorage.client.adresse     
@@ -108,9 +107,10 @@ angular.module('pzWebApp.orders').controller('commandeCtrl', function (userServi
             return
         }
 
-        $localStorage.order.id_client = $localStorage.client.id
-        $localStorage.order.type = self.type
-        $localStorage.order.total = $localStorage.panierFinal.total       
+        $localStorage.order.client = $localStorage.client
+        $localStorage.order.type = self.type        
+        $localStorage.order.total = $localStorage.panierFinal.total 
+           
 
         console.log($localStorage.order)
 
