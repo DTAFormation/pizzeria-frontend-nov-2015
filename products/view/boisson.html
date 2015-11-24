@@ -9,7 +9,7 @@
 
 				<img ng-if="boisson.image && boisson.image.trim() != ''"class="resize-list" ng-src="{{ctrl.configService.IMG_BOISSON_URL}}{{boisson.image}}" alt="Image de la boisson {{boisson.nom}}" />
 
-				<img ng-if="!boisson.image || boisson.image.trim() == ''"class="resize-list" ng-src="{{ctrl.configService.IMG_PIZZA_URL_Default}}" alt="Image par défaut" />
+				<img ng-if="!boisson.image || boisson.image.trim() == ''"class="resize-list" ng-src="{{ctrl.configService.IMG_URL_Default}}" alt="Image par défaut" />
 
 				<div class="caption">
 					<h3 class="text-center">{{boisson.nom}} {{ boisson.prix }} €</h3>
