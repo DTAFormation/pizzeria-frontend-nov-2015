@@ -313,24 +313,21 @@ angular.module('pzWebApp.products')
             $localStorage.menu = [];
         }
         $localStorage.menu.push(self.menu);
-        if(!$localStorage.menu.pizza)
+        if(!$localStorage.menuPizza)
         {
-            $localStorage.menu.pizza = [];
+            $localStorage.menuPizza = [];
         }
-        $localStorage.menu.pizza.push(self.pizza);
-        if(!$localStorage.menu.boisson)
+        $localStorage.menuPizza.push(self.pizza);
+        if(!$localStorage.menuBoisson)
         {
-            $localStorage.menu.boisson = [];
+            $localStorage.menuBoisson = [];
         }
-        $localStorage.menu.boisson.push(self.boisson);
-        if(!$localStorage.menu.dessert)
+        $localStorage.menuBoisson.push(self.boisson);
+        if(!$localStorage.menuDessert)
         {
-            $localStorage.menu.dessert = [];
+            $localStorage.menuDessert = [];
         }
-        $localStorage.menu.dessert.push(self.dessert);
-        console.log(self.pizza)
-        console.log(self.boisson)
-        console.log(self.dessert)
+        $localStorage.menuDessert.push(self.dessert);
     
         $location.path('/panier')
     }
