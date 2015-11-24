@@ -23,6 +23,10 @@ angular.module('pzWebApp.users').config(function ($routeProvider) {
             templateUrl: "users/template/connexion.tpl.html",
             controller: "connexionCtrl",
             controllerAs: "ctrl"
+        }).when("/validation", {
+            templateUrl: "users/template/validation.tpl.html",
+            controller: "validationCtrl",
+            controllerAs: "ctrl"
         });
 });
 
@@ -46,8 +50,8 @@ angular.module('pzWebApp.users').controller('inscriptionCtrl', function (userSer
         self.client = this.client;
         inscriptionService.promessePost(this.client)
             .then(function (reponse) {
-                userService.login(reponse.data);
-                //$location.path('/')
+                $location.path('/')
+                alert("Pour valider votre inscription, vous devez valider l'adresse mail.")
             }, function (reason) {
                 if (reason.status == 400)
                     alert(reason.data);
@@ -64,8 +68,8 @@ angular.module('pzWebApp.users').controller('editionCtrl', function (userService
     var self = this;
 
     self.title = "Page d'edition";
-self.client = {};
-    angular.copy($localStorage.client,self.client) ;
+    self.client = {};
+    angular.copy($localStorage.client, self.client);
     self.change = false;
     self.login = self.client.login;
     self.mdp = self.client.mdp;
@@ -79,7 +83,7 @@ self.client = {};
             });
     }
 
-    this.saveForm = function ()  {
+    this.saveForm = function () {
         if (this.editionForm.$dirty) {
 
             if (this.editionForm.$invalid) {
@@ -107,13 +111,13 @@ self.client = {};
                     self.client.mdp = self.mdp;
                 }
             } else {
-               putClient(this.client)
+                putClient(this.client)
             }
         }
     }
 });
 
-angular.module('pzWebApp.users').controller('connexionCtrl', function (userService, connexionService, $location) {
+angular.module('pzWebApp.users').controller('connexionCtrl', function (userService, connexionService, $location, $localStorage) {
 
     var self = this;
 
@@ -124,17 +128,54 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
             alert('Un champs est vide ou invalide !')
             return
         }
-        //Redirection vers le home
         connexionService.promessePut(this.login, this.mdp)
             .then(function (response) {
+
                 userService.login(response.data);
-                $location.path('/');
+
+                if (!$localStorage.panierFinal) {
+                    $location.path('/');
+                }
+                else {
+                    $location.path('/commande');
+                }
             }, function (reason) {
+
                 if (reason.status == 400)
                     alert(reason.data);
                 else
                     alert('Une erreur est intervenue')
             });
     }
+
+});
+
+angular.module('pzWebApp.users').controller('validationCtrl', function (userService, validationService, $location, $routeParams, $localStorage) {
+
+    var self = this;
+    self.id = $routeParams.id
+    self.hash = $routeParams.hash
+    self.information = ""
+    self.title = "Page de validation";
+
+
+    validationService.promessePut(self.id, self.hash)
+        .then(function (response) {
+            self.information = "Votre compte a bien été validé."
+            userService.login(response.data);
+            if (!$localStorage.panierFinal) {
+                $location.path('/');
+            }
+            else {
+                $location.path('/commande');
+            }
+        }, function (reason) {
+            if (reason.status == 400) {
+                self.information = reason.data
+            }
+            else {
+                alert('Une erreur est intervenue')
+            }
+        });
 
 });

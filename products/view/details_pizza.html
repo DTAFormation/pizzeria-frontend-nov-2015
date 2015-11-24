@@ -3,14 +3,6 @@
  -->
 <h2> {{ctrl.title}}</h2>
 
-<!--<br>
-<p>
-<img src="https://cdn-catalog.pizzahut.fr/images/fr/20141201165922296.jpg" alt="photo pizza"/>
-<br>
-pizza reine
-<br>
-sauce tomate, mozza, jambon, champignons</p>-->
-
 
 <div>
 	<h3>Pizza {{ctrl.pizza.nom}} :</h3>
@@ -20,13 +12,8 @@ sauce tomate, mozza, jambon, champignons</p>-->
 		</div>
 	</ul>
 	<p>Prix : {{ctrl.pizza.prix}} €</p>
-	<img ng-src="{{ctrl.pizza.image}}" alt="erreur photo pizza" />
+	<img ng-src="{{ctrl.url}}{{ctrl.pizza.image}}" alt="erreur photo pizza" />
 
 </div>
 
-<<<<<<< HEAD
-<button>ajouter à la commande// non valide</button>
-=======
 <button>ajouter à la commande</button>
-
->>>>>>> 62a4ecf9a020d348db93cdb966c57d4615536361

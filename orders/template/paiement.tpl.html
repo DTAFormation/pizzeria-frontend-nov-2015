@@ -3,7 +3,7 @@
 <form name="paiementForm" ng-submit="paiementCtrl.saveForm()">
 
 	<label for="ligne">Payer en ligne</label>
-	<input id="ligne" type="radio" name="choixPaiement" value="ligne" ng-model="ngpaie">
+	<input id="ligne" type="radio" name="choixPaiement" value="ligne" ng-model="ngpaie" >
 	<label for="recup">Payer à la récupération</label>
 	<input id="recup" type="radio" name="choixPaiement" value="recup" ng-model="ngpaie">
 
@@ -11,9 +11,9 @@
 		<br>
 		<h3> en ligne</h3>
 		<label for="paypal">Payer via Paypal</label>
-		<input id="paypal" type="radio" name="choixPaiementLigne" value="paypal" ng-model="ngpaieligne">
+		<input id="paypal" type="radio" name="choixPaiementLigne" value="paypal" ng-model="ngpaieligne" ng-model="ctrl.type" ng-change="ctrl.paiementLigne()">
 		<label for="cb">Payer par carte bancaire</label>
-		<input id="cb" type="radio" name="choixPaiementLigne" value="cb" ng-model="ngpaieligne">
+		<input id="cb" type="radio" name="choixPaiementLigne" value="cb" ng-model="ngpaieligne" ng-model="ctrl.type" ng-change="ctrl.paiementLigne()">
 
 		<div ng-show="ngpaieligne=='paypal'">
 			<p>Paypal</p>
@@ -27,10 +27,10 @@
 		<br>
 		<h3> à la récupération</h3>
 		<label for="espece">Payer en espèce</label>
-		<input id="espece" type="radio" name="choixPaiementRecup" value="espece">
+		<input id="espece" type="radio" name="choixPaiementRecup" value="espece" ng-model="ngpaierecup" ng-model="ctrl.type"  ng-change="ctrl.paiementLiquide()">
 		<label for="cbrecup">Payer par carte bancaire</label>
-		<input id="cbrecup" type="radio" name="choixPaiementRecup" value="cb">
+		<input id="cbrecup" type="radio" name="choixPaiementRecup" value="cb"  ng-model="ngpaierecup" ng-model="ctrl.type" ng-change="ctrl.paiementCarte()">
 	</div>
-	<input type="submit">
+	<input type="submit" class="btn btn-primary" ng-click="ctrl.saveForm()">
 
 </form>
