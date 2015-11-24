@@ -13,9 +13,9 @@
 	</ul>
 	<p>Prix : {{ctrl.pizza.prix}} €</p>
 	<!-- <img ng-src="{{ctrl.url}}{{ctrl.pizza.image}}" alt="erreur photo pizza" /> -->
-	<img ng-if="pizza.image && pizza.image.trim() != ''"class="resize-list" ng-src="{{ctrl.configService.IMG_PIZZA_URL}}{{pizza.image}}" alt="Image de la pizza {{pizza.nom}}" />
+	<img ng-if="ctrl.pizza.image && ctrl.pizza.image.trim() != ''"class="resize-list" ng-src="{{ctrl.configService.IMG_PIZZA_URL}}{{ctrl.pizza.image}}" alt="Image de la pizza {{ctrl.pizza.nom}}" />
 
-	<img ng-if="!pizza.image || pizza.image.trim() == ''"class="resize-list" ng-src="{{ctrl.configService.IMG_URL_Default}}" alt="Image par défaut" />
+	<img ng-if="!ctrl.pizza.image || ctrl.pizza.image.trim() == ''"class="resize-list" ng-src="{{ctrl.configService.IMG_URL_Default}}" alt="Image par défaut" />
 
 </div>
 
