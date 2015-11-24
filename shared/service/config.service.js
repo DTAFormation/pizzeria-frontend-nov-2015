@@ -9,7 +9,7 @@ angular.module('pzWebApp.shared').constant('pizzConfig',{
 	'DESSERT_RESOURCE_URL': BACKEND_BASE_URL + '/dessert',
 	'MENU_RESOURCE_URL': BACKEND_BASE_URL + '/menu/',
 	'COMMAND_RESOURCE_URL' : BACKEND_BASE_URL + '/command',
-	'CLIENT_RESOURCE_URL': BACKEND_BASE_URL + '/client'
+	'CLIENT_RESOURCE_URL': BACKEND_BASE_URL + '/client',
 	'IMG_PIZZA_URL' : 'http://dtaformation.github.io/pizzeria-web-image-nov-2015/PIZZA/',
 	'IMG_BOISSON_URL' : 'http://dtaformation.github.io/pizzeria-web-image-nov-2015/BOISSON/',
 	'IMG_DESSERT_URL' : 'http://dtaformation.github.io/pizzeria-web-image-nov-2015/DESSERT/'
