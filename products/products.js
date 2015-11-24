@@ -72,7 +72,7 @@ angular.module('pzWebApp.products')
     self.pizza = null;
 
     self.url=pizzConfig.IMG_PIZZA_URL;
-    self.urlDefault=pizzConfig.IMG_PIZZA_URL_Default;
+    self.urlDefault=pizzConfig.IMG_URL_Default;
     
     console.log(id)
     detPizService.getPizza(id).then(function(data){
@@ -85,7 +85,7 @@ angular.module('pzWebApp.products')
     self.title = "Liste de pizzas";
 
     self.pizzas = null; 
-    self.url=pizzConfig.IMG_PIZZA_URL;
+    self.configService = pizzConfig;
 
     pizza_listService.getPizzas().then(function(data){
        self.pizzas = data;
