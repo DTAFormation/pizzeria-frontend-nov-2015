@@ -50,8 +50,8 @@ angular.module('pzWebApp.users').controller('inscriptionCtrl', function (userSer
         self.client = this.client;
         inscriptionService.promessePost(this.client)
             .then(function (reponse) {
-                userService.login(reponse.data);
-                //$location.path('/')
+                $location.path('/')
+                alert("Pour valider votre inscription, vous devez valider l'adresse mail.")
             }, function (reason) {
                 if (reason.status == 400)
                     alert(reason.data);
@@ -128,26 +128,20 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
             alert('Un champs est vide ou invalide !')
             return
         }
-        //Redirection vers le home
         connexionService.promessePut(this.login, this.mdp)
             .then(function (response) {
 
-                userService.login(response.data);                
+                userService.login(response.data);
 
-                if(!$localStorage.panierFinal){
+                if (!$localStorage.panierFinal) {
                     $location.path('/');
-                    
                 }
-                else{
+                else {
                     $location.path('/commande');
                 }
-           
+            }, function (reason) {
 
-
-
-            } , function (reason) {
-
-                 if (reason.status == 400)
+                if (reason.status == 400)
                     alert(reason.data);
                 else
                     alert('Une erreur est intervenue')
@@ -156,24 +150,30 @@ angular.module('pzWebApp.users').controller('connexionCtrl', function (userServi
 
 });
 
-angular.module('pzWebApp.users').controller('validationCtrl', function (userService, validationService, $location, $routeParams) {
+angular.module('pzWebApp.users').controller('validationCtrl', function (userService, validationService, $location, $routeParams, $localStorage) {
 
     var self = this;
     self.id = $routeParams.id
     self.hash = $routeParams.hash
-    self.information =""
+    self.information = ""
     self.title = "Page de validation";
-    
-    
+
+
     validationService.promessePut(self.id, self.hash)
         .then(function (response) {
             self.information = "Votre compte a bien été validé."
             userService.login(response.data);
+            if (!$localStorage.panierFinal) {
+                $location.path('/');
+            }
+            else {
+                $location.path('/commande');
+            }
         }, function (reason) {
             if (reason.status == 400) {
-                self.information=reason.data               
+                self.information = reason.data
             }
-            else {                
+            else {
                 alert('Une erreur est intervenue')
             }
         });

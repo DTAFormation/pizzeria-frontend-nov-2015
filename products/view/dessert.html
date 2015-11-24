@@ -6,7 +6,10 @@
 
 		<div class="form-group col-md-3" ng-repeat="dessert in ctrl.desserts track by $index">
 			<div class="thumbnail" ng-click="ctrl.selectDessert(dessert)" ng-class="ctrl.getDessertClass(dessert)">
-				<img class="resize-list" ng-src="{{ctrl.urlImageDessert}}{{dessert.image}}" alt="Image de la dessert {{dessert.nom}}" />
+
+				<img ng-if="dessert.image && dessert.image.trim() != ''"class="resize-list" ng-src="{{ctrl.configService.IMG_DESSERT_URL}}{{dessert.image}}" alt="Image de la dessert {{dessert.nom}}" />
+
+				<img ng-if="!dessert.image || dessert.image.trim() == ''"class="resize-list" ng-src="{{ctrl.configService.IMG_PIZZA_URL_Default}}" alt="Image par défaut" />
 
 				<div class="caption">
 					<h3 class="text-center">{{dessert.nom}} {{ dessert.prix }} €</h3>

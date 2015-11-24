@@ -4,7 +4,7 @@
 
 		<div class="form-group col-md-3" ng-repeat="pizza in ctrl.pizzas track by $index">
 			<div class="thumbnail">
-				<a ng-href="#details_pizza?id={{pizza.id}}">
+				<a ng-href="#details_pizza?id={{pizza.id}}">					
 					<img class="resize-pizza" ng-src="{{ctrl.url}}{{pizza.image}}"/>
 	    		</a>
 	    		<div class="caption">
