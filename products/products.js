@@ -71,6 +71,7 @@ angular.module('pzWebApp.products')
     self.title = "Détails pizza";
     self.pizza = null
     self.url=pizzConfig.IMG_PIZZA_URL;
+    self.urlDefault=pizzConfig.IMG_PIZZA_URL_Default;
     
     console.log(id)
     detPizService.getPizza(id).then(function(data){
