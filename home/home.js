@@ -84,6 +84,7 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(userService, p
 
      
 
+    console.log("menu",$localStorage.menu)
 
     if(!$localStorage.products)
         {
@@ -110,7 +111,7 @@ angular.module('pzWebApp.home').controller('panierCtrl', function(userService, p
 
       })
 
-    console.log("menu",$localStorage.menu)
+    
     self.dataMenu = $localStorage.menu
 
 
