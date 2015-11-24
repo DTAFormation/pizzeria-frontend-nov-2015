@@ -107,7 +107,7 @@ angular.module('pzWebApp.orders').controller('commandeCtrl', function (userServi
             return
         }
 
-        $localStorage.order.client = $localStorage.client
+        //$localStorage.order.client = $localStorage.client
         $localStorage.order.type = self.type        
         $localStorage.order.total = $localStorage.panierFinal.total 
            
