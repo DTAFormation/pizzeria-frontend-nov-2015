@@ -1,17 +1,12 @@
 angular.module('pzWebApp.orders').service('paiementService', function ($http, pizzConfig) {
 
 		var self = this;
-        function handleResponse(response) {
+   
+   function handleResponse(response) {
                 return response.data;
         }
 
-        var url = "";
-
-        this.promesse = $http.get(url)
-                .then(handleResponse)
-
-
-
+   
      self.saveCommand = function(command) {
     console.log(command);
     return $http.post(pizzConfig.COMMAND_RESOURCE_URL, command).then(
